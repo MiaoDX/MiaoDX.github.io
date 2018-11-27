@@ -3,8 +3,10 @@
 # http://www.yanglangjing.com/2018/08/28/travis_ci_auto_deploy_hexo_to_vps/
 # https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/
 
-language: node_js
-node_js: stable
+language:
+- node_js
+node_js:
+- stable
 branches:
   only:
   - source_files
@@ -39,7 +41,7 @@ git clone --depth 1 https://${GH_REF} -b source_files .deploy_git/source/_posts
 
 env:
   global:
-  - GH_REF: github.com/redanula/redanula.github.com.git
+  - GH_REF: github.com/MiaoDX/MiaoDX.github.com.git
 notifications:
   email:
   - miaodx@hotmail.com
