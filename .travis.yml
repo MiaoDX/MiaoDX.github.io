@@ -1,4 +1,5 @@
-# REFERENCE: [使用 Travis 自动部署 Hexo 到 Github 与 自己的服务器](https://segmentfault.com/a/1190000009054888)
+# REFERENCE: 
+# https://segmentfault.com/a/1190000009054888
 # http://www.yanglangjing.com/2018/08/28/travis_ci_auto_deploy_hexo_to_vps/
 # https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/
 
@@ -13,7 +14,7 @@ cache:
   directories:
   - node_modules
 before_install:
-- export TZ='Asia/Shanghai'
+- export TZ="Asia/Shanghai"
 - git config user.name "MiaoDX"
 - git config user.email "miaodx@hotmail.com"
 - npm install -g hexo-cli
