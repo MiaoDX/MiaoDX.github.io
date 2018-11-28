@@ -16,17 +16,17 @@ before_install:
   - export TZ="Asia/Shanghai"
   - git config user.name "MiaoDX"
   - git config user.email "miaodx@hotmail.com"
-  - npm install -g hexo-cli
+  - npm install -g hexo-cli gulp
 install:
   - npm install
 script:
   - hexo clean
-  - hexo g
+  - hexo g & gulp
 after_script:
   - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
   # - cd .deploy_git
   - pwd
-  - ls
+  - ls -a
 
   - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/source_files
   # - rm ./source/_posts/source_files/.git/ -rf
@@ -40,12 +40,12 @@ after_script:
   # - mv ./themes/_config_next.yml ./themes/next/_config.yml
 
   - pwd
-  - ls
+  - ls -a
 
   # - rm .git/ -rf
   - cd ./public
   - pwd
-  - ls
+  - ls -a
   - git init
   # - git checkout master
   # - cd ../
