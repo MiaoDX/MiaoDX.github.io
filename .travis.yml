@@ -23,18 +23,23 @@ script:
   - hexo clean
   - hexo g
 after_script:
-  #- git clone https://${GH_REF} .deploy_git
   - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
-  - git clone --depth 1 https://${GH_REF} -b source_files .deploy_git/source/_posts  
   - cd .deploy_git
+  - pwd
+  - ls
 
-  - wget https://github.com/iissnan/hexo-theme-next/archive/v5.1.4.zip
-  - unzip v5.1.4.zip themes/
-  - mv themes/hexo-theme-next-5.1.4 themes/next
-  - rm v5.1.4.zip
-  - mv themes/_config_next.yml themes/next/_config.yml
+  - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts
+  - rm ./source/_posts/.git/ -rf
 
-  - git init  
+  # - wget https://github.com/iissnan/hexo-theme-next/archive/v5.1.4.zip
+  # - unzip v5.1.4.zip themes/
+  # - mv themes/hexo-theme-next-5.1.4 themes/next
+  # - rm v5.1.4.zip
+  - git clone --depth 1 https://github.com/iissnan/hexo-theme-next.git -b v5.1.4 ./themes/next
+  - rm ./themes/next/.git/ -rf
+  - mv ./themes/_config_next.yml ./themes/next/_config.yml
+
+  # - git init  
   # - git checkout master
   # - cd ../
   # - mv .deploy_git/.git/ ./public/
