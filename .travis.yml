@@ -20,6 +20,9 @@ before_install:
 install:
   - npm install
 before_script:
+  # https://github.com/wzpan/hexo-renderer-pandoc/pull/22
+  - apt-get update -qq && apt-get install -y -qq pandoc
+
   # WE are already in hexo_template directory
   # - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
   # - cd .deploy_git
@@ -30,6 +33,7 @@ before_script:
   - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/source_files
   # Theme
   - git clone --depth 1 https://github.com/iissnan/hexo-theme-next.git -b v5.1.4 ./themes/next
+  - mv ./themes/_config_next.yml ./themes/next/_config.yml
 
 script:
   - hexo clean
