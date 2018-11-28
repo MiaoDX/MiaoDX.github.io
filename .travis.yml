@@ -33,6 +33,8 @@ before_script:
   - wget https://github.com/jgm/pandoc/releases/download/2.5/pandoc-2.5-1-amd64.deb
   - sudo dpkg -i pandoc-2.5-1-amd64.deb
 
+  - pip install pandoc-fignos pandoc-eqnos # for pandoc filter
+
   # WE are already in hexo_template directory
   # - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
   # - cd .deploy_git

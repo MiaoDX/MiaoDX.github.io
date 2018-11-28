@@ -36,7 +36,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -93,3 +93,18 @@ search:
   field: post
   format: html
   limit: 10000
+
+# https://github.com/theme-next/hexo-theme-next/issues/145
+# hexo-renderer-pandoc
+pandoc:
+  filters:
+    - pandoc-fignos
+    - pandoc-eqnos
+    # - pandoc-crossref
+    # - pandoc-citeproc
+  extra:
+  template:
+  meta:
+    # - bibliography: "/home/nirvana6/workspace/blog/blog.bib"
+    # - link-citations: true
+  mathEngine:
