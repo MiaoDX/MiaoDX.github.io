@@ -2,48 +2,49 @@
 # https://segmentfault.com/a/1190000009054888
 # http://www.yanglangjing.com/2018/08/28/travis_ci_auto_deploy_hexo_to_vps/
 # https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/
-
-language:
-- node_js
-node_js:
-- stable
+language: node_js
+node_js: stable
 branches:
   only:
-  - source_files
-  - hexo_template
+    - source_files
+    - hexo_template
 cache:
   apt: true
   directories:
-  - node_modules
+    - node_modules
 before_install:
-- export TZ="Asia/Shanghai"
-- git config user.name "MiaoDX"
-- git config user.email "miaodx@hotmail.com"
-- npm install -g hexo-cli
+  - export TZ="Asia/Shanghai"
+  - git config user.name "MiaoDX"
+  - git config user.email "miaodx@hotmail.com"
+  - npm install -g hexo-cli
 install:
-- npm install
+  - npm install
 script:
-- hexo clean
-- hexo g
+  - hexo clean
+  - hexo g
 after_script:
-#- git clone https://${GH_REF} .deploy_git
-git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
-git clone --depth 1 https://${GH_REF} -b source_files .deploy_git/source/_posts
-- cd .deploy_git
-# - git checkout master
-# - cd ../
-# - mv .deploy_git/.git/ ./public/
-# - cd ./public
-- git init
-- git add .
-- git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
-- git push --force --quiet "https://${HEXO_TOKEN}@${GH_REF}" master:master
+  #- git clone https://${GH_REF} .deploy_git
+  - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
+  - git clone --depth 1 https://${GH_REF} -b source_files .deploy_git/source/_posts
+  - git clone https://github.com/iissnan/hexo-theme-next -b v5.1.4 .deploy_git/themes/next
+  # - wget https://github.com/iissnan/hexo-theme-next/archive/v5.1.4.zip
+  # - unzip v5.1.4.zip ./deploy_git/themes/next
+  - cd .deploy_git
+  - mv themes/_config_next.yml themes/next/_config.yml
+  # - git checkout master
+  # - cd ../
+  # - mv .deploy_git/.git/ ./public/
+  # - cd ./public
+  - git init
+  - git add .
+  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
+  - git push --force --quiet "https://${HEXO_TOKEN}@${GH_REF}" master:master
 
 env:
   global:
-  - GH_REF: github.com/MiaoDX/MiaoDX.github.com.git
+    - GH_REF: github.com/MiaoDX/MiaoDX.github.com.git
 notifications:
   email:
-  - miaodx@hotmail.com
+    - miaodx@hotmail.com
   on_success: change
   on_failure: always
