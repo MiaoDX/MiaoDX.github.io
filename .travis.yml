@@ -29,7 +29,7 @@ after_script:
   - ls
 
   - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/source_files
-  - rm ./source/_posts/.git/ -rf
+  - rm ./source/_posts/source_files/.git/ -rf
 
   # - wget https://github.com/iissnan/hexo-theme-next/archive/v5.1.4.zip
   # - unzip v5.1.4.zip themes/
