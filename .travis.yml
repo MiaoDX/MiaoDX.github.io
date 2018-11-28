@@ -2,6 +2,9 @@
 # https://segmentfault.com/a/1190000009054888
 # http://www.yanglangjing.com/2018/08/28/travis_ci_auto_deploy_hexo_to_vps/
 # https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/
+
+# https://blog.travis-ci.com/2018-11-08-xenial-release, use xenial for pandoc>2.x
+dist: xenial
 language: node_js
 node_js: stable
 branches:
