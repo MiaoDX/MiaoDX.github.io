@@ -1,5 +1,5 @@
 ---
-title: Story of Configuration.
+title: Story of Configuration
 date: 2017-5-10 18:32:00
 tags: 
   - configuration

@@ -1,5 +1,5 @@
 ---
-title: How_to_install_opencv_in_WINDOWS
+title: How to install opencv in WINDOWS
 date: 2017-02-26 17:06:00
 tags:
   - opencv

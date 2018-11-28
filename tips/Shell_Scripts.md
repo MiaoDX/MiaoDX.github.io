@@ -1,5 +1,5 @@
 ---
-title: Shell_Scripts
+title: Shell Scripts
 date: 2017-03-22 20:22:00
 tags:
   - shell
@@ -36,4 +36,4 @@ Here you are:
 find src_dir/ -name "*.txt" -type f -exec ./change_encoding.sh {} \;
 ```
 
-see [`change_encoding.sh`](change_encoding.sh) for more info.
+see [`change_encoding.sh`](pics/change_encoding.sh) for more info.

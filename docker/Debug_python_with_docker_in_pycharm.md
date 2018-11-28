@@ -1,5 +1,5 @@
 ---
-title: Debug_python_with_docker_in_pycharm
+title: Debug python with_docker in pycharm
 date: 2016-11-13 20:14:00
 tags: 
   - debug 
@@ -14,16 +14,16 @@ As I really really appreciate it that we can have a `isolated` develop environme
 
 ## What I got
 
-I tried, tried and tried. At an amzing monment I succeeded running docker on windows throgh DockerToolbox. Mostly, I refer [One answer to Running a Docker image in PyCharm causes ‚ÄúInvalid volume specification‚Äù](http://stackoverflow.com/a/39968174/7067150).(By the way, my machine and environment is exactly like the answer)
+I tried, tried and tried. At an amzing monment I succeeded running docker on windows throgh DockerToolbox. Mostly, I refer [One answer to Running a Docker image in PyCharm causes °∞Invalid volume specification°±](http://stackoverflow.com/a/39968174/7067150).(By the way, my machine and environment is exactly like the answer)
 
 BUT suddenly I failed to repeat it.
 
 ## So I changed to try it on ubuntu
 
-Unbuntu 14.04 in virtualbox.
-The default settings when add docker as shown below is not suitable for unbuntu 14.
+Unbuntu 14.04 in virtualbox. The default settings when add docker as shown in fig @fig:add_docker_linux is not suitable for unbuntu 14.
 
-![add_docker_linux](http://images2015.cnblogs.com/blog/1021346/201611/1021346-20161113202151702-1457899639.png)
+![add_docker_linux screenshot](pics/add_docker_linux.png){#fig:add_docker_linux width=70%}
+
 
 According to [another SO question's answer](http://stackoverflow.com/a/39971120/7067150), adding `unix:///var/run/docker.sock` to the `API URL` shows `Connection successful` when click `Apply`. But when running programs it still won't work.
 

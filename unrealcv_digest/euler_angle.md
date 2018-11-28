@@ -1,4 +1,10 @@
-# Euler Angle, a program approach
+---
+title: Euler Angle, a program approach
+date: 2018-11-25 00:00:01
+tags:
+  - Euler Angle
+---
+
 
 > 3D rotations matrices can make your head spin. I know it is a bad pun but truth can sometimes be very punny! -- [https://www.learnopencv.com/rotation-matrix-to-euler-angles/](https://www.learnopencv.com/rotation-matrix-to-euler-angles/)
 

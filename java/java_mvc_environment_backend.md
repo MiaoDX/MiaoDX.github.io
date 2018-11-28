@@ -1,5 +1,5 @@
 ---
-title: java_mvc_environment_backend
+title: Java mvc environment backend
 date: 2016-09-17 18:18:00
 tags: 
   - Java 
@@ -73,17 +73,16 @@ tags:
 当然，在后面你可能需要[一台机器上启动多个 Tomcat](http://www.cnblogs.com/skyme/archive/2011/08/29/2157378.html)，由于原博客有迁移的迹象，现复制如下。
 
 >如果需要在一台机子上启动多个Tomcat服务器，在默认设置下肯定会发生端口冲突。为实现这个效果，只需修改conf子目录中的server.xml文件即可。共需修改三处：
->
+```
 (1).修改http访问端口（默认为8080端口）:
 <Connector port=”8080” protocol=”HTTP/1.1″ 
 connectionTimeout=”20000″ 
 redirectPort=”8443″ URIEncoding=”gb2312″/>
->
 (2).修改Shutdown端口（默认为8005端口）:
 <Server port=”8005” shutdown=”SHUTDOWN”>
->
 (3).修改JVM启动端口（默认为8009端口）:
 <Connector port=”8009” protocol=”AJP/1.3″ redirectPort=”8443″ /> 
+```
 
 然后，也许还需要看一下 intellij 热部署的方式，这里不再给出链接。
 

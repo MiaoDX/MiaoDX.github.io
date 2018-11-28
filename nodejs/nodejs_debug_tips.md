@@ -1,5 +1,5 @@
 ---
-title: nodejs_debug_tips
+title: Nodejs debug tips
 date: 2016-12-11 18:00:00
 tags:
   - nodejs

@@ -1,5 +1,5 @@
 ---
-title: use_mongo_in_docker_and_dump_database
+title: Use mongo in docker and dump database
 date: 2016-12-11 17:07:00
 tags:
   - mongodb

@@ -33,7 +33,7 @@ Before all, let us think what data we really need, for computer vision applicati
 * the objects number, name, color
 
 
-The `unrealcv` meets all these common requirements and even more, see figure $\ref{fig:unrealcv_help}$
+The `unrealcv` meets all these common requirements and even more, see figure @fig:unrealcv_help.
 
 ![`vget /unrealcv/help`](unrealcv_help.PNG){#fig:unrealcv_help width=50%}
 
@@ -46,7 +46,7 @@ You are also encouraged to see official [getting_started](http://unrealcv.org/tu
 2. Unzip and run the binary.
 3. Use mouse to look around and use keys `wasd` to navigate, use qe to level the camera up and down, use `←↑→↓` to control the rotation of the camera.(Seem that `←→` do the `yaw` rotation well but `↑↓` is somewhat wired -- not `pitch` nor `roll`, but it's OK)
 4. Type **`** (the key on top of tab) to release the mouse and thus enter command line environment, type it twice to show enlarged command graphical interface.
-5. Type `vget /camera/0/lit` and navigate to the folder `RealisticRendering\Binaries\Win64`, we can see the `00000001.png` we just captured. You should get something like figure $\ref{fig:first_capture}$
+5. Type `vget /camera/0/lit` and navigate to the folder `RealisticRendering\Binaries\Win64`, we can see the `00000001.png` we just captured. You should get something like figure @fig:first_capture
 6. Type `vget /unrealcv/help` will get something like our first figure.
 7. TRY COMMANDS LISTED IN HELP
 
@@ -56,7 +56,7 @@ Note: In Windows, chances are that you will encounter `DirectX Runtime` problem 
 
 # Show me the code, please!
 
-We want to get tons of thousands images from the virtual environment and then use them in various ways. So, we need codes to do that, and TES, we can do that! To use code fetch images via unrealcv is ***unreally easy***:). See code snippet below (or just `wget https://raw.githubusercontent.com/unrealcv/unrealcv/master/client/python/demo.py . --no-check-certificate`):
+We want to get tons of thousands images from the virtual environment and then use them in various ways. So, we need codes to do that, and TES, we can do that! To use code fetch images via unrealcv is ***unreally easy***:). See code snippet below (or just <br>`wget https://raw.githubusercontent.com/unrealcv/unrealcv/master/client/python/demo.py . --no-check-certificate`):
 
 ``` python
 from unrealcv import client

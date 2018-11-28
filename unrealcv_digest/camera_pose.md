@@ -1,4 +1,10 @@
-# Camera Pose & Pose Estimation
+---
+title: Camera Pose & Pose Estimation
+date: 2018-11-25 00:00:02
+tags: 
+  - Pose 
+  - Pose Estimation
+---
 
 Camera pose estimation is one of the most widely used low-level computer vision research, fundamentally supports SLAM, SfM, AR, VR and our ACR (Active Camera Relocalization).
 
