@@ -14,7 +14,8 @@ branches:
     - source_files
     - hexo_template
 cache:
-  apt: true
+  apt: false
+  # apt: true
   # directories:
     # - node_modules
 before_install:
