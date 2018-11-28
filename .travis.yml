@@ -6,7 +6,7 @@
 # https://blog.travis-ci.com/2018-11-08-xenial-release, 
 # As shown in https://packages.ubuntu.com/search?keywords=pandoc, xenial still won't support pandoc>2.x
 # so, we use lower version of pandoc, https://github.com/wzpan/hexo-renderer-pandoc/pull/22#issuecomment-426513496
-# dist: xenial
+dist: xenial
 language: node_js
 node_js: stable
 branches:
