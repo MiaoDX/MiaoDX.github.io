@@ -17,37 +17,34 @@ before_install:
   - git config user.name "MiaoDX"
   - git config user.email "miaodx@hotmail.com"
   - npm install -g hexo-cli
-  # - npm install -g gulp
 install:
   - npm install
 script:
-  - npm install gulp
   - hexo clean
-  - hexo g && gulp
+  # - npm install gulp
+  # - hexo g && gulp # we generate after resources are retrieved
 after_script:
   - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
-  # - cd .deploy_git
+  - cd .deploy_git
+
   - pwd
   - ls -a
 
+  # Get resource files
   - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/source_files
-  # - rm ./source/_posts/source_files/.git/ -rf
-
-  # - wget https://github.com/iissnan/hexo-theme-next/archive/v5.1.4.zip
-  # - unzip v5.1.4.zip themes/
-  # - mv themes/hexo-theme-next-5.1.4 themes/next
-  # - rm v5.1.4.zip
+  # Theme
   - git clone --depth 1 https://github.com/iissnan/hexo-theme-next.git -b v5.1.4 ./themes/next
-  # - rm ./themes/next/.git/ -rf
-  # - mv ./themes/_config_next.yml ./themes/next/_config.yml
-
+  
   - pwd
   - ls -a
+
+  - hexo g
 
   # - rm .git/ -rf
   - cd ./public
   - pwd
   - ls -a
+  
   - git init
   - git add .
   - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
