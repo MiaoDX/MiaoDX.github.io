@@ -15,8 +15,8 @@ branches:
     - hexo_template
 cache:
   apt: true
-  directories:
-    - node_modules
+  # directories:
+    # - node_modules
 before_install:
   - export TZ="Asia/Shanghai"
   - git config user.name "MiaoDX"
