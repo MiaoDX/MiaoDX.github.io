@@ -16,12 +16,13 @@ before_install:
   - export TZ="Asia/Shanghai"
   - git config user.name "MiaoDX"
   - git config user.email "miaodx@hotmail.com"
-  - npm install -g hexo-cli gulp
+  - npm install -g hexo-cli
+  - npm install -g gulp
 install:
   - npm install
 script:
   - hexo clean
-  - hexo g & gulp
+  - hexo g && gulp
 after_script:
   - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
   # - cd .deploy_git
@@ -47,10 +48,6 @@ after_script:
   - pwd
   - ls -a
   - git init
-  # - git checkout master
-  # - cd ../
-  # - mv .deploy_git/.git/ ./public/
-  # - cd ./public
   - git add .
   - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
   - git push --force --quiet "https://${HEXO_TOKEN}@${GH_REF}" master:master
