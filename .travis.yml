@@ -28,7 +28,7 @@ after_script:
   - pwd
   - ls
 
-  - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts
+  - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/source_files
   - rm ./source/_posts/.git/ -rf
 
   # - wget https://github.com/iissnan/hexo-theme-next/archive/v5.1.4.zip
@@ -39,7 +39,8 @@ after_script:
   - rm ./themes/next/.git/ -rf
   - mv ./themes/_config_next.yml ./themes/next/_config.yml
 
-  # - git init  
+  - rm .git/ -rf
+  - git init  
   # - git checkout master
   # - cd ../
   # - mv .deploy_git/.git/ ./public/
