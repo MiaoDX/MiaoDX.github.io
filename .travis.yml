@@ -11,9 +11,10 @@ script:
    -
 
 after_script:
-   - curl -LO --retry 3 https://raw.github.com/stephanmg/travis-dependent-builds/master/trigger.sh
-   - chmod +x trigger.sh
+   # - curl -LO --retry 3 https://raw.github.com/stephanmg/travis-dependent-builds/master/trigger.sh
+   # - chmod +x trigger.sh
    # - ./trigger.sh stephanmg downstream master $TRAVIS_ACCESS_TOKEN 
-   - ./trigger.sh miaodx https://github.com/MiaoDX/MiaoDX.github.io.git $HEXO_TOKEN hexo_template
-  # - curl -LO --retry 3 https://raw.github.com/mernst/plume-lib/master/bin/trigger-travis.sh
+   # - ./trigger.sh miaodx https://github.com/MiaoDX/MiaoDX.github.io.git hexo_template $HEXO_TOKEN
+  - curl -LO --retry 3 https://raw.github.com/mernst/plume-lib/master/bin/trigger-travis.sh
   # - sh trigger-travis.sh --branch hexo_template miaodx https://github.com/MiaoDX/MiaoDX.github.io.git $HEXO_TOKEN
+  - sh trigger-travis.sh --branch hexo_template miaodx MiaoDX.github.io $HEXO_TOKEN
