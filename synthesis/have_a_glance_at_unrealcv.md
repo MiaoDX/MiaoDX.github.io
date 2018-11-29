@@ -35,7 +35,7 @@ Before all, let us think what data we really need, for computer vision applicati
 
 The `unrealcv` meets all these common requirements and even more, see figure @fig:unrealcv_help.
 
-![`vget /unrealcv/help`](unrealcv_help.PNG){#fig:unrealcv_help width=50%}
+![`vget /unrealcv/help`](pics/unrealcv_help.PNG){#fig:unrealcv_help width=50%}
 
 
 # Let us have a try!
@@ -52,7 +52,7 @@ You are also encouraged to see official [getting_started](http://unrealcv.org/tu
 
 Note: In Windows, chances are that you will encounter `DirectX Runtime` problem when trying to run the binary file, just download something like `DirectX Repair V2.1` and repair the lacked files.
 
-![00000001.png](1_00000001.png){#fig:first_capture width=50%}
+![00000001.png](pics/1_00000001.png){#fig:first_capture width=50%}
 
 # Show me the code, please!
 

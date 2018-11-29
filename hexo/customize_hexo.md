@@ -1,5 +1,5 @@
 ---
-title: customize_hexo
+title: Customize hexo
 date: 2017-03-23 11:28:00
 tags: 
   - hexo
