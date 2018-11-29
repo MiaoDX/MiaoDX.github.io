@@ -1,0 +1,17 @@
+language: 
+   - python
+
+python:
+   - "3.6"
+
+before_script:
+   - gem install travis
+
+script:
+   -
+
+after_script:
+   - curl -LO https://raw.github.com/stephanmg/travis-dependent-builds/master/trigger.sh
+   - chmod +x trigger.sh
+   # - ./trigger.sh stephanmg downstream master $TRAVIS_ACCESS_TOKEN 
+   - ./trigger.sh miaodx https://github.com/MiaoDX/MiaoDX.github.io.git hexo_template $HEXO_TOKEN
