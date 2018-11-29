@@ -35,6 +35,8 @@ before_script:
 
   - pip install --user pandoc-fignos pandoc-eqnos # for pandoc filter, https://github.com/travis-ci/travis-ci/issues/8378#issuecomment-328484987
 
+script:
+
   # WE are already in hexo_template directory
   # - git clone --depth 1 https://${GH_REF} -b hexo_template .deploy_git
   # - cd .deploy_git
@@ -47,7 +49,9 @@ before_script:
   - git clone --depth 1 https://github.com/iissnan/hexo-theme-next.git -b v5.1.4 ./themes/next
   - mv ./themes/_config_next.yml ./themes/next/_config.yml
 
-script:
+  - sh move_ims.sh
+
+
   - hexo clean
   # - npm install gulp
   # - hexo g && gulp # we generate after resources are retrieved
