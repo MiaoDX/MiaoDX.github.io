@@ -1,7 +1,9 @@
 ---
-title: Debug python with_docker in pycharm
+title: Debug python with docker in pycharm
 date: 2016-11-13 20:14:00
-tags: 
+categories:
+- [Configuration]
+tags:
   - debug 
   - docker
 ---
@@ -14,7 +16,7 @@ As I really really appreciate it that we can have a `isolated` develop environme
 
 ## What I got
 
-I tried, tried and tried. At an amzing monment I succeeded running docker on windows throgh DockerToolbox. Mostly, I refer [One answer to Running a Docker image in PyCharm causes ¡°Invalid volume specification¡±](http://stackoverflow.com/a/39968174/7067150).(By the way, my machine and environment is exactly like the answer)
+I tried, tried and tried. At an amzing monment I succeeded running docker on windows throgh DockerToolbox. Mostly, I refer [One answer to Running a Docker image in PyCharm causes Â¡Â°Invalid volume specificationÂ¡Â±](http://stackoverflow.com/a/39968174/7067150).(By the way, my machine and environment is exactly like the answer)
 
 BUT suddenly I failed to repeat it.
 

@@ -1,6 +1,9 @@
 ---
 title: Camera Pose & Pose Estimation
-date: 2018-11-25 00:00:02
+date: 2018-11-26 00:00:02
+categories:
+  - [Computer Vision]
+  - [Pose]
 tags: 
   - Pose 
   - Pose Estimation
@@ -9,6 +12,8 @@ tags:
 Camera pose estimation is one of the most widely used low-level computer vision research, fundamentally supports SLAM, SfM, AR, VR and our ACR (Active Camera Relocalization).
 
 For one camera, we can express its pose by its location and rotation w.r.t. to one global coordinate, and for relative pose between two images, we can treat one as the global and assign $I=[eye(3);0]$ to it. But this kind of `intuitive` description/assignment is not clear enough at all, especially when you try to code it (believe me -.-).
+
+<!-- more -->
 
 For example, the location can be `Camera in global coordinate` or `Global origin in camera coordinate`, and same for rotation, `Rotate from the global origin to the camera` or `to the origin`, let alone these sentences like `Recover relative camera rotation and translation from an estimated essential matrix and the corresponding points in two images` (in OpenCV recoverPose function doc). Maybe you chose one of the four combination and try to stick to it, but latter found that it not the choice your underlying library chose, which is rather frustrating.
 

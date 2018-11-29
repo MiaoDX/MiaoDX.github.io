@@ -1,6 +1,8 @@
 ---
-title: Some_tools
+title: Some tools
 date: 2017-03-22 20:22:00
+categories:
+  - Tools
 tags:
   - tools
 ---

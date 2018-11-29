@@ -1,10 +1,13 @@
 ---
 title: Have a glance at unrealcv
 date: 2017-5-11 23:00:00
+categories:
+  - [Synthetic]
+  - [Computer Vision]
 tags: 
   - synthesis
   - unrealcv
-  - cv
+  - Computer Vision
 ---
 
 

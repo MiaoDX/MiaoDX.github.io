@@ -1,6 +1,8 @@
 ---
 title: Shell Scripts
 date: 2017-03-22 20:22:00
+categories:
+  - Tips
 tags:
   - shell
 ---

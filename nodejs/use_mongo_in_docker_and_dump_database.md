@@ -1,6 +1,9 @@
 ---
 title: Use mongo in docker and dump database
 date: 2016-12-11 17:07:00
+categories:
+  - [Configuration]
+  - [Database]
 tags:
   - mongodb
   - docker

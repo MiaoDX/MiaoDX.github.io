@@ -1,9 +1,10 @@
 ---
 title: Story of Configuration
 date: 2017-5-10 18:32:00
+categories:
+  - Configuration
 tags: 
-  - configuration
-  - story
+  - Configuration
 ---
 
 It all starts when I was very very young, my mother bought me rattle-drum and when I got home I immediately cracked open it to see how it actually make a sound. 

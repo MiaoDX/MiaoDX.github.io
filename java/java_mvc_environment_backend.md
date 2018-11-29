@@ -1,6 +1,8 @@
 ---
-title: Java mvc environment backend
+title: Java MVC environment backend
 date: 2016-09-17 18:18:00
+categories:
+  - [Configuration]
 tags: 
   - Java 
   - docker 

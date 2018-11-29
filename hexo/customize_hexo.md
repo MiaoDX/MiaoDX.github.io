@@ -1,7 +1,9 @@
 ---
 title: Customize hexo
 date: 2017-03-23 11:28:00
-tags: 
+categories:
+  - [hexo]
+tags:
   - hexo
 ---
 

@@ -1,9 +1,16 @@
 ---
 title: The intrinsic of UnrealCV camera
-date: 2018-11-25 00:00:00
+date: 2018-11-24 00:00:00
+categories:
+  - [Computer Vision]
+  - [Camera]
 tags:
   - Camera intrinsic
 ---
+
+The intrinsic of camera matters a lot in many low-level computer vision tasks, and in many scenarios maybe one plausive configuration is enough, there is no needs to get exact value. In this post, we demonstrate how to get camera intrinsic quickly with unavoidable error.
+
+<!-- more -->
 
 ## Comments on github issue:
 

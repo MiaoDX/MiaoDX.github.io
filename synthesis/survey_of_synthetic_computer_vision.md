@@ -1,9 +1,12 @@
 ---
 title: A survey of synthetic computer vision
 date: 2017-5-11 20:00:00
+categories:
+  - [Synthetic]
+  - [Computer Vision]
 tags: 
-  - synthesis
-  - cv
+  - Synthesis
+  - Computer Vision
 ---
 
 I am going to blog a series of survey posts on synthesis ways to produce datasets for computer vision or virtual environment for DL/RL, the idea first came into my mind when one of my upperclassman (FP,T) told me we can use data produced by simulation software for DL,<!-- more --> and later on I realized that these ***synthesis*** ways are actually feasible when I encounter the works of [openai](https://github.com/openai), especially the [gym](https://github.com/openai/gym) and [universe](https://github.com/openai/universe) projects. And the survey starts when I was doing project for Mrs Liang Wan's `Advanced Computer Graphics` class.

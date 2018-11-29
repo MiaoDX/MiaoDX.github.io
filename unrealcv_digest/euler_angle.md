@@ -1,6 +1,8 @@
 ---
 title: Euler Angle, a program approach
 date: 2018-11-25 00:00:01
+categories:
+  - Pose
 tags:
   - Euler Angle
 ---
@@ -9,6 +11,8 @@ tags:
 > 3D rotations matrices can make your head spin. I know it is a bad pun but truth can sometimes be very punny! -- [https://www.learnopencv.com/rotation-matrix-to-euler-angles/](https://www.learnopencv.com/rotation-matrix-to-euler-angles/)
 
 It has always been a burden to understand the physical meaning of euler angle and do the rotation manipulation in code right, for a really long time. Each and every time I thought I was right and tweaked the codes and latter found that I was wrong in one way or another.
+
+<!-- more -->
 
 I will try to show how to do Euler angle right, both intuitively and with code. *Hope this time I am right.*
 
