@@ -44,7 +44,7 @@ script:
   - ls -a
 
   # Get resource files
-  - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/source_files
+  - git clone --depth 1 https://${GH_REF} -b source_files ./source/_posts/blogs
   # Theme
   - git clone --depth 1 https://github.com/iissnan/hexo-theme-next.git -b v5.1.4 ./themes/next
   - mv ./themes/_config_next.yml ./themes/next/_config.yml

@@ -1,4 +1,4 @@
-for d in $(find ./source/_posts/blog_source -maxdepth 2 -type d)
+for d in $(find ./source/_posts/blogs -maxdepth 2 -type d)
 do
 	#Do something, the directory is accessible with $d:
 	bn=$(basename $d)
