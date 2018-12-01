@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="hexo,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Configurations of my hexo blog, now rendering with pandoc and automatic building/publishing with Travis-CI.">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Customize hexo">
+<meta property="og:url" content="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/index.html">
+<meta property="og:site_name" content="Blog of MiaoDX">
+<meta property="og:description" content="Configurations of my hexo blog, now rendering with pandoc and automatic building/publishing with Travis-CI.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/pics/hexo_sys.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/pics/token_1.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/pics/token_2.png">
+<meta property="og:updated_time" content="2018-12-01T12:41:06.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Customize hexo">
+<meta name="twitter:description" content="Configurations of my hexo blog, now rendering with pandoc and automatic building/publishing with Travis-CI.">
+<meta name="twitter:image" content="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/pics/hexo_sys.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/">
+
+
+
+
+
+  <title>Customize hexo | Blog of MiaoDX</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of MiaoDX</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://miaodx.github.io/blogs/blogs/hexo/customize_hexo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MiaoDX 缪东旭">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of MiaoDX">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Customize hexo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-01T18:59:00+08:00">
+                2018-12-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-12-01T20:41:06+08:00">
+                2018-12-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Configurations of my hexo blog, now rendering with pandoc and automatic building/publishing with Travis-CI.</p>
+<a id="more"></a>
+<h2 id="features">Features</h2>
+<ul>
+<li>Automatic build by Travis-CI</li>
+<li>Image/equation numbering and reference
+<ul>
+<li><a href="https://github.com/wzpan/hexo-renderer-pandoc" target="_blank" rel="noopener">hexo-renderer-pandoc</a></li>
+<li><a href="https://github.com/tomduck/pandoc-fignos" target="_blank" rel="noopener">pandoc-fignos</a></li>
+<li><a href="https://github.com/tomduck/pandoc-eqnos" target="_blank" rel="noopener">pandoc-eqnos</a></li>
+</ul></li>
+<li>Wiki-Style tooltip reference
+<ul>
+<li><del><a href="https://github.com/kchen0x/hexo-reference" target="_blank" rel="noopener">hexo-reference</a></del>, seems not working</li>
+</ul></li>
+</ul>
+<h2 id="automatic-build-and-publish-by-travis-ci">Automatic build and publish by Travis-CI</h2>
+<p>It has been one long-time wish to build and publish blog automatically, may dates from the very first time meeting hexo. See <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, and maybe many more online for references.</p>
+<p>For many of them, two branches/repository are used, one for <code>hexo+blog source</code>, the other for <code>publishing</code>. We divide the first one, and the system is like in Fig <a href="#fig:hexo_sys">1</a>. The main advantage is that the source files are totally independent of hexo.</p>
+<figure>
+<img src="pics/hexo_sys.png" alt="Figure 1: The three-part hexo blogging system" id="fig:hexo_sys" style="width:85.0%"><figcaption><span>Figure 1:</span> The three-part hexo blogging system</figcaption>
+</figure>
+<p>There are three <code>orphan</code> branches in this repository, <code>source_files</code> is all the blog source files and corresponding resources (images in most cases), <code>hexo_template</code> for the hexo configurations, and <code>master</code> for published blog HTML files.</p>
+<p><code>orphan</code> branches serves it well to separate these branches without specific dependencies between each other, as in Fig <a href="#fig:hexo_sys">1</a>, <code>source_files</code> and <code>hexo_template</code> are both equipped with Travis-ci, the former one just trigger the latter after new commits.</p>
+<p>So the majority of jobs are done at <a href="https://github.com/MiaoDX/MiaoDX.github.io/blob/hexo_template/.travis.yml" target="_blank" rel="noopener"><code>hexo_template</code> CI</a>:</p>
+<ul>
+<li>Install necessary libraries, <code>hexo_cli</code>, <code>pandoc v2.x</code> and pandoc filters <code>pandoc-fignos, pandoc-fignos</code>, etc</li>
+<li>NPM installation for <a href="https://github.com/MiaoDX/MiaoDX.github.io/blob/hexo_template/package.json" target="_blank" rel="noopener"><code>package.json</code></a></li>
+<li>Get blog source files from <code>source_file</code> branch</li>
+<li>Get theme files &amp; override the theme configuration</li>
+<li>Duplicate resources/images folder <a href="https://github.com/MiaoDX/MiaoDX.github.io/blob/hexo_template/move_ims.sh" target="_blank" rel="noopener">by shell</a>, this is due to the mechanism of hexo for serving images in the same-name folder of markdown files.</li>
+<li>hexo clean, hexo g</li>
+<li>Go to <code>./public</code> directory, <code>git init/add/commit</code>, <code>git push</code> to <code>master</code> branch</li>
+<li>Done!</li>
+</ul>
+<p>As for the trigger procedure of <a href="https://github.com/MiaoDX/MiaoDX.github.io/blob/source_files/.travis.yml" target="_blank" rel="noopener"><code>source_files</code> CI</a>, there are two similar code snippets for this task, see <a href="https://github.com/stephanmg/travis-dependent-builds" target="_blank" rel="noopener">stephanmg/travis-dependent-builds</a> and <a href="https://github.com/plume-lib/trigger-travis" target="_blank" rel="noopener">plume-lib/trigger-travis</a>. The former one only use <code>Github Token</code> (we already have it at the <code>hexo_template</code> pushing part) and login Travis to get the <code>Access Token</code> and do the trigger, the latter one requires <code>Access Token</code> as input, but have smaller processing time.</p>
+<p>See <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> for the differences between different types of tokens, and as shown in the bottom of it, we can get <code>Access Token</code> with <code>Github Token</code> with HTTP requests (which is neat since we may not have ruby environments at hand) as shown in Fig <a href="#fig:get_token">2</a> and send the requests with postman as in Fig <a href="#fig:get_token_postman">3</a>.</p>
+<p>That's it, we have set up the automatic updating blog system.</p>
+<figure>
+<img src="pics/token_1.png" alt="Figure 2: Get Access Token with Github Token" id="fig:get_token" style="width:75.0%"><figcaption><span>Figure 2:</span> Get Access Token with Github Token</figcaption>
+</figure>
+<figure>
+<img src="pics/token_2.png" alt="Figure 3: Get Access Token with Github Token" id="fig:get_token_postman" style="width:75.0%"><figcaption><span>Figure 3:</span> Get Access Token with Github Token</figcaption>
+</figure>
+<h2 id="pandoc">Pandoc</h2>
+<p>The default markdown rendering engine is <a href="https://github.com/hexojs/hexo-renderer-marked" target="_blank" rel="noopener"><code>hexo-renderer-marked</code></a>, however, it performs poorly for images rendering, like specify the image width and numbering for reference, we choose <code>hexo-renderer-pandoc</code> instead.</p>
+<p>With pandoc filter <code>pandoc-fignos</code>, we can specify image width and refer to images like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Please see figure @fig:answer_is_42 for more info.</span><br><span class="line"></span><br><span class="line">[...]</span><br><span class="line"></span><br><span class="line">![answer_is_42](pics/answer_is_42.png)&#123;#fig:answer_is_42 width=85%&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="pandoc-version">Pandoc version</h3>
+<p>The <code>hexo-renderer-pandoc</code> changed its behavior at version 2.x, as discussed in <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, chances are that we can change some codes by ourselves to make it work, but we choose to install the newer version of pandoc with <code>sudo dpkg -i</code></p>
+<h2 id="drawbacks-workaround">Drawbacks &amp; workaround</h2>
+<h3 id="un-support"><code>---</code> un-support</h3>
+<p>When rendering files with many <code>---</code> for dividing line, hexo failed in one way or another.</p>
+<p>So change <code>---</code> to <code>***</code> and done this forever :(</p>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>[ ] Compress the contents by <code>gulp</code> to make the rendering faster?</li>
+</ul>
+<section class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://segmentfault.com/a/1190000009054888<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>http://www.yanglangjing.com/2018/08/28/travis_ci_auto_deploy_hexo_to_vps/<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>https://blog.travis-ci.com/2013-01-28-token-token-token<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>https://github.com/wzpan/hexo-renderer-pandoc/pull/22<a href="#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/unrealcv_digest/camera_pose/" rel="next" title="Camera Pose & Pose Estimation">
+                <i class="fa fa-chevron-left"></i> Camera Pose & Pose Estimation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/dh.jpg" alt="MiaoDX 缪东旭">
+            
+              <p class="site-author-name" itemprop="name">MiaoDX 缪东旭</p>
+              <p class="site-description motion-element" itemprop="description">“We’re all stories, in the end. Just make it a good one, eh?” <br> — The Doctor, Season 5, Episode 13</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MiaoDX" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:maiodx@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#features"><span class="nav-number">1.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#automatic-build-and-publish-by-travis-ci"><span class="nav-number">2.</span> <span class="nav-text">Automatic build and publish by Travis-CI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandoc"><span class="nav-number">3.</span> <span class="nav-text">Pandoc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pandoc-version"><span class="nav-number">3.1.</span> <span class="nav-text">Pandoc version</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#drawbacks-workaround"><span class="nav-number">4.</span> <span class="nav-text">Drawbacks &amp; workaround</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#un-support"><span class="nav-number">4.1.</span> <span class="nav-text">--- un-support</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#todo"><span class="nav-number">5.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MiaoDX 缪东旭</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

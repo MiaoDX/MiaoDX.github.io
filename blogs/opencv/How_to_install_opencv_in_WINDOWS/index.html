@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="opencv,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在 windows 上编译安装 opencv2 以及 opencv3，同时配置 python2 与 python3。预期目标是能够同时使用 python2/3 与 opencv2/3，共三种组合方式（opencv2 不支持 python3.x 版本）。">
+<meta name="keywords" content="opencv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to install opencv in WINDOWS">
+<meta property="og:url" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/index.html">
+<meta property="og:site_name" content="Blog of MiaoDX">
+<meta property="og:description" content="在 windows 上编译安装 opencv2 以及 opencv3，同时配置 python2 与 python3。预期目标是能够同时使用 python2/3 与 opencv2/3，共三种组合方式（opencv2 不支持 python3.x 版本）。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/opencv2_build.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/opencv3_build.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/git_shell.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_1.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_2.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_3.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_4.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_5.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/opencv2_build_compare.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/build.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_v3_1.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_v3_2.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/make_v3_3.png">
+<meta property="og:updated_time" content="2018-12-01T12:41:06.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to install opencv in WINDOWS">
+<meta name="twitter:description" content="在 windows 上编译安装 opencv2 以及 opencv3，同时配置 python2 与 python3。预期目标是能够同时使用 python2/3 与 opencv2/3，共三种组合方式（opencv2 不支持 python3.x 版本）。">
+<meta name="twitter:image" content="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/pics/opencv2_build.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/">
+
+
+
+
+
+  <title>How to install opencv in WINDOWS | Blog of MiaoDX</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of MiaoDX</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://miaodx.github.io/blogs/blogs/opencv/How_to_install_opencv_in_WINDOWS/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MiaoDX 缪东旭">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of MiaoDX">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">How to install opencv in WINDOWS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T17:06:00+08:00">
+                2017-02-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-12-01T20:41:06+08:00">
+                2018-12-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Configuration/" itemprop="url" rel="index">
+                    <span itemprop="name">Configuration</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>在 windows 上编译安装 opencv2 以及 opencv3，同时配置 python2 与 python3。预期目标是能够同时使用 python2/3 与 opencv2/3，共三种组合方式（opencv2 不支持 python3.x 版本）。</p>
+<a id="more"></a>
+<p>Linux，macOS，Raspberry Pi 等其他平台上的 OpenCV 安装请在 <a href="http://www.pyimagesearch.com/opencv-tutorials-resources-guides/" target="_blank" rel="noopener">OpenCV 3 Tutorials, Resources, and Guides</a> 寻找合适的方法，本文很大程度上参考了系列中的 <a href="http://www.pyimagesearch.com/2016/10/24/ubuntu-16-04-how-to-install-opencv/" target="_blank" rel="noopener">Ubuntu 16.04: How to install OpenCV</a>，甚至可以说是其在 windows 上的移植。</p>
+<h2 id="step-0.goal">Step 0.Goal</h2>
+<p>这里假设我们想要把 opencv 安装到 <code>C:\tools\opencv_all_in_one</code>，也就是分别是 <code>C:\tools\opencv_all_in_one\opencv2</code> 与 <code>C:\tools\opencv_all_in_one\opencv3</code>，最终希望与直接从官网下载解压下来的内容相似，就像是：</p>
+<p><img src="pics/opencv2_build.png" alt="opencv2_offical_build"> <img src="pics/opencv3_build.png" alt="opencv3_offical_build"></p>
+<p>且同时支持 python2 与 python3。</p>
+<h2 id="step-1.requirements">Step 1.Requirements</h2>
+<ul>
+<li>Win10 [win7 应该也可以，没有做测试]</li>
+<li>VS2015 community [Free 的 community 版本，Long live Microsoft -.-]</li>
+<li>cmake</li>
+<li>git</li>
+<li>python2 and/or python3</li>
+</ul>
+<p>Note：安装后三项时建议使用 <a href="http://chocolatey.org/" target="_blank" rel="noopener"><code>choco</code></a> 安装，可以自动添加 PATH，另外使用命令行会减少不少截图工作。</p>
+<p><strong>下面命令，如无特别说明建议在 git 提供的命令行窗口 -- 左上角有 MINGW64 的那个窗口执行：</strong></p>
+<figure>
+<img src="pics/git_shell.png" alt="git_shell"><figcaption>git_shell</figcaption>
+</figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 确保所需软件</span><br><span class="line">$ pwd</span><br><span class="line"># c/tools</span><br><span class="line"></span><br><span class="line">$ which python</span><br><span class="line"># /c/Python36/python</span><br><span class="line"></span><br><span class="line">$ which cmake</span><br><span class="line"># /c/Program Files/CMake/bin/cmake</span><br><span class="line"></span><br><span class="line">$ which git</span><br><span class="line"># /mingw64/bin/git</span><br></pre></td></tr></table></figure>
+<p>另外，我的 python2 安装在了 <code>C:\tools\python2</code> 中（choco 自动选择了此目录），<strong>请确保 python2/3 均安装了 <code>numpy</code></strong>（<code>pip install numpy</code>）。</p>
+<h2 id="step-2.get-opencv-from-github">Step 2.Get opencv from github</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># /c/tools</span><br><span class="line">$ git clone https://github.com/opencv/opencv.git opencv_git</span><br><span class="line"># [...]</span><br><span class="line">$ git clone https://github.com/opencv/opencv_contrib.git opencv_contrib</span><br><span class="line"># [...]</span><br></pre></td></tr></table></figure>
+<p>其中 <code>opencv_contrib</code> 是因为 opencv3 中把许多 <code>Non-free</code> 模块放在了里面（比如著名的 <code>SIFT</code>,<code>SURF</code> 等），另外还有一些目前并不太成熟的新算法也都在里面，我们在编译 opencv3 时需要使用它。</p>
+<h2 id="step-3.-编译-opencv2">Step 3. 编译 opencv2</h2>
+<h3 id="切换到合适的版本">3.1. 切换到合适的版本</h3>
+<p><strong>查看可以选择的版本，在输入 <code>git checkout</code> 后按 <code>TAB</code> 建</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># /c/tools</span><br><span class="line">$ cd opencv_git</span><br><span class="line">$ git checkout</span><br><span class="line">Display all 58 possibilities? (y or n)</span><br><span class="line">2.2                    2.4.10                 2.4.12                 2.4.2                  2.4.4-beta             2.4.6.2r3              2.4.8                  3.0.0                  3.1.0                  origin/2.4</span><br><span class="line">2.3.0                  2.4.10.1               2.4.12.1               2.4.3                  2.4.5                  2.4.6.2-rc1            2.4.8.1                3.0.0-alpha            3.2.0                  origin/HEAD</span><br><span class="line">2.3.1                  2.4.10.2               2.4.12.2               2.4.3.1                2.4.6                  2.4.7                  2.4.8.2                3.0.0-beta             3.2.0-rc               origin/master</span><br><span class="line">2.4                    2.4.10.3               2.4.12.3               2.4.3.2                2.4.6.1                2.4.7.1                2.4.8.3                3.0.0-rc1              HEAD                   tags/2.4.13.2</span><br><span class="line">2.4.0                  2.4.10.4               2.4.13                 2.4.3-rc               2.4.6.2                2.4.7.2                2.4.9                  3.0-ocl-tech-preview   heads/2.4.13.2</span><br><span class="line">2.4.1                  2.4.11                 2.4.13.1               2.4.4                  2.4.6.2r2              2.4.7-rc1              2.4.9.1                3.0-ocl-tp2            master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 选择 2.4.x 中最新的版本</span><br><span class="line">$ pwd</span><br><span class="line"># /c/tools/opencv_git</span><br><span class="line">$ git checkout 2.4.13</span><br><span class="line">Checking out files: 100% (5476/5476), done.</span><br><span class="line">Previous HEAD position was 70bbf17... OpenCV Version++</span><br><span class="line">HEAD is now at 59975db... Merge pull request #6441 from asmorkalov:version++</span><br></pre></td></tr></table></figure>
+<h3 id="进行编译配置">3.2. 进行编译配置</h3>
+<p>我们上面的 <code>opencv_git</code> 文件夹仅用于存储官方的文件，下面新建一个临时文件进行编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># /c/tools</span><br><span class="line"></span><br><span class="line">$ mkdir opencv_build_v2_tmp # 新建用于编译 opencv2 的文件夹</span><br><span class="line">$ cd opencv_build_v2_tmp/</span><br><span class="line">$ cmake-gui # 打开 cmake-gui 界面</span><br></pre></td></tr></table></figure>
+<p><strong>将 <code>opencv_git\CMakeLists.txt</code> 拖入界面</strong>:</p>
+<p><strong>Note:我的截图中 opencv 是在 opencv3_git 文件夹下，请原谅</strong></p>
+<p>1.更改目标路径</p>
+<p>2.点击 <code>Configure</code></p>
+<p>3.确保生成器合适</p>
+<p>4.点击 <code>Finish</code></p>
+<figure>
+<img src="pics/make_1.png" alt="make_1"><figcaption>make_1</figcaption>
+</figure>
+<p>会自动生成配置文件，另打开一个 git-shell：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># opencv_build_v2_tmp/</span><br><span class="line"></span><br><span class="line">$ ls</span><br><span class="line">3rdparty/                cvconfig.h  OpenCVConfig.cmake</span><br><span class="line">apps/                    data/       OpenCVConfig-version.cmake</span><br><span class="line">cmake_uninstall.cmake    doc/        unix-install/</span><br><span class="line">CMakeCache.txt           include/    version_string.tmp</span><br><span class="line">CMakeFiles/              junk/       win-install/</span><br><span class="line">CPackConfig.cmake        modules/</span><br><span class="line">CPackSourceConfig.cmake  opencv2/</span><br></pre></td></tr></table></figure>
+<p>此时的截图如下：</p>
+<figure>
+<img src="pics/make_2.png" alt="make_2"><figcaption>make_2</figcaption>
+</figure>
+<ul>
+<li>在 <code>Search</code> 框搜索 <code>python</code> 确保 python 被正确找到</li>
+<li>也可在下面的输出结果中查找 <code>python</code> 项</li>
+</ul>
+<p>然后，点击 <code>Generate</code>，会发现下面的输出框最后一行出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Generating done</span><br></pre></td></tr></table></figure>
+<h3 id="编译">3.3. 编译</h3>
+<p>之后，我们就可以编译了，（双击）打开 <code>opencv_build_v2_tmp</code> 中的 <code>OpenCV.sln</code>，是一个熟悉的 VS 工程：</p>
+<figure>
+<img src="pics/make_3.png" alt="make_3"><figcaption>make_3</figcaption>
+</figure>
+<p>其中：</p>
+<p>1.<code>CMakeTargets</code> 保持默认 <code>ALL_BUILD</code> 即好</p>
+<p>2.选择 <code>Release</code> 与 <code>x64</code> 版本</p>
+<p>3.点击 <code>x64</code> 右侧的下拉框</p>
+<p>4.出现的窗口中第三项 <code>INSTALL</code> 的 <code>Build</code> 默认是没有勾选的，<strong>将其勾选</strong></p>
+<p>之后，等一段时间（编译阶段 CPU 占用会很高）</p>
+<p>编译结果为：</p>
+<figure>
+<img src="pics/make_4.png" alt="make_4"><figcaption>make_4</figcaption>
+</figure>
+<p>不必在意提示的错误，这是因为我们编译后并没有可运行的文件</p>
+<p>1.输出框最后指示出全部编译成功！！</p>
+<p>2.<code>cv2.lib</code> 即为 python2.x 需要的</p>
+<p>上面也可以选择不进行 <code>INSTALL</code>，在编译结束后可以另外安装，此时可以将 <code>CMakeTargets</code> 中的 <code>INSTALL</code> 右键设置为 <code>Set as StartUp Project</code>，运行，瞬间结束，输出很好地指示我们安装在了哪里：</p>
+<figure>
+<img src="pics/make_5.png" alt="make_5"><figcaption>make_5</figcaption>
+</figure>
+<h3 id="整合编译结果">3.4. 整合编译结果</h3>
+<p>此时，<code>C:\tools\opencv_build_v2_tmp\bin\Release</code> 包含了一些例子的可执行文件，还有许多的 <code>dll</code> 文件，<code>C:\tools\opencv_build_v2_tmp\lib\Release</code> 中包含了我们需要的库。</p>
+<p>但，我们<strong>几乎只需要</strong> <code>C:\tools\opencv_build_v2_tmp\install</code> 中的文件即可：</p>
+<figure>
+<img src="pics/opencv2_build_compare.png" alt="opencv2_build_compare"><figcaption>opencv2_build_compare</figcaption>
+</figure>
+<p>与官方提供版本相比，少了一些东西，需要注意的是我们前面说到的 python 使用，这里并没有，但编译结束时确实生成了，所以我们自己将其取出来：</p>
+<p>新建 <code>python\2.7\x64</code> 的三层文件夹，将 <code>C:\tools\opencv_build_v2_tmp\lib\Release\cv2.pyd</code> 复制到 <code>C:\tools\opencv_build_v2_tmp\install\python\2.7\x64</code> 中。</p>
+<h3 id="配置编译环境">3.5. 配置编译环境</h3>
+<h4 id="复制需要的文件">复制需要的文件</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># /c/tools</span><br><span class="line"></span><br><span class="line">$ mkdir opencv_all_in_one</span><br><span class="line">$ cd opencv_all_in_one/</span><br><span class="line">$ mkdir opencv2</span><br><span class="line">$ cd opencv2</span><br><span class="line"></span><br><span class="line"># 将 install 文件夹下所有文件复制到 opencv2 文件夹下</span><br><span class="line">$ cp c:/tools/opencv_build_v2_tmp/install/* -rf .</span><br></pre></td></tr></table></figure>
+<p>将 install 文件夹下所有文件复制到 opencv2 文件夹下，此时我们可以直接删除 <code>c:/tools/opencv_build_v2_tmp</code> 整个文件夹了，我们只需要 <code>C:\tools\opencv_all_in_one\opencv2</code> 文件夹内的内容。</p>
+<h4 id="配置-path-路径">配置 PATH 路径</h4>
+<p>这里参考 <a href="http://tangzx.qiniudn.com/post-0100-cmake-templates.html" target="_blank" rel="noopener">CMake 简介和 CMake 模板</a> 来验证，其中 <a href="https://github.com/district10/cmake-templates/issues/4" target="_blank" rel="noopener">OpenCV 的配置可以参考同一作者写的教程</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># copy and change from https://github.com/district10/cmake-templates/issues/4</span><br><span class="line"></span><br><span class="line">set these two proper environment variables:</span><br><span class="line">* OpenCV2_DIR -&gt; C:\tools\opencv_all_in_one\opencv2</span><br><span class="line">* OpenCV3_DIR -&gt; C:\tools\opencv_all_in_one\opencv3 # 此文件夹我们待会儿编译 opencv3 时会生成</span><br><span class="line">* OpenCV_DIR -&gt; %OpenCV2_DIR% or %OpenCV3_DIR% (which you prefer)</span><br><span class="line">add to PATH:</span><br><span class="line">* %OpenCV2_DIR%\x64\vc10\bin </span><br><span class="line">* %OpenCV3_DIR%\x64\vc14\bin</span><br></pre></td></tr></table></figure>
+<p><strong>Update 20170410:</strong> 根据需要更改 <code>vc10</code> 或者是 <code>vc14</code>。</p>
+<h3 id="验证编译配置无误">3.6. 验证编译、配置无误</h3>
+<p>在使用原作者提供的 CmakeLists 时<strong>请确保使用 cmake-gui 来保证我们是生成合适的目标</strong>，即：</p>
+<figure>
+<img src="pics/build.png" alt="build"><figcaption>build</figcaption>
+</figure>
+<p>确保是生成 <code>Visual Studio 14 2015 Win64</code> 的工程（这也是刚我们编译 OpenCV 时选用的配置）。</p>
+<p>直接使用 cmake 很可能会出错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># example_opencv</span><br><span class="line">$ mkdir build</span><br><span class="line">$ cd build</span><br><span class="line">$ cmake ..</span><br></pre></td></tr></table></figure>
+<p>会得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[...]</span><br><span class="line">-- OpenCV ARCH: x86</span><br><span class="line">-- OpenCV RUNTIME: vc14</span><br><span class="line">-- OpenCV STATIC: OFF</span><br><span class="line">CMake Warning at C:/tools/opencv_all_in_one/opencv2/OpenCVConfig.cmake:163 (message):</span><br><span class="line">  Found OpenCV Windows Pack but it has not binaries compatible with your</span><br><span class="line">  configuration.</span><br><span class="line"></span><br><span class="line">  You should manually point CMake variable OpenCV_DIR to your build of OpenCV</span><br><span class="line">  library.</span><br><span class="line">Call Stack (most recent call first):</span><br><span class="line">  CMakeLists.txt:11 (include)</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure>
+<p>很明显，它默认选择的 OpenCV ARCH 是 x86，而我们需要的是 x64，所以，为减少不必要的麻烦请使用 cmake-gui。</p>
+<h2 id="step-4.-opencv3-的编译">Step 4. OpenCV3 的编译</h2>
+<p>编译 OpenCV3 与上面的步骤很相似，不过要将之前提到的 <code>opencv_contrib</code> 模块用上。</p>
+<h3 id="选取合适的版本">4.1. 选取合适的版本</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># /c/tools</span><br><span class="line"></span><br><span class="line"># 选取合适的 opencv 版本</span><br><span class="line">$ cd opencv_git</span><br><span class="line">$ git checkout 3.2.0</span><br><span class="line"></span><br><span class="line"># Checking out files: 100% (5476/5476), done.</span><br><span class="line"># Previous HEAD position was 59975db... Merge pull request #6441 from asmorkalov:version++</span><br><span class="line"># HEAD is now at 70bbf17... OpenCV Version++</span><br><span class="line"></span><br><span class="line"># 选取对应的 contrib 版本</span><br><span class="line">$ cd ../opencv_contrib/</span><br><span class="line">$ git checkout 3.2.0</span><br><span class="line"># HEAD is now at 8634252... Merge pull request #701 from LaurentBerger:DericheFilter</span><br><span class="line"></span><br><span class="line">$ cd ..</span><br><span class="line">$ pwd</span><br><span class="line"># /c/tools</span><br><span class="line">$ mkdir opencv_build_v3_tmp</span><br><span class="line">$ cd opencv_build_v3_tmp</span><br><span class="line">$ cmake-gui .</span><br></pre></td></tr></table></figure>
+<p>请确保 <code>contrib</code> 模块与 <code>opencv3</code> 的<strong>版本相同</strong>，不然很可能出现一些问题。</p>
+<h3 id="验证-python-版本">4.2. 验证 python 版本</h3>
+<p>首先确保 python 版本没有问题，在 <code>Search</code> 框内搜索 <code>python</code> 会得到类似于下面的结果：</p>
+<figure>
+<img src="pics/make_v3_1.png" alt="make_v3_1"><figcaption>make_v3_1</figcaption>
+</figure>
+<p>可以看出自动检测到了 python2 与 python3 的路径，这样便会生成两者的 binding。</p>
+<h3 id="添加-contrib-库">4.3. 添加 <code>contrib</code> 库</h3>
+<p>此时需要将 <code>contrib</code> 加入进来，在 <code>Search</code> 框内输入 <code>extra</code>，将对应路径填入右侧空格，需要注意的是填入的是 <code>C:/tools/opencv_contrib/modules</code> 而不是 <code>C:/tools/opencv_contrib</code> （前者多了 <code>modules</code> 目录）：</p>
+<figure>
+<img src="pics/make_v3_2.png" alt="make_v3_2"><figcaption>make_v3_2</figcaption>
+</figure>
+<h3 id="整理编译得到的内容">4.4. 整理编译得到的内容</h3>
+<p>之后便是编译了，与上面没有什么不同，这里看一下最终得到的 <code>install</code> 文件夹内的内容：</p>
+<figure>
+<img src="pics/make_v3_3.png" alt="make_v3_3"><figcaption>make_v3_3</figcaption>
+</figure>
+<p>还是没有我们想要的 <code>python</code> 文件夹，与上面类似，新建 <code>python\2.7\x64</code> 的三层文件夹，将 <code>C:\tools\opencv_build_v3_tmp\lib\Release\cv2.pyd</code> 复制到 <code>C:\tools\opencv_build_v3_tmp\install\python\2.7\x64</code> 中，类外，我们一直说的 <code>python3</code> 支持还没有做到，会发现 <code>C:\tools\opencv_build_v3_tmp\lib\python3\Release</code> 文件夹内有一 <code>cv2.cp36-win_amd64.pyd</code> 文件，这便是 python3 对应的 <code>cv2.pyd</code>，将其复制到新建的 <code>C:\tools\opencv_build_v3_tmp\install\python\3.6\x64</code> 文件夹下。</p>
+<p>将整个 <code>C:\tools\opencv_build_v3_tmp\install</code> 文件夹内容复制到 <code>C:\tools\opencv_all_in_one\opencv3</code> 中。</p>
+<p>好，算是结束了。</p>
+<h3 id="验证安装">4.5. 验证安装</h3>
+<p>验证方法与上面 opencv2 时相同，不再赘述。</p>
+<h2 id="step-5.-python-binding">Step 5. python binding</h2>
+<p>我们上面均进行了 python binding 的编译，也将文件放在了合适的地方，但是还未曾进行验证。</p>
+<p>在 <code>INSTALL</code> 工程中已经将 python binding 安装到了所选择的 python2/3 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># C:\tools\opencv_build_v3_tmp</span><br><span class="line"></span><br><span class="line">$ cat install_manifest.txt | grep pyd</span><br><span class="line"># C:/tools/python2/Lib/site-packages/cv2.pyd</span><br><span class="line"># C:/Python36/Lib/site-packages/cv2.cp36-win_amd64.pyd</span><br></pre></td></tr></table></figure>
+<p>其中 <code>install_manifest.txt</code> 记录了安装到的路径，最简单的检验方法便是直接试一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ python</span><br><span class="line"># Python 3.6.0 (v3.6.0:41df79263a11, Dec 23 2016, 08:06:12) [MSC v.1900 64 bit (AMD64)] on win32</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; import cv2</span><br><span class="line">&gt;&gt;&gt; cv2.__version__</span><br><span class="line"># &apos;3.2.0&apos;</span><br><span class="line">&gt;&gt;&gt; sift = cv2.xfeatures2d.SIFT_create()</span><br></pre></td></tr></table></figure>
+<p>或者是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ C:\tools\python2\python</span><br><span class="line"># Python 2.7.11 (v2.7.11:6d1b6a68f775, Dec  5 2015, 20:40:30) [MSC v.1500 64 bit (AMD64)] on win32</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; import cv2</span><br><span class="line">&gt;&gt;&gt; cv2.__version__</span><br><span class="line"># &apos;3.2.0&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="virtualenv-配置工作环境">5.1. virtualenv 配置工作环境</h3>
+<p>但是安装到全局也许并不是我们最希望的，比如说此时 <code>opencv2+python2</code> 的组合是没有的（因为是后来编译的 opencv3，将之前的结果覆盖了），所以建议使用 <code>virtualenv</code> 来建立三个虚拟 python 环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># /h/py_env # 可以自己选择合适的位置</span><br><span class="line"></span><br><span class="line">$ virtualenv --always-copy -p C:/tools/python2/python.exe cv2_py2</span><br><span class="line"></span><br><span class="line"># New python executable in H:\py_env\cv2_py2\Scripts\python.exe</span><br><span class="line"># Installing setuptools, pip, wheel...done.</span><br><span class="line"># Running virtualenv with interpreter C:/tools/python2/python.exe</span><br></pre></td></tr></table></figure>
+<p>其中，<code>--always-copy</code> 指 Always copy files rather than symlinking，建议如此，但是 <code>-p C:/tools/python2/python.exe</code> 是<strong>必要</strong>的，不然会生成默认版本的 python（这里指 python3）。</p>
+<p><strong>下面的命令请在 cmd 中运行（在 git-shell 中我是遇到了一些问题）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ pwd</span><br><span class="line"># H:\py_env</span><br><span class="line">H:\py_env&gt;cv2_py2\Scripts\activate</span><br><span class="line">(cv2_py2) H:\py_env&gt;which python</span><br><span class="line"># H:\py_env\cv2_py2\Scripts\python.EXE</span><br></pre></td></tr></table></figure>
+<p>安装 numpy，并将合适的 <code>cv2.pyd</code> 复制到 <code>site-packages</code> 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(cv2_py2) H:\py_env&gt;pip install numpy</span><br><span class="line">[...]</span><br><span class="line">(cv2_py2) H:\py_env&gt;cp C:\tools\opencv_all_in_one\opencv2\python\2.7\x64\cv2.pyd cv2_py2\Lib\site-packages</span><br></pre></td></tr></table></figure>
+<p>验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(cv2_py2) H:\py_env&gt;python</span><br><span class="line">Python 2.7.11 (v2.7.11:6d1b6a68f775, Dec  5 2015, 20:40:30) [MSC v.1500 64 bit (AMD64)] on win32</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; import numpy</span><br><span class="line">&gt;&gt;&gt; import cv2</span><br><span class="line">&gt;&gt;&gt; cv2.__version__</span><br><span class="line"># &apos;2.4.13&apos;</span><br><span class="line">&gt;&gt;&gt; detector = cv2.FeatureDetector_create(&quot;SIFT&quot;)</span><br></pre></td></tr></table></figure>
+<p>请注意与上边调用 <code>SIFT</code> 的区别，<code>sift = cv2.xfeatures2d.SIFT_create()</code>(opencv3) 与 <code>cv2.FeatureDetector_create("SIFT")</code>(opencv2)，这也证实了我们也成功编译了 <code>contrib</code> 库。</p>
+<p><strong>cv3_py2 与 cv3_py3 虚拟环境的安装与配置之无差，不再赘述</strong></p>
+<p>可能有一点需要注意的是 opencv3 生成的 python3 对应的文件为 <code>cv2.cp36-win_amd64.pyd</code>，不必太在意，将其当作 <code>cv2.pyd</code> 即可（也可以将其重命名为 <code>cv2.pyd</code>，但不必要）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(cv3_py3) H:\py_env&gt;cp C:\tools\opencv_all_in_one\opencv3\python\3.6\x64\cv2.cp36-win_amd64.pyd cv3_py3\Lib\site-packages</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<p>我们在 windows(10) 上源码编译了 opencv2 与 opencv3，同时也生成了对应的 python binding，且使用 virtualenv 来配置干净的编程环境。</p>
+<h3 id="我们没有涉及的">我们没有涉及的</h3>
+<p>需要注意到我们并没有将 opencv 的性能发挥到很好，有许多加速功能我们并没有配置：</p>
+<ul>
+<li>GPU/TBB/OpenGL support</li>
+<li>Matlab/Java binding</li>
+</ul>
+<p>想要了解一部分相关内容，请参见官方文档：<a href="http://docs.opencv.org/2.4.13.2/doc/tutorials/introduction/windows_install/windows_install.html#windows-installation" target="_blank" rel="noopener">Installation in Windows¶</a></p>
+<h3 id="update-20170410cuda-支持">UPDATE 20170410，CUDA 支持</h3>
+<p>最近尝试了网上 <a href="https://github.com/Celebrandil/CudaSift" target="_blank" rel="noopener">GPU(CUDA) 版本的 SIFT</a>，同时编译了一下 opencv 的 GPU 支持，遇见了一点问题。</p>
+<ul>
+<li>Win10</li>
+<li>VS2015 community</li>
+<li>cmake</li>
+<li>CUDA v8.0</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\extras\demo_suite&gt;deviceQuery.exe</span><br><span class="line">deviceQuery.exe Starting...</span><br><span class="line"></span><br><span class="line"> CUDA Device Query (Runtime API) version (CUDART static linking)</span><br><span class="line"></span><br><span class="line">Detected 1 CUDA Capable device(s)</span><br><span class="line"></span><br><span class="line">Device 0: &quot;GeForce GT 530&quot;</span><br><span class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    2.1</span><br><span class="line">  Total amount of global memory:                 1024 MBytes (1073741824 bytes)</span><br><span class="line">  ( 2) Multiprocessors, ( 48) CUDA Cores/MP:     96 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            1399 MHz (1.40 GHz)</span><br><span class="line">  [...]</span><br></pre></td></tr></table></figure>
+<p>遇到了类似于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C2610 and C2535 error for file tuple in the opencv_perf_cudawarping project.</span><br><span class="line">C2382 error for file cuda_perf.hpp in the opencv_perf_cudawarping project.</span><br></pre></td></tr></table></figure>
+<p>的错误，在 OpenCV 的 issue 下找到了一个 <a href="https://github.com/opencv/opencv/issues/7992#issuecomment-278571162" target="_blank" rel="noopener">workaround</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">What I did was to enable WITH_CUBLAS aswell as WITH_CUDA. I also turned off BUILD_PERF_TESTS and BUILD_TESTS.</span><br></pre></td></tr></table></figure>
+<p>这被标记成了一个 bug，所以应该会被修复，放在这里是为了提醒大家如果遇到了编译错误，可以考虑首先去 opencv 的 github issue 中寻找解决方案。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/opencv/" rel="tag"># opencv</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/nodejs/nodejs_debug_tips/" rel="next" title="Nodejs debug tips">
+                <i class="fa fa-chevron-left"></i> Nodejs debug tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/tips/Some_tools/" rel="prev" title="Some tools">
+                Some tools <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/dh.jpg" alt="MiaoDX 缪东旭">
+            
+              <p class="site-author-name" itemprop="name">MiaoDX 缪东旭</p>
+              <p class="site-description motion-element" itemprop="description">“We’re all stories, in the end. Just make it a good one, eh?” <br> — The Doctor, Season 5, Episode 13</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MiaoDX" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:maiodx@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-0.goal"><span class="nav-number">1.</span> <span class="nav-text">Step 0.Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1.requirements"><span class="nav-number">2.</span> <span class="nav-text">Step 1.Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2.get-opencv-from-github"><span class="nav-number">3.</span> <span class="nav-text">Step 2.Get opencv from github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3.-编译-opencv2"><span class="nav-number">4.</span> <span class="nav-text">Step 3. 编译 opencv2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换到合适的版本"><span class="nav-number">4.1.</span> <span class="nav-text">3.1. 切换到合适的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行编译配置"><span class="nav-number">4.2.</span> <span class="nav-text">3.2. 进行编译配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">4.3.</span> <span class="nav-text">3.3. 编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整合编译结果"><span class="nav-number">4.4.</span> <span class="nav-text">3.4. 整合编译结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置编译环境"><span class="nav-number">4.5.</span> <span class="nav-text">3.5. 配置编译环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复制需要的文件"><span class="nav-number">4.5.1.</span> <span class="nav-text">复制需要的文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-path-路径"><span class="nav-number">4.5.2.</span> <span class="nav-text">配置 PATH 路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证编译配置无误"><span class="nav-number">4.6.</span> <span class="nav-text">3.6. 验证编译、配置无误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-4.-opencv3-的编译"><span class="nav-number">5.</span> <span class="nav-text">Step 4. OpenCV3 的编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选取合适的版本"><span class="nav-number">5.1.</span> <span class="nav-text">4.1. 选取合适的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证-python-版本"><span class="nav-number">5.2.</span> <span class="nav-text">4.2. 验证 python 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-contrib-库"><span class="nav-number">5.3.</span> <span class="nav-text">4.3. 添加 contrib 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整理编译得到的内容"><span class="nav-number">5.4.</span> <span class="nav-text">4.4. 整理编译得到的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证安装"><span class="nav-number">5.5.</span> <span class="nav-text">4.5. 验证安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-5.-python-binding"><span class="nav-number">6.</span> <span class="nav-text">Step 5. python binding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#virtualenv-配置工作环境"><span class="nav-number">6.1.</span> <span class="nav-text">5.1. virtualenv 配置工作环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们没有涉及的"><span class="nav-number">7.1.</span> <span class="nav-text">我们没有涉及的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update-20170410cuda-支持"><span class="nav-number">7.2.</span> <span class="nav-text">UPDATE 20170410，CUDA 支持</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MiaoDX 缪东旭</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

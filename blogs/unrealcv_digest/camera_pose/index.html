@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Pose,Pose Estimation,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Camera pose estimation is one of the most widely used low-level computer vision research, fundamentally supports SLAM, SfM, AR, VR and our ACR (Active Camera Relocalization). For one camera, we can ex">
+<meta name="keywords" content="Pose,Pose Estimation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Camera Pose &amp; Pose Estimation">
+<meta property="og:url" content="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/index.html">
+<meta property="og:site_name" content="Blog of MiaoDX">
+<meta property="og:description" content="Camera pose estimation is one of the most widely used low-level computer vision research, fundamentally supports SLAM, SfM, AR, VR and our ACR (Active Camera Relocalization). For one camera, we can ex">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/pics/pinhole.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/pics/rotatation.png">
+<meta property="og:image" content="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/pics/forward_backward.png">
+<meta property="og:updated_time" content="2018-12-01T12:41:06.518Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Camera Pose &amp; Pose Estimation">
+<meta name="twitter:description" content="Camera pose estimation is one of the most widely used low-level computer vision research, fundamentally supports SLAM, SfM, AR, VR and our ACR (Active Camera Relocalization). For one camera, we can ex">
+<meta name="twitter:image" content="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/pics/pinhole.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/">
+
+
+
+
+
+  <title>Camera Pose & Pose Estimation | Blog of MiaoDX</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog of MiaoDX</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://miaodx.github.io/blogs/blogs/unrealcv_digest/camera_pose/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MiaoDX 缪东旭">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of MiaoDX">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Camera Pose & Pose Estimation</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-26T00:00:02+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-12-01T20:41:06+08:00">
+                2018-12-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Pose/" itemprop="url" rel="index">
+                    <span itemprop="name">Pose</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Camera pose estimation is one of the most widely used low-level computer vision research, fundamentally supports SLAM, SfM, AR, VR and our ACR (Active Camera Relocalization).</p>
+<p>For one camera, we can express its pose by its location and rotation w.r.t. to one global coordinate, and for relative pose between two images, we can treat one as the global and assign <span class="math inline">\(I=[eye(3);0]\)</span> to it. But this kind of <code>intuitive</code> description/assignment is not clear enough at all, especially when you try to code it (believe me -.-).</p>
+<a id="more"></a>
+<p>For example, the location can be <code>Camera in global coordinate</code> or <code>Global origin in camera coordinate</code>, and same for rotation, <code>Rotate from the global origin to the camera</code> or <code>to the origin</code>, let alone these sentences like <code>Recover relative camera rotation and translation from an estimated essential matrix and the corresponding points in two images</code> (in OpenCV recoverPose function doc). Maybe you chose one of the four combinations and try to stick to it, but later found that it's not the choice your underlying library chose, which is rather frustrating.</p>
+<p>In this post, we try to specify one definition of <strong><code>POSE</code></strong> and its <span class="math inline">\(R,t\)</span> parts and their physical meaning. Which are adopted by both OpenCV and OpenMVG (and maybe many others but not clearly stated), and with python code for demonstration.</p>
+<h2 id="camera-model">Camera Model</h2>
+<p>Almost all literature use the very same pinhole camera model<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, like in Fig .</p>
+<figure>
+<img src="pics/pinhole.png" alt="Pinhole Camera" id="pinhole" style="width:85.0%"><figcaption>Pinhole Camera</figcaption>
+</figure>
+<h2 id="pose-and-r-t">Pose and R, t</h2>
+<blockquote>
+<p>Output rotation vector (see Rodrigues ) that, together with tvec, brings points from the model coordinate system to the camera coordinate system. <br>-- OpenCV solvePnP/solvePnPRansac doc.</p>
+</blockquote>
+<p>And, &gt; R: the rotation of the camera to the world frame, <br> t: the translation of the camera. t is not the position of the camera. It is the position of the origin of the world coordinate system expressed in coordinates of the camera-centred coordinate system. The position, C, of the camera expressed in world coordinates is <span class="math inline">\(C=−R^{−1}t=−R^Tt\)</span> (since R is a rotation matrix). <br> --<a href="https://openmvg.readthedocs.io/en/latest/openMVG/cameras/cameras/" target="_blank" rel="noopener">OpenMVG Camera Model</a></p>
+<p>So, both the documents are saying the same thing, the camera <code>POSE</code> will <strong>bring points in world coordinate into camera coordinate</strong>. a.k.a:</p>
+<p><span class="math inline">\(Pose=[R|t]=[R|-RC]\)</span> and <span class="math inline">\(p_{camera} = Pose * p_{world}\)</span>,</p>
+<p>And that's it, please read the OpenMVG statements again, the physical meanings of <span class="math inline">\(R, t\)</span> and <span class="math inline">\(C\)</span> are defined explicitly as stated.</p>
+<p>One major counterintuitive part is the <span class="math inline">\(R\)</span>, most of the time we rotate the camera from the origin by three Euler angle in one particular sequence, however, the <span class="math inline">\(R\)</span> in pose means <code>the rotation of the camera to the world frame</code>, so, the inverse of our common rotating.</p>
+<h2 id="experiments">Experiments</h2>
+<p>We demonstrate with <code>Pose3</code> module from OpenMVG[^mvg_pose3], by converting it into python[^acr_pose].</p>
+<p>We set up one cube in a 3D world, change the location and rotation (pose) of the camera, project the cube into camera coordinate and 2D pixel. Showing that <span class="math inline">\(Pose, R, t, C\)</span> do satisfy former statements.</p>
+<p>Then we do relative pose estimation with OpenCV's <code>findHomography, findFundamentalMat, findEssentialMat, recoverPose, and solvePnPRansac</code> and show that the API is pretty straightforward to use.</p>
+<h3 id="d-cube">3D CUBE</h3>
+<figure>
+<img src="pics/rotatation.png" alt="Rotation Demo, in camera pose the rotation means the rotation of the camera to the world frame" id="rotatation" style="width:75.0%"><figcaption>Rotation Demo, in camera pose the rotation means <em>the rotation of the camera to the world frame</em></figcaption>
+</figure>
+<p>Fig  gives two example of camera pose change, we rotate the camera by predefined sequence (pitch, yaw then roll), but when calculating, use the <code>inverse</code> to make sure the rotation from camera to world frame. Codes are:</p>
+<script src="https://gist.github.com/MiaoDX/b0342639e0492364841ca05746d8c017.js"></script>
+We use 90° for visual convenience, for another example:
+<script src="https://gist.github.com/MiaoDX/da8ffd4c4ac6556a683317a21e9d2a0f.js"></script>
+<p>if we rotate camera by <span class="math inline">\(R_{w2c}=(pitch=10°, yaw=20°, roll=30°)\)</span>, then <span class="math inline">\(R_{c2w}=R_{w2c}^T=(pitch=-19.01°, yaw=-11.82°, roll=-33.75°)\)</span>, which means we need to rotate the camera by completely another Euler angle (not just minus or so) to get the camera back. And of course, if we rotate by roll/yaw/pitch (the inverse) sequence, the angles are exactly minus, which should be easy to understand.</p>
+<h3 id="d-cube-and-projection">3D CUBE and projection</h3>
+<p>Let's push it further by projecting more points and using them for camera pose estimation.</p>
+<figure>
+<img src="pics/forward_backward.png" alt="Camera projection and way to get 3D points back with RGBD alike methods." id="forward_backward" style="width:85.0%"><figcaption>Camera projection and way to get 3D points back with RGBD alike methods.</figcaption>
+</figure>
+<p><code>findHomography, findFundamentalMat, findEssentialMat+recoverPose, solvePnPRansac</code> are relative pose estimation methods provided by OpenCV.</p>
+<table>
+<caption>Relative pose estimation in OpenCV </caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Input_A</th>
+<th>Input_B</th>
+<th>Constraints</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>findHomography</td>
+<td>2D pixel of 3D <strong>plane</strong></td>
+<td><span class="math inline">\(\Leftarrow\)</span></td>
+<td><span class="math inline">\(s_i [p2;1] \sim H [p1;1]\)</span>, <span class="math inline">\(s_i\)</span> is scale</td>
+</tr>
+<tr class="even">
+<td>findFundamentalMat</td>
+<td>2D pixel of 3D object</td>
+<td><span class="math inline">\(\Leftarrow\)</span></td>
+<td><span class="math inline">\([p2;1]^T F [p1;1]=0\)</span></td>
+</tr>
+<tr class="odd">
+<td>findEssentialMat</td>
+<td>2D pixel of 3D object</td>
+<td><span class="math inline">\(\Leftarrow\)</span></td>
+<td><span class="math inline">\([p2;1]^T K^{-T} E K^{-1} [p1;1]=0\)</span></td>
+</tr>
+<tr class="even">
+<td>recoverPose</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(P_B \simeq RP*P_A\)</span> <br> <span class="math inline">\(\bar{t}\)</span> is normalized, only has direction</td>
+</tr>
+<tr class="odd">
+<td>recoverPose</td>
+<td>3D object</td>
+<td>2D pixel of 3D object</td>
+<td><span class="math inline">\(P_B = RP*P_A\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The take away is all APIs are constant, a.k.a: POSE= [R|t] = METHOD(A, B) will bring A to B -&gt; <span class="math inline">\(P_B = POSE * P_A\)</span>.</p>
+<h2 id="summary">Summary</h2>
+<p>In this post, we try to specify the characteristics and physical meanings of <strong>POSE, R, t, C</strong>, which are widely used in low-level computer vision tasks. In conclusion:</p>
+<ul>
+<li>POSE: bring points in world coordinate into camera coordinate;</li>
+<li>R: the rotation of the camera <strong>to</strong> the world frame;</li>
+<li>t: the position of the origin of the world coordinate system expressed in coordinates of the camera-centred coordinate system;</li>
+<li>C: the camera expressed in world coordinates.</li>
+</ul>
+<p>And as one reminder, when we manipulating cameras, most of the time we say rotation from the point of view of the camera, like, in ACR, after calculating relative pose, we rotate the three Euler angle, which is okay. But in some scenarios, like the UnrealCV virtual environment, we are actually setting the camera rotation by API, such like <code>vset /rotation/pitch=x,yaw=y,roll=z</code>, that is, we can always and only rotate the camera <strong>from</strong> the world coordinate, no other way around.</p>
+<p>Say we want to capture images at pose of <span class="math inline">\([R|C]\)</span>, <span class="math inline">\(C\)</span> is rather clear (set the location of the camera), but <span class="math inline">\(R\)</span> in pose should be inversed so that we can rotate the camera from the origin. And after pose estimation, the very same procedure, <span class="math inline">\(R_{new}=Relative\_Pose * R\)</span>, inverse <span class="math inline">\(R_{new}\)</span> for camera rotating.</p>
+<p>That's it.</p>
+<section class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>https://openmvg.readthedocs.io/en/latest/openMVG/cameras/cameras/<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Pose/" rel="tag"># Pose</a>
+          
+            <a href="/tags/Pose-Estimation/" rel="tag"># Pose Estimation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/unrealcv_digest/euler_angle/" rel="next" title="Euler Angle, a program approach">
+                <i class="fa fa-chevron-left"></i> Euler Angle, a program approach
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/hexo/customize_hexo/" rel="prev" title="Customize hexo">
+                Customize hexo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/dh.jpg" alt="MiaoDX 缪东旭">
+            
+              <p class="site-author-name" itemprop="name">MiaoDX 缪东旭</p>
+              <p class="site-description motion-element" itemprop="description">“We’re all stories, in the end. Just make it a good one, eh?” <br> — The Doctor, Season 5, Episode 13</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MiaoDX" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:maiodx@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#camera-model"><span class="nav-number">1.</span> <span class="nav-text">Camera Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pose-and-r-t"><span class="nav-number">2.</span> <span class="nav-text">Pose and R, t</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#d-cube"><span class="nav-number">3.1.</span> <span class="nav-text">3D CUBE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-cube-and-projection"><span class="nav-number">3.2.</span> <span class="nav-text">3D CUBE and projection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MiaoDX 缪东旭</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
