@@ -86,7 +86,7 @@ redirectPort=”8443″ URIEncoding=”gb2312″/>
 <Connector port=”8009” protocol=”AJP/1.3″ redirectPort=”8443″ /> 
 ```
 
-然后，也许还需要看一下 intellij 热部署的方式，这里不再给出链接。
+然后，也许还需要看一下 IntelliJ 热部署的方式，这里不再给出链接。
 
 ## 部署
 
@@ -165,4 +165,4 @@ java.io.IOException: Cannot run program "/bin/java" (in directory "/var/jenkins_
 
 ## Deploy war/ear to a container 的小技巧
 
-其中有一个要填的内容 `Context path`，假如说在本地运行时（Intellij）的 url 为 `http://localhost:9000/youareawesome` 那么在 `Context path` 填任何非空的东西，比如说 `aa` 或者 `\aa` 那么在调用时只能是 `http://yourRemoteIp:9000/aa/youareawesome` 会注意到在 url 中生硬的多出了 `aa`，那么什么都不填呢？会发现 `aa` 得换成你的工程名才能访问，比如说你和我一样使用的上面说到的 webapp 的模板，那么得访问 `http://yourRemoteIp:9000/webapp/youareawesome` 才好。这些我们都不喜欢，其实只要填入 `\` 即可，想必这也容易理解。
+其中有一个要填的内容 `Context path`，假如说在本地运行时（Intellij）的 URL 为 `http://localhost:9000/youareawesome` 那么在 `Context path` 填任何非空的东西，比如说 `aa` 或者 `\aa` 那么在调用时只能是 `http://yourRemoteIp:9000/aa/youareawesome` 会注意到在 URL 中生硬的多出了 `aa`，那么什么都不填呢？会发现 `aa` 得换成你的工程名才能访问，比如说你和我一样使用的上面说到的 webapp 的模板，那么得访问 `http://yourRemoteIp:9000/webapp/youareawesome` 才好。这些我们都不喜欢，其实只要填入 `\` 即可，想必这也容易理解。

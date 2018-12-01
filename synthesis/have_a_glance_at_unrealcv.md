@@ -19,7 +19,7 @@ In this post, you will discover:
 * how to use the command interactively in [RealisticRendering](http://unrealcv.org/reference/model_zoo.html#realistic_rendering) map
 * how to use python code to fetch data
 
-Note: The [official website](http://unrealcv.org/) is pretty nice organized and you're encouraged to read their document there or [a more rich official version](http://docs.unrealcv.org/en/master/). I record these things here just to make my series thorough and organized.
+Note: The [official website](http://unrealcv.org/) is pretty nice organized and you're encouraged to read their document there or [a richer official version](http://docs.unrealcv.org/en/master/). I record these things here just to make my series thorough and organized.
 
 # Intro
 
@@ -47,8 +47,8 @@ You are also encouraged to see official [getting_started](http://unrealcv.org/tu
 
 1. Download the extended version of [RealisticRendering](http://unrealcv.org/reference/model_zoo.html#realistic_rendering) for your platform
 2. Unzip and run the binary.
-3. Use mouse to look around and use keys `wasd` to navigate, use qe to level the camera up and down, use `←↑→↓` to control the rotation of the camera.(Seem that `←→` do the `yaw` rotation well but `↑↓` is somewhat wired -- not `pitch` nor `roll`, but it's OK)
-4. Type **`** (the key on top of tab) to release the mouse and thus enter command line environment, type it twice to show enlarged command graphical interface.
+3. Use the mouse to look around and use keys `wasd` to navigate, use `qe` to level the camera up and down, use `←↑→↓` to control the rotation of the camera. (Seem that `←→` do the `yaw` rotation well but `↑↓` is somewhat wired -- not `pitch` nor `roll`, but it's OK)
+4. Type **`** (the key on top of the tab) to release the mouse and thus enter command line environment, type it twice to show enlarged command graphical interface.
 5. Type `vget /camera/0/lit` and navigate to the folder `RealisticRendering\Binaries\Win64`, we can see the `00000001.png` we just captured. You should get something like figure @fig:first_capture
 6. Type `vget /unrealcv/help` will get something like our first figure.
 7. TRY COMMANDS LISTED IN HELP
@@ -59,7 +59,7 @@ Note: In Windows, chances are that you will encounter `DirectX Runtime` problem 
 
 # Show me the code, please!
 
-We want to get tons of thousands images from the virtual environment and then use them in various ways. So, we need codes to do that, and TES, we can do that! To use code fetch images via unrealcv is ***unreally easy***:). See code snippet below (or just <br>`wget https://raw.githubusercontent.com/unrealcv/unrealcv/master/client/python/demo.py . --no-check-certificate`):
+We want to get tons of thousands of images from the virtual environment and then use them in various ways. So, we need codes to do that, and TES, we can do that! To use code fetch images via unrealcv is ***unreally easy***:). See code snippet below (or just <br>`wget https://raw.githubusercontent.com/unrealcv/unrealcv/master/client/python/demo.py . --no-check-certificate`):
 
 ``` python
 from unrealcv import client
@@ -86,7 +86,7 @@ Note: The python version is version 2.x.x, and `pip install unrealcv` before typ
 
 For me, It would be better if we can get:
 
-* distance of specific object from the camera or between objects (calculate from the depth image can lose accuracy (intuitive feeling) and not easy as a function call)
+* distance of the specific object from the camera or between objects (calculate from the depth image can lose accuracy (intuitive feeling) and not easy as a function call)
 
 
 # Conclusion
@@ -95,5 +95,5 @@ Today, we tried to install the `unrealcv` and use it both in the interactive mod
 
 What we did not cover is setting the camera position and rotation in the code, move the camera and fetch new images there, which is essential when getting images dataset.
 
-And, we are using the RealisticRendering virtual environment all the time, in practice usage, we need to create our own world and thus need to do some programming with Unreal Engine. Will talk about latter (hopefully won't be too long). And you can see [unrealcv/playground](https://github.com/unrealcv/playground) before my coming post covering that.
+And, we are using the RealisticRendering virtual environment all the time, in practical usage, we need to create our own world and thus need to do some programming with Unreal Engine. Will talk about later (hopefully won't be too long). And you can see [unrealcv/playground](https://github.com/unrealcv/playground) before my coming post covering that.
 

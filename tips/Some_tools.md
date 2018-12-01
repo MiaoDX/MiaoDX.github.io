@@ -9,7 +9,7 @@ tags:
 
 # Why and what
 
-There are lots of nice or great tools on the internet, sometimes I will just forget a possible `Silver bullet` for a particular situation. So this blog is just an entrance to a nice or clean or amzing world just by small tools.
+There are lots of nice or great tools on the internet, sometimes I will just forget a possible `Silver bullet` for a particular situation. So this blog is just an entrance to a nice or clean or amazing world just by small tools.
 
 <!-- more -->
 
@@ -17,7 +17,7 @@ There are lots of nice or great tools on the internet, sometimes I will just for
 
 ## Package manager
 
-Once tried command line, it makes you think `agree the agreements -> choose where to install -> next -> next` unbearable.
+Once tried command line, it makes you think `agree with the agreements -> choose where to install -> next -> next` unbearable.
 
 Thanks give to [Nodejs](https://nodejs.org/en/download/package-manager/#windows)
 
@@ -31,7 +31,7 @@ Or
 
 `scoop install WHAT_YOU_WANT`
 
-I find scoop latter, but I think it maybe better.
+I find scoop latter, but I think it may be better.
 
 ### A small `shell`
 

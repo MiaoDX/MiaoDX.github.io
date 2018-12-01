@@ -8,7 +8,7 @@ tags:
   - Camera intrinsic
 ---
 
-The intrinsic of camera matters a lot in many low-level computer vision tasks, and in many scenarios maybe one plausive configuration is enough, there is no needs to get exact value. In this post, we demonstrate how to get camera intrinsic quickly with unavoidable error.
+The intrinsic of camera matters a lot in many low-level computer vision tasks, and in many scenarios maybe one plausive configuration is enough, there is no needs to get the exact value. In this post, we demonstrate how to get camera intrinsic quickly with an unavoidable error.
 
 <!-- more -->
 
@@ -26,7 +26,7 @@ f = W/2 = 320px
 ![](pics/calibration_2.png)
 ![](pics/calibration_3.png)
 
-We use similar setup. We shot at one position, the move the camera right/up for certain pixel ($x, y$), measure coordinate change of one certain pixel ($d_x, d_y$) and depth of camera $d_Z$, the get $f_x, f_y$.
+We use a similar setup. We shot at one position, the move the camera right/up for certain pixel ($x, y$), measure the coordinate change of one certain pixel ($d_x, d_y$) and depth of camera $d_Z$, the get $f_x, f_y$.
 
 $$f_x = \frac{d_x}{x}d_Z$$
 
@@ -62,7 +62,7 @@ However, we can also get $d_Z$ by moving the camera.
 
 We can move forward for certain distance $U$, with $\frac{X}{x_0}=\frac{d+U}{f}$ and $\frac{X}{x_1}=\frac{d}{f}$. 
 
-Table: Corresponding coordinates with different FOV, the latter one of each item is distance to camera center.
+Table: Corresponding coordinates with different FOV, the latter one of each item is the distance to the camera center.
 
 | Camera Position/FOV | 90 | 60 |
 | - | - | - |

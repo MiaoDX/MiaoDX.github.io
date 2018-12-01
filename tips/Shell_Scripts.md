@@ -17,7 +17,7 @@ Nowadays I am using windows a lot, the shell shipped with windows is not so appe
 
 :penguin: for Git shell but not Gow
 
-:scream_cat: for Gow but not Git shell (since it really amazing, can shell in linux like worse than windows?)
+:scream_cat: for Gow but not Git shell (since it really amazing, can shell in Linux like worse than windows?)
 
 
 ## `iconv` :penguin:

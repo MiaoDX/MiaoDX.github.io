@@ -125,7 +125,7 @@ $ chmod +x mongodumpFromDocker.sh
 $ ./mongodumpFromDocker.sh
 ```
 
-这会当前路径下生成正确的包含数据与数据库信息的 `test` 文件夹。上面的 bash 文件中 `testmongo_backend` 是我们上面生成的网络，testmongo_mongodb_1 是因为我们没有指定 container 的名称，`$MONGO_PORT_27017_TCP_ADDR` 需要换为一个真实的 IP 地址，`0.0.0.0` 是不可用的，以我跑在 virtualbox 中的虚拟机为例，最后一行可以改为：
+这会当前路径下生成正确的包含数据与数据库信息的 `test` 文件夹。上面的 bash 文件中 `testmongo_backend` 是我们上面生成的网络，testmongo_mongodb_1 是因为我们没有指定 container 的名称，`$MONGO_PORT_27017_TCP_ADDR` 需要换为一个真实的 IP 地址，`0.0.0.0` 是不可用的，以我跑在 Virtualbox 中的虚拟机为例，最后一行可以改为：
 
 `-c 'mongodump --out /backup --host 100.100.100.10'` 或
 

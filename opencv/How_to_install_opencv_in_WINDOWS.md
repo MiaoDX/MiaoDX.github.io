@@ -12,7 +12,7 @@ tags:
 
 <!-- more -->
 
-Linux，macOS，Raspberry Pi 等其他平台上的 opencv 安装请在 [OpenCV 3 Tutorials, Resources, and Guides](http://www.pyimagesearch.com/opencv-tutorials-resources-guides/) 寻找合适的方法，本文很大程度上参考了系列中的 [Ubuntu 16.04: How to install OpenCV](http://www.pyimagesearch.com/2016/10/24/ubuntu-16-04-how-to-install-opencv/)，甚至可以说是其在 windows 上的移植。
+Linux，macOS，Raspberry Pi 等其他平台上的 OpenCV 安装请在 [OpenCV 3 Tutorials, Resources, and Guides](http://www.pyimagesearch.com/opencv-tutorials-resources-guides/) 寻找合适的方法，本文很大程度上参考了系列中的 [Ubuntu 16.04: How to install OpenCV](http://www.pyimagesearch.com/2016/10/24/ubuntu-16-04-how-to-install-opencv/)，甚至可以说是其在 windows 上的移植。
 
 ## Step 0.Goal
 
@@ -491,7 +491,7 @@ C2610 and C2535 error for file tuple in the opencv_perf_cudawarping project.
 C2382 error for file cuda_perf.hpp in the opencv_perf_cudawarping project.
 ```
 
-的错误，在 opencv 的 issue 下找到了一个 [workaround](https://github.com/opencv/opencv/issues/7992#issuecomment-278571162):
+的错误，在 OpenCV 的 issue 下找到了一个 [workaround](https://github.com/opencv/opencv/issues/7992#issuecomment-278571162):
 
 ``` vi
 What I did was to enable WITH_CUBLAS aswell as WITH_CUDA. I also turned off BUILD_PERF_TESTS and BUILD_TESTS.

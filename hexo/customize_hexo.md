@@ -29,13 +29,13 @@ It has been one long-time wish to build and publish blog automatically, may date
 [^ci_2]: http://www.yanglangjing.com/2018/08/28/travis_ci_auto_deploy_hexo_to_vps/
 [^ci_3]: https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/
 
-For many of them, two branches/repository are used, one for `hexo+blog source`, the other for `publishing`. We divide the first one, and the system is like in Fig @fig:hexo_sys. The main advantage is that the source files are totally independent with hexo.
+For many of them, two branches/repository are used, one for `hexo+blog source`, the other for `publishing`. We divide the first one, and the system is like in Fig @fig:hexo_sys. The main advantage is that the source files are totally independent of hexo.
 
 ![The three-part hexo blogging system](pics/hexo_sys.png){#fig:hexo_sys width=85%}
 
-There are three `orphan` branches in this repository, `source_files` is all the blog source files and corresponding resources (images in most cases), `hexo_template` for the hexo configurations, and `master` for published blog html files.
+There are three `orphan` branches in this repository, `source_files` is all the blog source files and corresponding resources (images in most cases), `hexo_template` for the hexo configurations, and `master` for published blog HTML files.
 
-`orphan` branches serves it well to separate these branches without specific dependences between each other, as in Fig @fig:hexo_sys, `source_files` and `hexo_template` are both equipped with travis-ci, the former one just trigger the latter after new commits.
+`orphan` branches serves it well to separate these branches without specific dependencies between each other, as in Fig @fig:hexo_sys, `source_files` and `hexo_template` are both equipped with Travis-ci, the former one just trigger the latter after new commits.
 
 So the majority of jobs are done at [`hexo_template` CI](https://github.com/MiaoDX/MiaoDX.github.io/blob/hexo_template/.travis.yml):
 
@@ -48,11 +48,11 @@ So the majority of jobs are done at [`hexo_template` CI](https://github.com/Miao
 * Go to `./public` directory, `git init/add/commit`, `git push` to `master` branch
 * Done!
 
-As for the trigger procedure of [`source_files` CI](https://github.com/MiaoDX/MiaoDX.github.io/blob/source_files/.travis.yml), there are two similar code snippets for this task, see [stephanmg/travis-dependent-builds](https://github.com/stephanmg/travis-dependent-builds) and [plume-lib/trigger-travis](https://github.com/plume-lib/trigger-travis). The former one only use `Github Token` (we already have it at the `hexo_template` pushing part) and login travis to get the `Access Token` and do the trigger, the latter one requires `Access Token` as input, but have smaller processing time.
+As for the trigger procedure of [`source_files` CI](https://github.com/MiaoDX/MiaoDX.github.io/blob/source_files/.travis.yml), there are two similar code snippets for this task, see [stephanmg/travis-dependent-builds](https://github.com/stephanmg/travis-dependent-builds) and [plume-lib/trigger-travis](https://github.com/plume-lib/trigger-travis). The former one only use `Github Token` (we already have it at the `hexo_template` pushing part) and login Travis to get the `Access Token` and do the trigger, the latter one requires `Access Token` as input, but have smaller processing time.
 
-See [^tokens] for the differences between different types of tokens, and as shown in the bottom of it, we can get `Access Token` with `Github Token` with http requests (which is neat since we may not have ruby environments at hand) as shown in Fig @fig:get_token and send the requests with postman as in Fig @fig:get_token_postman.
+See [^tokens] for the differences between different types of tokens, and as shown in the bottom of it, we can get `Access Token` with `Github Token` with HTTP requests (which is neat since we may not have ruby environments at hand) as shown in Fig @fig:get_token and send the requests with postman as in Fig @fig:get_token_postman.
 
-That's it, we have setup the automatic updating blog system.
+That's it, we have set up the automatic updating blog system.
 
 ![Get Access Token with Github Token](pics/token_1.png){#fig:get_token width=75%}
 
@@ -76,7 +76,7 @@ Please see figure @fig:answer_is_42 for more info.
 
 ### Pandoc version
 
-The `hexo-renderer-pandoc` changed its behavior at version 2.x, as discussed in [^hexo_pandoc], chances are that we can change some codes by ourself to make it work, but we choose to install the newer version of pandoc with `sudo dpkg -i`
+The `hexo-renderer-pandoc` changed its behavior at version 2.x, as discussed in [^hexo_pandoc], chances are that we can change some codes by ourselves to make it work, but we choose to install the newer version of pandoc with `sudo dpkg -i`
 
 [^hexo_pandoc]: https://github.com/wzpan/hexo-renderer-pandoc/pull/22
 
@@ -85,7 +85,7 @@ The `hexo-renderer-pandoc` changed its behavior at version 2.x, as discussed in 
 
 ### `---` un-support
 
-When render file with many `---` for dividing line, hexo failed in one way or another.
+When rendering files with many `---` for dividing line, hexo failed in one way or another.
 
 So change `---` to `***` and done this forever :(
 
