@@ -4,6 +4,9 @@ language:
 python:
    - "3.6"
 
+git:
+  depth: 1
+
 before_script:
    # - gem install travis
 
