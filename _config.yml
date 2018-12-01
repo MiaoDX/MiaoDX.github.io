@@ -81,6 +81,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+# theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -108,3 +109,7 @@ pandoc:
     # - bibliography: "/home/nirvana6/workspace/blog/blog.bib"
     # - link-citations: true
   mathEngine:
+
+hexo-reference:
+
+  
