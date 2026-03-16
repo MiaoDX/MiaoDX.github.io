@@ -34,7 +34,7 @@
       h2 { font-size: 1.35rem; }
       p { margin: 0 0 10px; color: var(--muted); }
       .hero { display: grid; gap: 20px; grid-template-columns: 120px 1fr; align-items: center; }
-      .hero img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--brand-soft); }
+      .hero img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--brand-soft); object-fit: cover; }
       .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
       .btn { display: inline-block; text-decoration: none; padding: 10px 16px; border-radius: 999px; font-weight: 600; border: 1px solid var(--border); color: var(--text); }
       .btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
@@ -45,7 +45,9 @@
       .photo-card small { display: block; color: var(--muted); margin-top: 6px; }
       .qr-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .qr-card { border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; }
-      .qr-card img { width: 220px; max-width: 100%; }
+      .qr-card img { width: 220px; max-width: 100%; border-radius: 8px; }
+      .hub-list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
+      .hub-list a { color: #1d4ed8; text-decoration: none; }
       footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 8px 0 30px; }
       @media (max-width: 760px) {
         .hero { grid-template-columns: 1fr; text-align: center; }
@@ -58,7 +60,7 @@
   <body>
     <main>
       <section class="hero">
-        <img src="images/home/profile-placeholder.svg" alt="MiaoDX profile placeholder" />
+        <img src="https://miaodx.com/LIP/images/miaodx-profile.jpg" alt="MiaoDX profile photo" />
         <div>
           <h1>MiaoDX</h1>
           <p>公开构建 AI 协作与自动化系统（Learn in Public）。</p>
@@ -74,7 +76,7 @@
         <h2>About</h2>
         <p>
           你好，我是 MiaoDX。我长期在真实项目中实践 AI 协作、工作流自动化，以及内容系统化沉淀，
-          并持续公开复盘。这个页面负责快速建立认知，完整案例和进展都在 LIP。
+          并持续公开复盘。这个页面负责快速建立认知；具体案例、经验复盘、演讲资料和月度进展都放在 LIP。
         </p>
         <div class="keywords">
           <span class="tag">长期实践</span>
@@ -87,45 +89,48 @@
         <h2>近期活动 Photos</h2>
         <div class="grid-3">
           <div class="photo-card">
-            <img src="images/home/event-placeholder.svg" alt="Event photo 1 placeholder" />
-            <small>活动现场（待替换）</small>
+            <img src="https://miaodx.com/LIP/images/lobster/round_03_dawn_outpost.png" alt="OpenClaw experiment scene" />
+            <small>OpenClaw 早期实验记录（LIP / stories）</small>
           </div>
           <div class="photo-card">
-            <img src="images/home/event-placeholder.svg" alt="Event photo 2 placeholder" />
-            <small>分享交流（待替换）</small>
+            <img src="https://miaodx.com/LIP/images/lobster/round_10_agriculture.png" alt="Agent collaboration scene" />
+            <small>多 Agent 协作迭代过程（LIP / now）</small>
           </div>
           <div class="photo-card">
-            <img src="images/home/event-placeholder.svg" alt="Event photo 3 placeholder" />
-            <small>社区互动（待替换）</small>
+            <img src="https://miaodx.com/LIP/images/lobster/round_10_night_festival.png" alt="Community showcase scene" />
+            <small>社区分享可视化素材（LIP / share）</small>
           </div>
         </div>
       </section>
 
       <section id="connect">
         <h2>Connect</h2>
-        <p>合作 / 交流欢迎扫码，后续可直接替换为真实微信和公众号二维码。</p>
+        <p>合作 / 交流欢迎扫码。</p>
         <div class="qr-grid">
           <div class="qr-card">
-            <img src="images/home/qr-placeholder.svg" alt="WeChat personal QR placeholder" />
+            <img src="https://miaodx.com/LIP/images/wechat-qr.jpg" alt="WeChat personal QR" />
             <strong>微信个人号</strong>
           </div>
           <div class="qr-card">
-            <img src="images/home/qr-placeholder.svg" alt="WeChat official account QR placeholder" />
+            <img src="https://miaodx.com/LIP/images/wechat-official-qr.jpg" alt="WeChat official account QR" />
             <strong>公众号</strong>
           </div>
         </div>
       </section>
 
       <section>
-        <h2>Content Hub</h2>
-        <p>主页负责 hook，LIP 负责完整说服内容。</p>
-        <div class="buttons">
-          <a class="btn primary" href="https://miaodx.com/LIP/">LIP（主）</a>
-          <a class="btn" href="https://github.com/MiaoDX">GitHub（次）</a>
-        </div>
+        <h2>From LIP（精选入口）</h2>
+        <p>下面这些内容直接来自 LIP，先看总览，再看故事与经验。</p>
+        <ul class="hub-list">
+          <li><a href="https://miaodx.com/LIP/">LIP 首页总览</a></li>
+          <li><a href="https://miaodx.com/LIP/now/2026-03">Now：2026-03 进展月报</a></li>
+          <li><a href="https://miaodx.com/LIP/stories/openclaw-04-practical-cases">Story：OpenClaw 实战案例</a></li>
+          <li><a href="https://miaodx.com/LIP/lessons/error-to-skill-evolution">Lesson：从错误到技能沉淀</a></li>
+          <li><a href="https://miaodx.com/LIP/share/">Share：演讲与对外展示资料</a></li>
+        </ul>
       </section>
 
-      <footer>© MiaoDX · Built for quick iteration</footer>
+      <footer>© MiaoDX · Hook page for LIP</footer>
     </main>
   </body>
 </html>
