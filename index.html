@@ -56,6 +56,7 @@
       .event-links a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
       .carousel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 1fr); gap: 10px; overflow-x: auto; padding-bottom: 4px; }
       .carousel img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
+      .carousel img.poster { object-fit: contain; background: #f8fafc; }
       footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 8px 0 30px; }
       @media (max-width: 760px) {
         .hero { grid-template-columns: 1fr; text-align: center; }
@@ -128,7 +129,7 @@
 
       <section>
         <h2>近期分享与活动</h2>
-        <p>按时间倒排。每条都包含入口链接和现场图，方便快速浏览。</p>
+        <p>按时间倒排。每条都包含入口链接和现场图，方便快速浏览。你提供的活动拼图也已直接使用。</p>
         <div class="event-list">
           <article class="event-card">
             <h3>03.15 · 新分享（官媒报道）</h3>
@@ -138,8 +139,7 @@
               <a href="https://miaodx.com/LIP/share/lowcost-multiplatform-multiagent-deploy.html">分享材料</a>
             </div>
             <div class="carousel">
-              <img src="https://miaodx.com/LIP/share/assets/meetup-2026-03-15/wlb-role-transition.jpg" alt="03.15 分享现场图 1" />
-              <img src="https://miaodx.com/LIP/share/assets/meetup-2026-03-15/openclaw-custom-provider.png" alt="03.15 分享现场图 2" />
+              <img class="poster" src="images/events/2026-03/recent-events-collage.png" alt="03.15 分享活动图（用户提供）" />
             </div>
           </article>
 
@@ -165,8 +165,7 @@
               <a href="https://miaodx.com/LIP/stories/openclaw-04-practical-cases">实战案例</a>
             </div>
             <div class="carousel">
-              <img src="https://miaodx.com/LIP/share/assets/meetup-2026-03-15/openclaw-custom-provider.png" alt="03.10 AI coding 活动图 1" />
-              <img src="https://miaodx.com/LIP/share/assets/meetup-2026-03-15/wlb-role-transition.jpg" alt="03.10 AI coding 活动图 2" />
+              <img class="poster" src="images/events/2026-03/recent-events-collage.png" alt="03.10 AI coding 活动图（用户提供）" />
             </div>
           </article>
         </div>
