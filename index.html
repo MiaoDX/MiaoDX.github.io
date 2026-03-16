@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiaoDX — Learn in Public</title>
     <meta
       name="description"
-      content="MiaoDX builds AI collaboration systems in public. Start from LIP, then connect via WeChat."
+      content="缪东旭（MiaoDX）：AI Agent 协作系统实践者，公开构建、持续复盘"
     />
     <style>
       :root {
@@ -33,6 +33,7 @@
       h1 { font-size: clamp(2rem, 6vw, 3rem); }
       h2 { font-size: 1.35rem; }
       p { margin: 0 0 10px; color: var(--muted); }
+      a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
       .hero { display: grid; gap: 20px; grid-template-columns: 120px 1fr; align-items: center; }
       .hero img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--brand-soft); object-fit: cover; }
       .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
@@ -40,39 +41,56 @@
       .btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
       .keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
       .tag { font-size: 0.9rem; padding: 6px 10px; border-radius: 999px; background: var(--brand-soft); color: #1e3a8a; }
-      .grid-3 { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .photo-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); }
-      .photo-card small { display: block; color: var(--muted); margin-top: 6px; }
-      .qr-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+      /* About: experience timeline */
+      .exp-list { margin: 12px 0 0; padding: 0; list-style: none; }
+      .exp-list li { padding: 4px 0; color: var(--muted); border-left: 2px solid var(--brand-soft); padding-left: 12px; margin-bottom: 4px; }
+      .exp-list li strong { color: var(--text); }
+
+      /* Photo wall */
+      .photo-wall { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+      .photo-wall img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s; cursor: pointer; }
+      .photo-wall img:hover { transform: scale(1.04); }
+
+      /* QR grid — equal height */
+      .qr-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 500px; }
       .qr-card { border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; }
-      .qr-card img { width: 220px; max-width: 100%; border-radius: 8px; }
-      .hub-list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
-      .hub-list a { color: #1d4ed8; text-decoration: none; }
+      .qr-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; border-radius: 8px; }
+      .qr-card strong { display: block; margin-top: 8px; }
+
+      /* Event list */
       .event-list { display: grid; gap: 14px; }
       .event-card { border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
       .event-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
       .event-card p { margin: 0 0 10px; }
       .event-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
-      .event-links a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
+      .media-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+      .media-badge.sina { background: #fff1f0; color: #cf1322; }
+      .media-badge.bjnews { background: #fff7e6; color: #ad6800; }
+      .media-badge.wechat { background: #f0faf0; color: #237804; }
       .carousel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 1fr); gap: 10px; overflow-x: auto; padding-bottom: 4px; }
-      .carousel img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
+      .carousel img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
       .carousel img.poster { object-fit: contain; background: #f8fafc; }
+
+      .hub-list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
       footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 8px 0 30px; }
       @media (max-width: 760px) {
         .hero { grid-template-columns: 1fr; text-align: center; }
         .hero img { margin: 0 auto; }
         .buttons, .keywords { justify-content: center; }
-        .grid-3, .qr-grid { grid-template-columns: 1fr; }
+        .qr-grid { grid-template-columns: 1fr; max-width: 260px; }
+        .photo-wall { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
       }
     </style>
   </head>
   <body>
     <main>
+      <!-- Hero -->
       <section class="hero">
         <img src="https://miaodx.com/LIP/assets/miaodx-profile.C-NPeXP4.jpg" alt="MiaoDX profile photo" />
         <div>
           <h1>MiaoDX</h1>
-          <p>公开构建 AI 协作与自动化系统（Learn in Public）。</p>
+          <p>公开构建 AI 协作与自动化系统（Learn in Public）</p>
           <div class="buttons">
             <a class="btn primary" href="https://miaodx.com/LIP/">进入 LIP</a>
             <a class="btn" href="https://github.com/MiaoDX">查看 GitHub</a>
@@ -81,73 +99,103 @@
         </div>
       </section>
 
+      <!-- About -->
       <section>
         <h2>About</h2>
         <p>
-          你好，我是 MiaoDX。我长期在真实项目中实践 AI 协作、工作流自动化，以及内容系统化沉淀，
-          并持续公开复盘。这个页面负责快速建立认知；具体案例、经验复盘、演讲资料和月度进展都放在 LIP。
+          你好，我是缪东旭（MiaoDX），目前在北京，长期在工程一线做 AI 与自动驾驶相关系统
         </p>
+        <p>
+          我正在把个人实践升级为「一人公司 + 多 Agent 协作」能力，
+          并持续公开复盘，让更多人看到：AI Agent 不只是 demo，而是能真实创造交付价值的生产系统
+        </p>
+        <p>
+          具体案例、经验复盘、演讲资料和月度进展都放在
+          <a href="https://miaodx.com/LIP/">LIP（Learn in Public）</a>
+        </p>
+
+        <h3 style="margin: 18px 0 8px; font-size: 1rem;">学习与工作经历</h3>
+        <ul class="exp-list">
+          <li><strong>2025 至今</strong> — Robotics Team @ XiaomiEV</li>
+          <li><strong>2021–2025</strong> — Perception-System TeamLead @ XiaomiEV</li>
+          <li><strong>2019–2021</strong> — DeepMotion.ai</li>
+          <li><strong>2018</strong> — Horizon Robotics</li>
+          <li><strong>2016–2018</strong> — 天津大学（TJU）硕士</li>
+          <li><strong>2012–2016</strong> — 西安电子科技大学（Xidian）本科</li>
+        </ul>
+
         <div class="keywords">
-          <span class="tag">长期实践</span>
-          <span class="tag">对外分享</span>
-          <span class="tag">工具落地</span>
+          <span class="tag">AI Coding</span>
+          <span class="tag">多 Agent 协作</span>
+          <span class="tag">自动驾驶</span>
+          <span class="tag">OpenClaw</span>
+          <span class="tag">Learn in Public</span>
         </div>
       </section>
 
+      <!-- Photo Wall -->
       <section>
-        <h2>近期活动 Photos</h2>
-        <div class="grid-3">
-          <div class="photo-card">
-            <img src="https://miaodx.com/LIP/images/lobster/round_03_dawn_outpost.png" alt="OpenClaw experiment scene" />
-            <small>OpenClaw 早期实验记录（LIP / stories）</small>
-          </div>
-          <div class="photo-card">
-            <img src="https://miaodx.com/LIP/images/lobster/round_10_agriculture.png" alt="Agent collaboration scene" />
-            <small>多 Agent 协作迭代过程（LIP / now）</small>
-          </div>
-          <div class="photo-card">
-            <img src="https://miaodx.com/LIP/images/lobster/round_10_night_festival.png" alt="Community showcase scene" />
-            <small>社区分享可视化素材（LIP / share）</small>
-          </div>
+        <h2>活动照片墙</h2>
+        <p>持续补充中，欢迎回看</p>
+        <div class="photo-wall">
+          <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 龙虾蜕壳 Meetup 分享" />
+          <img src="images/events/2026-03/0314-group-photo.jpg" alt="03.14 OpenClaw 大会合影" />
+          <img src="images/events/2026-03/0314-on-stage.jpg" alt="03.14 OpenClaw 现场演示" />
+          <img src="images/events/2026-03/0310-poster.jpg" alt="03.10 AI Coding 内部宣讲海报" />
+          <img src="images/events/2026-03/0310-talk-screenshot.jpg" alt="03.10 AI Coding 现场截图" />
+          <img src="https://miaodx.com/LIP/images/lobster/round_03_dawn_outpost.png" alt="龙虾文明 — 黎明哨站" />
+          <img src="https://miaodx.com/LIP/images/lobster/round_10_agriculture.png" alt="龙虾文明 — 农业时代" />
+          <img src="https://miaodx.com/LIP/images/lobster/round_10_night_festival.png" alt="龙虾文明 — 夜间庆典" />
         </div>
       </section>
 
+      <!-- Connect -->
       <section id="connect">
         <h2>Connect</h2>
-        <p>合作 / 交流欢迎扫码。</p>
+        <p>合作 / 交流欢迎扫码</p>
         <div class="qr-grid">
           <div class="qr-card">
-            <img src="https://miaodx.com/LIP/assets/wechat-official-qr.DheE_l_a.jpg" alt="WeChat personal QR" />
+            <img src="https://miaodx.com/LIP/assets/wechat-official-qr.DheE_l_a.jpg" alt="微信个人号二维码" />
             <strong>微信个人号</strong>
           </div>
           <div class="qr-card">
-            <img src="https://miaodx.com/LIP/assets/wechat-qr.OGcMTSYY.jpg" alt="WeChat official account QR" />
+            <img src="https://miaodx.com/LIP/assets/wechat-qr.OGcMTSYY.jpg" alt="公众号二维码" />
             <strong>公众号</strong>
           </div>
         </div>
       </section>
 
+      <!-- Events -->
       <section>
         <h2>近期分享与活动</h2>
-        <p>按时间倒排。每条都包含入口链接和现场图，方便快速浏览。以下 5 张都使用你最新提供的原图。</p>
+        <p>按时间倒排，每条包含入口链接和现场图</p>
         <div class="event-list">
+
           <article class="event-card">
-            <h3>03.15 · 新分享（官媒报道）</h3>
-            <p>一次面向外部社区的实践分享，主题围绕低成本多 Agent 部署。</p>
+            <h3>03.15 · 龙虾蜕壳 Meetup — 低成本多 Agent 部署实践分享</h3>
+            <p>面向外部社区的实践分享，主题围绕低成本多 Agent 部署，获得多家媒体报道</p>
             <div class="event-links">
-              <a href="https://cj.sina.cn/articles/view/7984421895/1dbe89c0700101nnpq">官媒报道</a>
+              <a href="https://cj.sina.cn/articles/view/7984421895/1dbe89c0700101nnpq">
+                <span class="media-badge sina">新浪网</span> 报道
+              </a>
+              <a href="https://m.bjnews.com.cn/detail/1773632898129687.html">
+                <span class="media-badge bjnews">新京报</span> 报道
+              </a>
               <a href="https://miaodx.com/LIP/share/lowcost-multiplatform-multiagent-deploy.html">分享材料</a>
             </div>
             <div class="carousel">
-              <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 分享现场图" />
+              <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 分享现场" />
             </div>
           </article>
 
           <article class="event-card">
-            <h3>03.14 · OpenClaw 大会（龙虾文明游戏负责人）</h3>
-            <p>南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示。</p>
+            <h3>03.14 · OpenClaw 大会 — 龙虾文明游戏负责人</h3>
+            <p>南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示</p>
             <div class="event-links">
-              <a href="https://miaodx.com/LIP/share/claws-civilization.html">龙虾文明详情</a>
+              <a href="https://mp.weixin.qq.com/s/H-hadizfOhqc9waA69PRog">
+                <span class="media-badge wechat">手工川</span> 公众号原始推文
+              </a>
+              <a href="https://miaodx.com/LIP/share/claws-civilization.html">龙虾文明总结页（我做的）</a>
               <a href="https://miaodx.com/LIP/share/">更多对外分享</a>
             </div>
             <div class="carousel">
@@ -157,23 +205,21 @@
           </article>
 
           <article class="event-card">
-            <h3>03.10 · AI coding 内部宣讲（听众 &gt; 1k）</h3>
-            <p>聚焦 Agent 协作实践与案例拆解。本条刻意弱化公司信息，仅保留公开可描述内容。</p>
-            <div class="event-links">
-              <a href="https://miaodx.com/LIP/now/2026-03">相关进展记录</a>
-              <a href="https://miaodx.com/LIP/stories/openclaw-04-practical-cases">实战案例</a>
-            </div>
+            <h3>03.10 · AI Coding 内部宣讲（听众 &gt; 1k）</h3>
+            <p>聚焦 Agent 协作实践与案例拆解（内部分享，暂无法直接分享材料，后续公开时补充）</p>
             <div class="carousel">
-              <img class="poster" src="images/events/2026-03/0310-poster.jpg" alt="03.10 AI coding 活动海报" />
-              <img src="images/events/2026-03/0310-talk-screenshot.jpg" alt="03.10 AI coding 现场截图" />
+              <img class="poster" src="images/events/2026-03/0310-poster.jpg" alt="03.10 AI Coding 活动海报" />
+              <img src="images/events/2026-03/0310-talk-screenshot.jpg" alt="03.10 AI Coding 现场截图" />
             </div>
           </article>
+
         </div>
       </section>
 
+      <!-- Navigation guide -->
       <section>
         <h2>你可以从这里开始</h2>
-        <p>如果你是第一次来，建议按下面顺序了解我的工作。</p>
+        <p>如果你是第一次来，建议按下面顺序了解我的工作</p>
         <ul class="hub-list">
           <li><a href="https://miaodx.com/LIP/">先看总览：我正在做什么</a></li>
           <li><a href="https://miaodx.com/LIP/now/2026-03">最近进展：Now 月报</a></li>
@@ -183,7 +229,7 @@
         </ul>
       </section>
 
-      <footer>© MiaoDX · Hook page for LIP</footer>
+      <footer>&copy; MiaoDX</footer>
     </main>
   </body>
 </html>
