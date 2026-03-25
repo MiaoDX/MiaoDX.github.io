@@ -1,0 +1,1 @@
+import{_ as d,o as e,c as a,H as o}from"./chunks/framework.D7M4SOEO.js";const m=JSON.parse('{"title":"LIP Roadmap","description":"","frontmatter":{},"headers":[],"relativePath":"ROADMAP.md","filePath":"ROADMAP.md"}'),r={name:"ROADMAP.md"};function i(l,t,s,c,n,h){return e(),a("div",null,[...t[0]||(t[0]=[o("",34)])])}const b=d(r,[["render",i]]);export{m as __pageData,b as default};
