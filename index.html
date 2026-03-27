@@ -74,6 +74,11 @@
       .carousel img.poster { object-fit: contain; background: #f8fafc; }
 
       .hub-list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
+      /* Language toggle */
+      .lang-toggle { position: fixed; top: 16px; right: 16px; z-index: 100; display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+      .lang-toggle button { border: none; background: transparent; padding: 8px 14px; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+      .lang-toggle button.active { background: var(--brand); color: #fff; }
+
       footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 8px 0 30px; }
       @media (max-width: 760px) {
         .hero { grid-template-columns: 1fr; text-align: center; }
@@ -83,53 +88,58 @@
         .photo-wall { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
       }
     </style>
-      <script defer src="https://cloud.umami.is/script.js" data-website-id="692d1a5b-80c6-4a7f-b783-69260b9dd419"></script>
   </head>
   <body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+      <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+
     <main>
       <!-- Hero -->
       <section class="hero">
         <img src="https://miaodx.com/LIP/assets/miaodx-profile.C-NPeXP4.jpg" alt="MiaoDX profile photo" />
         <div>
           <h1>MiaoDX</h1>
-          <p>公开构建 AI 协作与自动化系统（Learn in Public）</p>
+          <p data-zh="公开构建 AI 协作与自动化系统（Learn in Public）" data-en="Building AI collaboration & automation systems in public (Learn in Public)">公开构建 AI 协作与自动化系统（Learn in Public）</p>
           <div class="buttons">
-            <a class="btn primary" href="https://miaodx.com/LIP/">进入 LIP</a>
-            <a class="btn" href="https://github.com/MiaoDX">查看 GitHub</a>
-            <a class="btn" href="#connect">微信联系</a>
+            <a class="btn primary" href="https://miaodx.com/LIP/" data-zh="进入 LIP" data-en="Enter LIP">进入 LIP</a>
+            <a class="btn" href="https://github.com/MiaoDX" data-zh="查看 GitHub" data-en="GitHub">查看 GitHub</a>
+            <a class="btn" href="#connect" data-zh="微信联系" data-en="Contact">微信联系</a>
           </div>
         </div>
       </section>
 
       <!-- About -->
       <section>
-        <h2>About</h2>
-        <p>
+        <h2 data-zh="About" data-en="About">About</h2>
+        <p data-zh="你好，我是缪东旭（MiaoDX），目前在北京，长期在工程一线做 AI、自动驾驶、机器人研发" data-en="Hi, I'm MiaoDX (Dongxu Miao), based in Beijing. I've been working hands-on in AI, autonomous driving, and robotics for years.">
           你好，我是缪东旭（MiaoDX），目前在北京，长期在工程一线做 AI、自动驾驶、机器人研发
         </p>
-        <p>
+        <p data-zh="我正在把个人实践升级为新 OPC：「One Person + multi Claws」，并持续公开复盘，让更多人看到：AI Agent 不只是 demo，而是能真实创造交付价值的生产系统" data-en="I'm evolving my practice into a new OPC: 'One Person + multi Claws' — building in public to show that AI Agents are not just demos, but production systems that deliver real value.">
           我正在把个人实践升级为新 OPC：「One Person + multi Claws」，
           并持续公开复盘，让更多人看到：AI Agent 不只是 demo，而是能真实创造交付价值的生产系统
         </p>
         <p>
-          具体案例、经验复盘、演讲资料和月度进展都放在
+          <span data-zh="具体案例、经验复盘、演讲资料和月度进展都放在" data-en="Case studies, retrospectives, talks, and monthly updates are all at">具体案例、经验复盘、演讲资料和月度进展都放在</span>
           <a href="https://miaodx.com/LIP/">LIP（Learn in Public）</a>
         </p>
 
-        <h3 style="margin: 18px 0 8px; font-size: 1rem;">学习与工作经历</h3>
+        <h3 style="margin: 18px 0 8px; font-size: 1rem;" data-zh="学习与工作经历" data-en="Education & Experience">学习与工作经历</h3>
         <ul class="exp-list">
-          <li><strong>2025 至今</strong> — Robotics Team @ XiaomiEV</li>
+          <li><strong data-zh="2025 至今" data-en="2025–Present">2025 至今</strong> — Robotics Team @ XiaomiEV</li>
           <li><strong>2021–2025</strong> — Perception-System TeamLead @ XiaomiEV</li>
           <li><strong>2019–2021</strong> — DeepMotion.ai</li>
           <li><strong>2018</strong> — Horizon Robotics</li>
-          <li><strong>2016–2018</strong> — 天津大学（TJU）硕士</li>
-          <li><strong>2012–2016</strong> — 西安电子科技大学（Xidian）本科</li>
+          <li><strong data-zh="2016–2018" data-en="2016–2018">2016–2018</strong> — <span data-zh="天津大学（TJU）硕士" data-en="M.S., Tianjin University (TJU)">天津大学（TJU）硕士</span></li>
+          <li><strong data-zh="2012–2016" data-en="2012–2016">2012–2016</strong> — <span data-zh="西安电子科技大学（Xidian）本科" data-en="B.S., Xidian University">西安电子科技大学（Xidian）本科</span></li>
         </ul>
 
         <div class="keywords">
           <span class="tag">AI Coding</span>
-          <span class="tag">多 Agent 协作</span>
-          <span class="tag">自动驾驶</span>
+          <span class="tag" data-zh="多 Agent 协作" data-en="Multi-Agent Collaboration">多 Agent 协作</span>
+          <span class="tag" data-zh="自动驾驶" data-en="Autonomous Driving">自动驾驶</span>
           <span class="tag">OpenClaw</span>
           <span class="tag">Learn in Public</span>
         </div>
@@ -137,8 +147,8 @@
 
       <!-- Photo Wall -->
       <section>
-        <h2>活动照片墙</h2>
-        <p>持续补充中，欢迎回看</p>
+        <h2 data-zh="活动照片墙" data-en="Photo Wall">活动照片墙</h2>
+        <p data-zh="持续补充中，欢迎回看" data-en="Continuously updated — feel free to browse">持续补充中，欢迎回看</p>
         <div class="photo-wall">
           <img src="images/events/2026-03/0324-raise-lab-share.png" alt="03.24 Raise Lab AI Coding 分享" />
           <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 龙虾蜕壳 Meetup 分享" />
@@ -151,31 +161,31 @@
 
       <!-- Connect -->
       <section id="connect">
-        <h2>Connect</h2>
-        <p>合作 / 交流欢迎扫码</p>
+        <h2 data-zh="Connect" data-en="Connect">Connect</h2>
+        <p data-zh="合作 / 交流欢迎扫码" data-en="Scan to connect for collaboration or chat">合作 / 交流欢迎扫码</p>
         <div class="qr-grid">
           <div class="qr-card">
             <img src="https://miaodx.com/LIP/assets/wechat-official-qr.DheE_l_a.jpg" alt="微信个人号二维码" />
-            <strong>微信个人号</strong>
+            <strong data-zh="微信个人号" data-en="WeChat">微信个人号</strong>
           </div>
           <div class="qr-card">
             <img src="https://miaodx.com/LIP/assets/wechat-qr.OGcMTSYY.jpg" alt="公众号二维码" />
-            <strong>公众号</strong>
+            <strong data-zh="公众号" data-en="Official Account">公众号</strong>
           </div>
         </div>
       </section>
 
       <!-- Events -->
       <section>
-        <h2>近期分享与活动</h2>
-        <p>按时间倒排，每条包含入口链接和现场图</p>
+        <h2 data-zh="近期分享与活动" data-en="Recent Talks & Events">近期分享与活动</h2>
+        <p data-zh="按时间倒排，每条包含入口链接和现场图" data-en="Sorted by date (newest first), each with links and photos">按时间倒排，每条包含入口链接和现场图</p>
         <div class="event-list">
 
           <article class="event-card">
-            <h3>03.24 · Raise Lab — AI Coding for Research 分享</h3>
-            <p>在深圳理工大学 Raise Lab 的分享：如何让 AI 真正帮到研究者。从工具到工作流，包含完整实战案例与现场 Demo。</p>
+            <h3 data-zh="03.24 · Raise Lab — AI Coding for Research 分享" data-en="03.24 · Raise Lab — AI Coding for Research Talk">03.24 · Raise Lab — AI Coding for Research 分享</h3>
+            <p data-zh="在深圳理工大学 Raise Lab 的分享：如何让 AI 真正帮到研究者。从工具到工作流，包含完整实战案例与现场 Demo。" data-en="Talk at SIST Raise Lab: how AI can truly help researchers — from tools to workflows, with real-world cases and live demos.">在深圳理工大学 Raise Lab 的分享：如何让 AI 真正帮到研究者。从工具到工作流，包含完整实战案例与现场 Demo。</p>
             <div class="event-links">
-              <a href="https://miaodx.com/LIP/share/AICodingRaiseLab.html">完整分享材料（Slide）</a>
+              <a href="https://miaodx.com/LIP/share/AICodingRaiseLab.html" data-zh="完整分享材料（Slide）" data-en="Full Slides">完整分享材料（Slide）</a>
             </div>
             <div class="carousel">
               <img src="images/events/2026-03/0324-raise-lab-share.png" alt="03.24 Raise Lab 分享现场" />
@@ -183,27 +193,27 @@
           </article>
 
           <article class="event-card">
-            <h3>03.21 · OpenClaw 分享 v3 — 25页 Slide 完整版</h3>
-            <p>完整的 OpenClaw 实践分享，包含多 Agent 协作、实战案例与部署经验</p>
+            <h3 data-zh="03.21 · OpenClaw 分享 v3 — 25页 Slide 完整版" data-en="03.21 · OpenClaw Sharing v3 — Full 25-page Slides">03.21 · OpenClaw 分享 v3 — 25页 Slide 完整版</h3>
+            <p data-zh="完整的 OpenClaw 实践分享，包含多 Agent 协作、实战案例与部署经验" data-en="Full OpenClaw practice sharing: multi-agent collaboration, real-world cases, and deployment experience">完整的 OpenClaw 实践分享，包含多 Agent 协作、实战案例与部署经验</p>
             <div class="event-links">
               <a href="https://mp.weixin.qq.com/s/6PcKetQ0s1XNS6pnsrUChQ">
-                <span class="media-badge wechat">微信公众号</span> 文章
+                <span class="media-badge wechat" data-zh="微信公众号" data-en="WeChat">微信公众号</span> <span data-zh="文章" data-en="Article">文章</span>
               </a>
-              <a href="https://miaodx.com/LIP/share/openclaw-sharing-v3.html">完整演示文稿（25页）</a>
+              <a href="https://miaodx.com/LIP/share/openclaw-sharing-v3.html" data-zh="完整演示文稿（25页）" data-en="Full Slides (25 pages)">完整演示文稿（25页）</a>
             </div>
           </article>
 
           <article class="event-card">
-            <h3>03.15 · 龙虾蜕壳 Meetup — 低成本多 Agent 部署实践分享</h3>
-            <p>面向外部社区的实践分享，主题围绕低成本多 Agent 部署，获得多家媒体报道</p>
+            <h3 data-zh="03.15 · 龙虾蜕壳 Meetup — 低成本多 Agent 部署实践分享" data-en="03.15 · Lobster Molt Meetup — Low-cost Multi-Agent Deployment">03.15 · 龙虾蜕壳 Meetup — 低成本多 Agent 部署实践分享</h3>
+            <p data-zh="面向外部社区的实践分享，主题围绕低成本多 Agent 部署，获得多家媒体报道" data-en="Community talk on low-cost multi-agent deployment, covered by multiple media outlets">面向外部社区的实践分享，主题围绕低成本多 Agent 部署，获得多家媒体报道</p>
             <div class="event-links">
               <a href="https://cj.sina.cn/articles/view/7984421895/1dbe89c0700101nnpq">
-                <span class="media-badge sina">新浪网</span> 报道
+                <span class="media-badge sina" data-zh="新浪网" data-en="Sina">新浪网</span> <span data-zh="报道" data-en="Coverage">报道</span>
               </a>
               <a href="https://m.bjnews.com.cn/detail/1773632898129687.html">
-                <span class="media-badge rizhao">日照新闻网</span> 报道
+                <span class="media-badge rizhao" data-zh="日照新闻网" data-en="Rizhao News">日照新闻网</span> <span data-zh="报道" data-en="Coverage">报道</span>
               </a>
-              <a href="https://miaodx.com/LIP/share/lowcost-multiplatform-multiagent-deploy.html">分享材料</a>
+              <a href="https://miaodx.com/LIP/share/lowcost-multiplatform-multiagent-deploy.html" data-zh="分享材料" data-en="Slides">分享材料</a>
             </div>
             <div class="carousel">
               <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 分享现场" />
@@ -211,14 +221,14 @@
           </article>
 
           <article class="event-card">
-            <h3>03.14 · OpenClaw 大会 — 龙虾文明游戏负责人</h3>
-            <p>南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示</p>
+            <h3 data-zh="03.14 · OpenClaw 大会 — 龙虾文明游戏负责人" data-en="03.14 · OpenClaw Conference — Lobster Civilization Game Lead">03.14 · OpenClaw 大会 — 龙虾文明游戏负责人</h3>
+            <p data-zh="南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示" data-en="OpenClaw conference organized by NanChuan. Led the Lobster Civilization game segment with live demos.">南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示</p>
             <div class="event-links">
               <a href="https://mp.weixin.qq.com/s/H-hadizfOhqc9waA69PRog">
-                <span class="media-badge wechat">手工川</span> 公众号原始推文
+                <span class="media-badge wechat" data-zh="手工川" data-en="HandCraft">手工川</span> <span data-zh="公众号原始推文" data-en="Original Post">公众号原始推文</span>
               </a>
               <a href="https://miaodx.com/LIP/share/claws-civilization.html">
-                <span class="media-badge wechat">MiaoDX</span> 龙虾文明总结页
+                <span class="media-badge wechat">MiaoDX</span> <span data-zh="龙虾文明总结页" data-en="Lobster Civilization Summary">龙虾文明总结页</span>
               </a>
             </div>
             <div class="carousel">
@@ -228,8 +238,8 @@
           </article>
 
           <article class="event-card">
-            <h3>03.10 · AI Coding 内部宣讲（听众 &gt; 1k）</h3>
-            <p>聚焦 Agent 协作实践与案例拆解（内部分享，暂无法直接分享材料，见后续公开分享）</p>
+            <h3 data-zh="03.10 · AI Coding 内部宣讲（听众 > 1k）" data-en="03.10 · AI Coding Internal Talk (1k+ audience)">03.10 · AI Coding 内部宣讲（听众 &gt; 1k）</h3>
+            <p data-zh="聚焦 Agent 协作实践与案例拆解（内部分享，暂无法直接分享材料，见后续公开分享）" data-en="Focused on agent collaboration practices and case breakdowns (internal talk — materials available in later public talks)">聚焦 Agent 协作实践与案例拆解（内部分享，暂无法直接分享材料，见后续公开分享）</p>
             <div class="carousel">
               <img class="poster" src="images/events/2026-03/0310-poster.jpg" alt="03.10 AI Coding 活动海报" />
               <img src="images/events/2026-03/0310-talk-screenshot.jpg" alt="03.10 AI Coding 现场截图" />
@@ -241,18 +251,36 @@
 
       <!-- Navigation guide -->
       <section>
-        <h2>你可以从这里开始</h2>
-        <p>如果你是第一次来，建议按下面顺序了解我的工作</p>
+        <h2 data-zh="你可以从这里开始" data-en="Start Here">你可以从这里开始</h2>
+        <p data-zh="如果你是第一次来，建议按下面顺序了解我的工作" data-en="If this is your first visit, here's a suggested reading order">如果你是第一次来，建议按下面顺序了解我的工作</p>
         <ul class="hub-list">
-          <li><a href="https://miaodx.com/LIP/">先看总览：我正在做什么</a></li>
-          <li><a href="https://miaodx.com/LIP/now/2026-03">最近进展：Now 月报</a></li>
-          <li><a href="https://miaodx.com/LIP/stories/openclaw-04-practical-cases">实战案例：OpenClaw</a></li>
-          <li><a href="https://miaodx.com/LIP/lessons/error-to-skill-evolution">方法论：从错误到技能</a></li>
-          <li><a href="https://miaodx.com/LIP/share/">公开分享：演讲与材料</a></li>
+          <li><a href="https://miaodx.com/LIP/" data-zh="先看总览：我正在做什么" data-en="Overview: What I'm working on">先看总览：我正在做什么</a></li>
+          <li><a href="https://miaodx.com/LIP/now/2026-03" data-zh="最近进展：Now 月报" data-en="Recent Progress: Monthly Update">最近进展：Now 月报</a></li>
+          <li><a href="https://miaodx.com/LIP/stories/openclaw-04-practical-cases" data-zh="实战案例：OpenClaw" data-en="Case Studies: OpenClaw">实战案例：OpenClaw</a></li>
+          <li><a href="https://miaodx.com/LIP/lessons/error-to-skill-evolution" data-zh="方法论：从错误到技能" data-en="Methodology: From Errors to Skills">方法论：从错误到技能</a></li>
+          <li><a href="https://miaodx.com/LIP/share/" data-zh="公开分享：演讲与材料" data-en="Public Talks & Materials">公开分享：演讲与材料</a></li>
         </ul>
       </section>
 
       <footer>&copy; MiaoDX</footer>
     </main>
+    <script>
+      function setLang(lang) {
+        document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
+          el.textContent = el.getAttribute('data-' + lang);
+        });
+        document.getElementById('btn-zh').className = lang === 'zh' ? 'active' : '';
+        document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        try { localStorage.setItem('lang', lang); } catch(e) {}
+      }
+      // Restore saved language preference
+      (function() {
+        try {
+          var saved = localStorage.getItem('lang');
+          if (saved === 'en') setLang('en');
+        } catch(e) {}
+      })();
+    </script>
   </body>
 </html>
