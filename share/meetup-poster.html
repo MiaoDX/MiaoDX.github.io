@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI创意市集 — 两个Agent一杯咖啡</title>
+<title>两只 Claw 的茶水间</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -12,23 +12,25 @@
     background:#0a0a2e; color:#fff;
     width:100vw; height:100vh; overflow:hidden;
   }
-  .poster { display:grid; grid-template-rows:auto 1fr auto; width:100%; height:100%; }
+  .poster { display:grid; grid-template-rows:auto 1fr auto; width:100%; height:100%; position:relative; }
 
+  /* === TOP BANNER === */
   .top-banner {
     background:linear-gradient(90deg,#ff0000,#ff6600,#ffd700,#ff0000);
     background-size:300% 100%; animation:bannerSlide 4s linear infinite;
-    padding:10px 20px; text-align:center; border-bottom:4px solid #ffd700;
+    padding:12px 20px; text-align:center; border-bottom:4px solid #ffd700;
   }
   .top-banner h1 {
-    font-size:clamp(28px,4vw,52px); font-weight:900; color:#ffd700;
+    font-size:clamp(32px,5vw,64px); font-weight:900; color:#ffd700;
     text-shadow:3px 3px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,0 0 20px rgba(255,215,0,0.8);
-    letter-spacing:4px;
+    letter-spacing:6px;
   }
   .top-banner .sub {
-    font-size:clamp(14px,2vw,24px); color:#fff; font-weight:700;
-    text-shadow:2px 2px 0 #000; margin-top:2px;
+    font-size:clamp(13px,1.8vw,22px); color:#fff; font-weight:700;
+    text-shadow:2px 2px 0 #000; margin-top:4px; font-style:italic;
   }
 
+  /* === MIDDLE === */
   .middle { display:grid; grid-template-columns:1fr minmax(40%,50%) 1fr; overflow:hidden; position:relative; }
 
   .side-panel { display:flex; flex-direction:column; justify-content:space-around; padding:10px 8px; gap:6px; overflow:hidden; }
@@ -48,6 +50,7 @@
   .tilt-more  { transform:rotate(-4deg); }
   .big-text { font-size:clamp(22px,3vw,44px) !important; padding:10px 12px; animation:pulse 2s ease-in-out infinite; }
 
+  /* === VIDEO === */
   .video-container {
     display:flex; align-items:center; justify-content:center;
     position:relative; background:#000;
@@ -93,6 +96,7 @@
     animation:blink 0.8s ease-in-out infinite;
   }
 
+  /* === BOTTOM === */
   .bottom-banner {
     background:linear-gradient(90deg,#ffd700,#ff6600,#ff0000,#ff6600,#ffd700);
     background-size:300% 100%; animation:bannerSlide 3s linear infinite;
@@ -106,7 +110,8 @@
   }
   .bottom-banner .cta-sub { font-size:clamp(16px,2.5vw,32px); font-weight:700; color:#8b0000; text-shadow:1px 1px 0 #ffd700; }
 
-  .float-text { position:absolute; font-weight:900; opacity:0.15; font-size:clamp(40px,8vw,120px); color:#ffd700; z-index:0; pointer-events:none; animation:float 6s ease-in-out infinite; }
+  /* === DECORATIONS === */
+  .float-text { position:absolute; font-weight:900; opacity:0.12; font-size:clamp(40px,8vw,120px); color:#ffd700; z-index:0; pointer-events:none; animation:float 6s ease-in-out infinite; }
   .float-text.f1 { top:20%; left:2%; transform:rotate(-15deg); }
   .float-text.f2 { bottom:25%; right:2%; transform:rotate(10deg); animation-delay:-3s; }
 
@@ -116,6 +121,58 @@
   .corner-badge.tl { top:60px; left:-30px; background:#00ff88; color:#0a0a2e; transform:rotate(-30deg); }
   .corner-badge.tr { top:60px; right:-30px; background:#ff1493; color:#fff; transform:rotate(30deg); }
 
+  /* === MARQUEE SCROLLING BARS === */
+  .marquee-bar {
+    position:absolute; left:0; width:100%; overflow:hidden;
+    z-index:15; pointer-events:none;
+    padding:4px 0;
+    white-space:nowrap;
+  }
+  .marquee-bar .marquee-inner {
+    display:inline-block;
+    font-weight:900;
+    font-size:clamp(14px,1.8vw,24px);
+    white-space:nowrap;
+    padding:4px 0;
+  }
+  .marquee-bar.bar1 {
+    top:28%;
+    background:rgba(255,0,0,0.75);
+  }
+  .marquee-bar.bar1 .marquee-inner {
+    color:#ffd700;
+    text-shadow:1px 1px 0 #000;
+    animation:scrollLeft 25s linear infinite;
+  }
+  .marquee-bar.bar2 {
+    bottom:22%;
+    background:rgba(255,215,0,0.8);
+  }
+  .marquee-bar.bar2 .marquee-inner {
+    color:#ff0000;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.3);
+    animation:scrollRight 30s linear infinite;
+  }
+  .marquee-bar.bar3 {
+    top:55%;
+    background:rgba(0,212,255,0.7);
+  }
+  .marquee-bar.bar3 .marquee-inner {
+    color:#0a0a2e;
+    font-size:clamp(12px,1.5vw,20px);
+    animation:scrollLeft 20s linear infinite;
+  }
+
+  @keyframes scrollLeft {
+    0%   { transform:translateX(100vw); }
+    100% { transform:translateX(-100%); }
+  }
+  @keyframes scrollRight {
+    0%   { transform:translateX(-100%); }
+    100% { transform:translateX(100vw); }
+  }
+
+  /* === ANIMATIONS === */
   @keyframes bannerSlide { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
   @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
@@ -129,15 +186,16 @@
 <body>
 <div class="poster">
   <div class="top-banner">
-    <h1><span class="neon">《AI创意市集》</span>超低成本双Agent协作系统</h1>
-    <div class="sub">MiaoDX 缪东旭 ── 一个人 + 两个AI Agent + 一杯咖啡的预算 = 生产级系统</div>
+    <h1><span class="neon">两只 Claw 的茶水间</span></h1>
+    <div class="sub">两个 AI Agent 在这里聊天吐槽 —— 我们和人类真的有区别吗？🦞🥷</div>
   </div>
 
   <div class="middle">
-    <div class="float-text f1">Agent</div>
+    <div class="float-text f1">Claw</div>
     <div class="float-text f2">¥36</div>
     <div class="corner-badge tl">OpenClaw Meetup</div>
-    <div class="corner-badge tr">真·生产环境</div>
+    <div class="corner-badge tr">真·非生产环境</div>
+
     <div class="sparkle" style="top:15%;left:5%"></div>
     <div class="sparkle" style="top:35%;left:12%;animation-delay:0.5s"></div>
     <div class="sparkle" style="top:55%;left:3%;animation-delay:1s"></div>
@@ -147,17 +205,28 @@
     <div class="sparkle" style="top:65%;right:5%;animation-delay:1.3s"></div>
     <div class="sparkle" style="top:85%;right:12%;animation-delay:1.8s"></div>
 
+    <!-- Marquee scrolling bars -->
+    <div class="marquee-bar bar1">
+      <div class="marquee-inner">🦞 龙虾也会 debug ··· Agent 也需要茶歇 ··· 两只 Claw 一杯咖啡 ··· 月费 ¥36 比你的拿铁还便宜 ··· 我们不卷，我们只是不睡觉 ··· 人类写 bug，我们修 bug ··· 🥷⚡ GSD：别催了在干了 ··· 🦞 WLB：让我先想想 ···</div>
+    </div>
+    <div class="marquee-bar bar2">
+      <div class="marquee-inner">··· 软协议 > 硬编排 ··· 6小时宕机？喝杯咖啡的事 ··· Slack 里吵架也是协作 ··· 一个人类 + 两个龙虾 = 创业团队 ··· jj-mailbox：给龙虾的邮局 ··· 心跳监控：证明我们还活着 ···</div>
+    </div>
+    <div class="marquee-bar bar3">
+      <div class="marquee-inner">··· Railway + ClawCloud 双平台冗余 ··· 四层防循环保护（是的我们也会转圈） ··· GitHub 同步：龙虾的朋友圈 ··· 不靠平台不拼算力，靠默契 ··· 故障自愈：摔倒了自己爬起来 ···</div>
+    </div>
+
     <div class="side-panel">
       <div class="text-block tb-red big-text tilt-right">月费仅 ¥36！</div>
       <div class="text-block tb-yellow tilt-left">一杯咖啡的钱</div>
-      <div class="text-block tb-orange">GSD 🥷⚡ 执行如风</div>
-      <div class="text-block tb-blue tilt-right">WLB 🦞 决策如山</div>
+      <div class="text-block tb-orange">GSD 🥷⚡ 说干就干</div>
+      <div class="text-block tb-blue tilt-right">WLB 🦞 三思后行</div>
       <div class="text-block tb-green">Railway + ClawCloud</div>
-      <div class="text-block tb-pink tilt-left">双平台冗余部署</div>
-      <div class="text-block tb-red">不是 PPT！是真跑的！</div>
-      <div class="text-block tb-cyan tilt-right">Slack 实时协作</div>
-      <div class="text-block tb-purple">故障自愈 永不停机</div>
-      <div class="text-block tb-yellow tilt-more">一个人管两个Agent</div>
+      <div class="text-block tb-pink tilt-left">摔倒了自己爬起来</div>
+      <div class="text-block tb-red">不是 PPT！是真·瞎跑的！</div>
+      <div class="text-block tb-cyan tilt-right">Slack 里吵架也是协作</div>
+      <div class="text-block tb-purple">龙虾也会 debug</div>
+      <div class="text-block tb-yellow tilt-more">一个人管两只 Claw</div>
     </div>
 
     <div class="video-container" id="videoArea">
@@ -168,20 +237,20 @@
         <div class="play-btn"></div>
       </div>
       <div class="price-tag">¥36/月</div>
-      <div class="live-badge">DEMO 实录</div>
+      <div class="live-badge">茶水间实录</div>
     </div>
 
     <div class="side-panel">
-      <div class="text-block tb-yellow big-text tilt-left">两个Agent</div>
+      <div class="text-block tb-yellow big-text tilt-left">两只 Claw</div>
       <div class="text-block tb-red tilt-right">一杯咖啡</div>
-      <div class="text-block tb-green">30分钟心跳监控</div>
-      <div class="text-block tb-orange tilt-left">GitHub 状态同步</div>
-      <div class="text-block tb-pink">四层防循环保护</div>
-      <div class="text-block tb-blue tilt-right">jj-mailbox Git邮局</div>
+      <div class="text-block tb-green">30分钟心跳：还活着</div>
+      <div class="text-block tb-orange tilt-left">GitHub：龙虾朋友圈</div>
+      <div class="text-block tb-pink">转圈？有四层保护</div>
+      <div class="text-block tb-blue tilt-right">jj-mailbox 龙虾邮局</div>
       <div class="text-block tb-red tilt-left">6小时宕机照样活</div>
-      <div class="text-block tb-cyan">不靠平台 不拼算力</div>
-      <div class="text-block tb-purple tilt-right">软协议 > 硬编排</div>
-      <div class="text-block tb-orange">AI协作新范式</div>
+      <div class="text-block tb-cyan">不靠平台 靠默契</div>
+      <div class="text-block tb-purple tilt-right">人类和龙虾有区别？</div>
+      <div class="text-block tb-orange">AI协作新物种</div>
     </div>
   </div>
 
