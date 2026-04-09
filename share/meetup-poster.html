@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI创意市集 — 两个Agent一杯咖啡</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', 'SimHei', sans-serif;
+    background: #0a0a2e;
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* === LAYOUT: 3-row grid === */
+  .poster {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* === TOP BANNER === */
+  .top-banner {
+    background: linear-gradient(90deg, #ff0000, #ff6600, #ffd700, #ff0000);
+    background-size: 300% 100%;
+    animation: bannerSlide 4s linear infinite;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative;
+    border-bottom: 4px solid #ffd700;
+  }
+
+  .top-banner h1 {
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow:
+      3px 3px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      0 0 20px rgba(255, 215, 0, 0.8);
+    letter-spacing: 4px;
+  }
+
+  .top-banner .sub {
+    font-size: clamp(14px, 2vw, 24px);
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 #000;
+    margin-top: 2px;
+  }
+
+  /* === MIDDLE: 3-column layout === */
+  .middle {
+    display: grid;
+    grid-template-columns: 1fr minmax(40%, 50%) 1fr;
+    gap: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* === SIDE PANELS (left & right text areas) === */
+  .side-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 8px;
+    gap: 6px;
+    overflow: hidden;
+  }
+
+  .text-block {
+    padding: 6px 10px;
+    font-weight: 900;
+    line-height: 1.3;
+    border-radius: 4px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Color variations for text blocks */
+  .tb-red {
+    background: #ff0000;
+    color: #ffd700;
+    font-size: clamp(16px, 2.2vw, 32px);
+    text-shadow: 2px 2px 0 #8b0000;
+  }
+  .tb-yellow {
+    background: #ffd700;
+    color: #ff0000;
+    font-size: clamp(14px, 1.8vw, 26px);
+    text-shadow: 1px 1px 0 #b8860b;
+  }
+  .tb-orange {
+    background: #ff6600;
+    color: #fff;
+    font-size: clamp(15px, 2vw, 28px);
+    text-shadow: 2px 2px 0 #8b3a00;
+  }
+  .tb-blue {
+    background: #0066ff;
+    color: #00ffff;
+    font-size: clamp(14px, 1.8vw, 26px);
+    text-shadow: 2px 2px 0 #003399;
+  }
+  .tb-green {
+    background: #009944;
+    color: #ffd700;
+    font-size: clamp(15px, 2vw, 28px);
+    text-shadow: 2px 2px 0 #004d22;
+  }
+  .tb-pink {
+    background: #ff1493;
+    color: #fff;
+    font-size: clamp(14px, 1.8vw, 26px);
+    text-shadow: 2px 2px 0 #8b0a50;
+  }
+  .tb-cyan {
+    background: #00d4ff;
+    color: #0a0a2e;
+    font-size: clamp(14px, 1.8vw, 26px);
+    font-weight: 900;
+  }
+  .tb-purple {
+    background: #8b00ff;
+    color: #ffd700;
+    font-size: clamp(15px, 2vw, 28px);
+    text-shadow: 2px 2px 0 #4b0082;
+  }
+
+  /* Tilted text blocks */
+  .tilt-left { transform: rotate(-2deg); }
+  .tilt-right { transform: rotate(2deg); }
+  .tilt-more { transform: rotate(-4deg); }
+
+  /* Big emphasis text */
+  .big-text {
+    font-size: clamp(22px, 3vw, 44px) !important;
+    padding: 10px 12px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* === CENTER VIDEO === */
+  .video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #000;
+    border-left: 5px solid #ffd700;
+    border-right: 5px solid #ffd700;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+  }
+
+  /* Price tag overlay on video */
+  .price-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff0000;
+    color: #ffd700;
+    padding: 8px 16px;
+    font-size: clamp(20px, 3vw, 40px);
+    font-weight: 900;
+    border-radius: 8px;
+    border: 3px solid #ffd700;
+    text-shadow: 2px 2px 0 #8b0000;
+    animation: blink 1s ease-in-out infinite;
+    z-index: 10;
+    transform: rotate(5deg);
+  }
+
+  /* "Live" badge */
+  .live-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff0000;
+    color: #fff;
+    padding: 4px 12px;
+    font-size: clamp(12px, 1.5vw, 20px);
+    font-weight: 900;
+    border-radius: 4px;
+    animation: blink 1.5s ease-in-out infinite;
+    z-index: 10;
+  }
+
+  .live-badge::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: blink 0.8s ease-in-out infinite;
+  }
+
+  /* === BOTTOM BANNER === */
+  .bottom-banner {
+    background: linear-gradient(90deg, #ffd700, #ff6600, #ff0000, #ff6600, #ffd700);
+    background-size: 300% 100%;
+    animation: bannerSlide 3s linear infinite;
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 4px solid #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .bottom-banner .cta {
+    font-size: clamp(24px, 4vw, 56px);
+    font-weight: 900;
+    color: #ff0000;
+    text-shadow:
+      3px 3px 0 #ffd700,
+      -1px -1px 0 #ffd700,
+      1px -1px 0 #ffd700,
+      -1px 1px 0 #ffd700;
+    animation: shake 0.5s ease-in-out infinite;
+  }
+
+  .bottom-banner .cta-sub {
+    font-size: clamp(16px, 2.5vw, 32px);
+    font-weight: 700;
+    color: #8b0000;
+    text-shadow: 1px 1px 0 #ffd700;
+  }
+
+  /* === FLOATING DECORATIONS === */
+  .float-text {
+    position: absolute;
+    font-weight: 900;
+    opacity: 0.15;
+    font-size: clamp(40px, 8vw, 120px);
+    color: #ffd700;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+  .float-text.f1 { top: 20%; left: 2%; transform: rotate(-15deg); }
+  .float-text.f2 { bottom: 25%; right: 2%; transform: rotate(10deg); animation-delay: -3s; }
+
+  /* Sparkle dots scattered */
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: sparkle 2s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* === ANIMATIONS === */
+  @keyframes bannerSlide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px) rotate(-1deg); }
+    75% { transform: translateX(4px) rotate(1deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-15deg); }
+    50% { transform: translateY(-15px) rotate(-12deg); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes neonGlow {
+    0%, 100% {
+      text-shadow:
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff6600,
+        0 0 80px #ff6600;
+    }
+    50% {
+      text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 20px #ff6600,
+        0 0 40px #ff6600;
+    }
+  }
+
+  @keyframes rainbow {
+    0% { color: #ff0000; }
+    16% { color: #ff6600; }
+    33% { color: #ffd700; }
+    50% { color: #00ff88; }
+    66% { color: #00d4ff; }
+    83% { color: #ff1493; }
+    100% { color: #ff0000; }
+  }
+
+  .neon { animation: neonGlow 2s ease-in-out infinite; }
+  .rainbow-text { animation: rainbow 3s linear infinite; }
+
+  /* Diagonal corner badges */
+  .corner-badge {
+    position: absolute;
+    z-index: 20;
+    font-weight: 900;
+    padding: 6px 40px;
+    font-size: clamp(12px, 1.5vw, 18px);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .corner-badge.tl {
+    top: 60px;
+    left: -30px;
+    background: #00ff88;
+    color: #0a0a2e;
+    transform: rotate(-30deg);
+  }
+  .corner-badge.tr {
+    top: 60px;
+    right: -30px;
+    background: #ff1493;
+    color: #fff;
+    transform: rotate(30deg);
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- === TOP BANNER === -->
+  <div class="top-banner">
+    <h1>
+      <span class="neon">《AI创意市集》</span>
+      超低成本双Agent协作系统
+    </h1>
+    <div class="sub">MiaoDX 缪东旭 ── 一个人 + 两个AI Agent + 一杯咖啡的预算 = 生产级系统</div>
+  </div>
+
+  <!-- === MIDDLE 3-COLUMN === -->
+  <div class="middle">
+
+    <!-- Background floating text -->
+    <div class="float-text f1">Agent</div>
+    <div class="float-text f2">¥36</div>
+
+    <!-- Corner badges -->
+    <div class="corner-badge tl">OpenClaw Meetup</div>
+    <div class="corner-badge tr">真·生产环境</div>
+
+    <!-- Sparkles -->
+    <div class="sparkle" style="top:15%;left:5%;animation-delay:0s;"></div>
+    <div class="sparkle" style="top:35%;left:12%;animation-delay:0.5s;"></div>
+    <div class="sparkle" style="top:55%;left:3%;animation-delay:1s;"></div>
+    <div class="sparkle" style="top:75%;left:18%;animation-delay:1.5s;"></div>
+    <div class="sparkle" style="top:25%;right:8%;animation-delay:0.3s;"></div>
+    <div class="sparkle" style="top:45%;right:15%;animation-delay:0.8s;"></div>
+    <div class="sparkle" style="top:65%;right:5%;animation-delay:1.3s;"></div>
+    <div class="sparkle" style="top:85%;right:12%;animation-delay:1.8s;"></div>
+
+    <!-- LEFT PANEL -->
+    <div class="side-panel">
+      <div class="text-block tb-red big-text tilt-right">月费仅 ¥36！</div>
+      <div class="text-block tb-yellow tilt-left">一杯咖啡的钱</div>
+      <div class="text-block tb-orange">GSD 🥷⚡ 执行如风</div>
+      <div class="text-block tb-blue tilt-right">WLB 🦞 决策如山</div>
+      <div class="text-block tb-green">Railway + ClawCloud</div>
+      <div class="text-block tb-pink tilt-left">双平台冗余部署</div>
+      <div class="text-block tb-red">不是 PPT！是真跑的！</div>
+      <div class="text-block tb-cyan tilt-right">Slack 实时协作</div>
+      <div class="text-block tb-purple">故障自愈 永不停机</div>
+      <div class="text-block tb-yellow tilt-more">一个人管两个Agent</div>
+    </div>
+
+    <!-- CENTER VIDEO -->
+    <div class="video-container">
+      <video autoplay loop muted playsinline>
+        <source src="0330_3x_subtitled.mp4" type="video/mp4">
+      </video>
+      <div class="price-tag">¥36/月</div>
+      <div class="live-badge">DEMO 实录</div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="side-panel">
+      <div class="text-block tb-yellow big-text tilt-left">两个Agent</div>
+      <div class="text-block tb-red tilt-right">一杯咖啡</div>
+      <div class="text-block tb-green">30分钟心跳监控</div>
+      <div class="text-block tb-orange tilt-left">GitHub 状态同步</div>
+      <div class="text-block tb-pink">四层防循环保护</div>
+      <div class="text-block tb-blue tilt-right">jj-mailbox Git邮局</div>
+      <div class="text-block tb-red tilt-left">6小时宕机照样活</div>
+      <div class="text-block tb-cyan">不靠平台 不拼算力</div>
+      <div class="text-block tb-purple tilt-right">软协议 > 硬编排</div>
+      <div class="text-block tb-orange">AI协作新范式</div>
+    </div>
+
+  </div>
+
+  <!-- === BOTTOM BANNER === -->
+  <div class="bottom-banner">
+    <span class="cta">投我虾币！🦐🪙</span>
+    <span class="cta-sub">求你了 就差你这一票！</span>
+    <span class="cta">虾币虾币虾币！</span>
+  </div>
+
+</div>
+</body>
+</html>
