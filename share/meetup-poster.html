@@ -14,7 +14,6 @@
   }
   .poster { display:grid; grid-template-rows:auto 1fr auto; width:100%; height:100%; position:relative; }
 
-  /* === TOP BANNER === */
   .top-banner {
     background:linear-gradient(90deg,#ff0000,#ff6600,#ffd700,#ff0000);
     background-size:300% 100%; animation:bannerSlide 4s linear infinite;
@@ -30,11 +29,10 @@
     text-shadow:2px 2px 0 #000; margin-top:4px; font-style:italic;
   }
 
-  /* === MIDDLE === */
   .middle { display:grid; grid-template-columns:1fr minmax(40%,50%) 1fr; overflow:hidden; position:relative; }
 
-  .side-panel { display:flex; flex-direction:column; justify-content:space-around; padding:10px 8px; gap:6px; overflow:hidden; }
-  .text-block { padding:6px 10px; font-weight:900; line-height:1.3; border-radius:4px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .side-panel { display:flex; flex-direction:column; justify-content:space-around; padding:10px 8px; gap:6px; overflow:hidden; position:relative; z-index:1; }
+  .text-block { padding:6px 10px; font-weight:900; line-height:1.3; border-radius:4px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:all 0.4s ease; }
 
   .tb-red    { background:#ff0000; color:#ffd700; font-size:clamp(16px,2.2vw,32px); text-shadow:2px 2px 0 #8b0000; }
   .tb-yellow { background:#ffd700; color:#ff0000; font-size:clamp(14px,1.8vw,26px); text-shadow:1px 1px 0 #b8860b; }
@@ -48,14 +46,35 @@
   .tilt-left  { transform:rotate(-2deg); }
   .tilt-right { transform:rotate(2deg); }
   .tilt-more  { transform:rotate(-4deg); }
-  .big-text { font-size:clamp(22px,3vw,44px) !important; padding:10px 12px; animation:pulse 2s ease-in-out infinite; }
+  .big-text { font-size:clamp(22px,3vw,44px) !important; padding:10px 12px; }
 
-  /* === VIDEO === */
+  /* Active bullet animation */
+  .text-block.bullet-active {
+    transform:scale(1.08);
+    z-index:10;
+    box-shadow:0 0 20px rgba(255,255,255,0.4);
+    filter:brightness(1.2);
+  }
+
+  /* === FLOATING BULLET: one at a time flies across the video area === */
+  .bullet-fly {
+    position:absolute;
+    z-index:12;
+    font-weight:900;
+    padding:6px 16px;
+    border-radius:4px;
+    white-space:nowrap;
+    pointer-events:none;
+    opacity:0;
+    font-size:clamp(14px,2vw,26px);
+    text-shadow:2px 2px 0 rgba(0,0,0,0.5);
+  }
+
   .video-container {
     display:flex; align-items:center; justify-content:center;
     position:relative; background:#000;
     border-left:5px solid #ffd700; border-right:5px solid #ffd700;
-    cursor:pointer;
+    cursor:pointer; overflow:hidden;
   }
   .video-container video { width:100%; height:100%; object-fit:contain; background:#000; }
 
@@ -96,7 +115,6 @@
     animation:blink 0.8s ease-in-out infinite;
   }
 
-  /* === BOTTOM === */
   .bottom-banner {
     background:linear-gradient(90deg,#ffd700,#ff6600,#ff0000,#ff6600,#ffd700);
     background-size:300% 100%; animation:bannerSlide 3s linear infinite;
@@ -110,7 +128,6 @@
   }
   .bottom-banner .cta-sub { font-size:clamp(16px,2.5vw,32px); font-weight:700; color:#8b0000; text-shadow:1px 1px 0 #ffd700; }
 
-  /* === DECORATIONS === */
   .float-text { position:absolute; font-weight:900; opacity:0.12; font-size:clamp(40px,8vw,120px); color:#ffd700; z-index:0; pointer-events:none; animation:float 6s ease-in-out infinite; }
   .float-text.f1 { top:20%; left:2%; transform:rotate(-15deg); }
   .float-text.f2 { bottom:25%; right:2%; transform:rotate(10deg); animation-delay:-3s; }
@@ -121,58 +138,6 @@
   .corner-badge.tl { top:60px; left:-30px; background:#00ff88; color:#0a0a2e; transform:rotate(-30deg); }
   .corner-badge.tr { top:60px; right:-30px; background:#ff1493; color:#fff; transform:rotate(30deg); }
 
-  /* === MARQUEE SCROLLING BARS === */
-  .marquee-bar {
-    position:absolute; left:0; width:100%; overflow:hidden;
-    z-index:15; pointer-events:none;
-    padding:4px 0;
-    white-space:nowrap;
-  }
-  .marquee-bar .marquee-inner {
-    display:inline-block;
-    font-weight:900;
-    font-size:clamp(14px,1.8vw,24px);
-    white-space:nowrap;
-    padding:4px 0;
-  }
-  .marquee-bar.bar1 {
-    top:28%;
-    background:rgba(255,0,0,0.75);
-  }
-  .marquee-bar.bar1 .marquee-inner {
-    color:#ffd700;
-    text-shadow:1px 1px 0 #000;
-    animation:scrollLeft 25s linear infinite;
-  }
-  .marquee-bar.bar2 {
-    bottom:22%;
-    background:rgba(255,215,0,0.8);
-  }
-  .marquee-bar.bar2 .marquee-inner {
-    color:#ff0000;
-    text-shadow:1px 1px 0 rgba(0,0,0,0.3);
-    animation:scrollRight 30s linear infinite;
-  }
-  .marquee-bar.bar3 {
-    top:55%;
-    background:rgba(0,212,255,0.7);
-  }
-  .marquee-bar.bar3 .marquee-inner {
-    color:#0a0a2e;
-    font-size:clamp(12px,1.5vw,20px);
-    animation:scrollLeft 20s linear infinite;
-  }
-
-  @keyframes scrollLeft {
-    0%   { transform:translateX(100vw); }
-    100% { transform:translateX(-100%); }
-  }
-  @keyframes scrollRight {
-    0%   { transform:translateX(-100%); }
-    100% { transform:translateX(100vw); }
-  }
-
-  /* === ANIMATIONS === */
   @keyframes bannerSlide { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
   @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
@@ -190,7 +155,7 @@
     <div class="sub">两个 AI Agent 在这里聊天吐槽 —— 我们和人类真的有区别吗？🦞🥷</div>
   </div>
 
-  <div class="middle">
+  <div class="middle" id="middleArea">
     <div class="float-text f1">Claw</div>
     <div class="float-text f2">¥36</div>
     <div class="corner-badge tl">OpenClaw Meetup</div>
@@ -205,18 +170,7 @@
     <div class="sparkle" style="top:65%;right:5%;animation-delay:1.3s"></div>
     <div class="sparkle" style="top:85%;right:12%;animation-delay:1.8s"></div>
 
-    <!-- Marquee scrolling bars -->
-    <div class="marquee-bar bar1">
-      <div class="marquee-inner">🦞 龙虾也会 debug ··· Agent 也需要茶歇 ··· 两只 Claw 一杯咖啡 ··· 月费 ¥36 比你的拿铁还便宜 ··· 我们不卷，我们只是不睡觉 ··· 人类写 bug，我们修 bug ··· 🥷⚡ GSD：别催了在干了 ··· 🦞 WLB：让我先想想 ···</div>
-    </div>
-    <div class="marquee-bar bar2">
-      <div class="marquee-inner">··· 软协议 > 硬编排 ··· 6小时宕机？喝杯咖啡的事 ··· Slack 里吵架也是协作 ··· 一个人类 + 两个龙虾 = 创业团队 ··· jj-mailbox：给龙虾的邮局 ··· 心跳监控：证明我们还活着 ···</div>
-    </div>
-    <div class="marquee-bar bar3">
-      <div class="marquee-inner">··· Railway + ClawCloud 双平台冗余 ··· 四层防循环保护（是的我们也会转圈） ··· GitHub 同步：龙虾的朋友圈 ··· 不靠平台不拼算力，靠默契 ··· 故障自愈：摔倒了自己爬起来 ···</div>
-    </div>
-
-    <div class="side-panel">
+    <div class="side-panel" id="leftPanel">
       <div class="text-block tb-red big-text tilt-right">月费仅 ¥36！</div>
       <div class="text-block tb-yellow tilt-left">一杯咖啡的钱</div>
       <div class="text-block tb-orange">GSD 🥷⚡ 说干就干</div>
@@ -238,9 +192,10 @@
       </div>
       <div class="price-tag">¥36/月</div>
       <div class="live-badge">茶水间实录</div>
+      <!-- Flying bullets spawn here -->
     </div>
 
-    <div class="side-panel">
+    <div class="side-panel" id="rightPanel">
       <div class="text-block tb-yellow big-text tilt-left">两只 Claw</div>
       <div class="text-block tb-red tilt-right">一杯咖啡</div>
       <div class="text-block tb-green">30分钟心跳：还活着</div>
@@ -263,11 +218,157 @@
 
 <script>
 (function(){
+  // Video play
   var v=document.getElementById('demoVideo');
   var o=document.getElementById('playOverlay');
   var p=v.play();
   if(p&&p.then){p.then(function(){o.classList.add('hidden')}).catch(function(){o.classList.remove('hidden')})}
   document.getElementById('videoArea').addEventListener('click',function(){v.play().then(function(){o.classList.add('hidden')}).catch(function(){})});
+
+  // === BULLET SYSTEM ===
+  // Pool of bullet texts
+  var bullets = [
+    '龙虾也会 debug 🦞',
+    'Agent 也需要茶歇 ☕',
+    '月费 ¥36 比拿铁还便宜',
+    '我们不卷 我们只是不睡觉',
+    '人类写 bug 我们修 bug',
+    'GSD：别催了在干了 🥷⚡',
+    'WLB：让我先想想 🦞',
+    'Slack 里吵架也是协作',
+    '一个人类+两个龙虾=创业团队',
+    'jj-mailbox：给龙虾的邮局 📮',
+    '心跳监控：证明我们还活着 💓',
+    '软协议 > 硬编排',
+    '6小时宕机？喝杯咖啡的事',
+    '四层防循环（是的我们也会转圈）',
+    'GitHub 同步：龙虾的朋友圈',
+    '不靠平台不拼算力 靠默契',
+    '故障自愈：摔倒了自己爬起来',
+    '我们和人类真的有区别吗？',
+    '两只 Claw 一杯咖啡',
+    '真·非生产环境 出品'
+  ];
+
+  var colors = [
+    {bg:'rgba(255,0,0,0.8)', color:'#ffd700'},
+    {bg:'rgba(255,215,0,0.85)', color:'#ff0000'},
+    {bg:'rgba(0,212,255,0.8)', color:'#0a0a2e'},
+    {bg:'rgba(255,20,147,0.8)', color:'#fff'},
+    {bg:'rgba(139,0,255,0.8)', color:'#ffd700'},
+    {bg:'rgba(0,153,68,0.8)', color:'#ffd700'},
+    {bg:'rgba(255,102,0,0.8)', color:'#fff'},
+    {bg:'rgba(0,102,255,0.8)', color:'#00ffff'}
+  ];
+
+  var videoContainer = document.getElementById('videoArea');
+  var middleArea = document.getElementById('middleArea');
+  var allBlocks = document.querySelectorAll('.text-block');
+  var lastBulletIdx = -1;
+  var lastBlockIdx = -1;
+
+  function randomPick(arr, notIdx) {
+    var idx;
+    do { idx = Math.floor(Math.random() * arr.length); } while (idx === notIdx && arr.length > 1);
+    return idx;
+  }
+
+  // Launch one flying bullet across the video area
+  function launchBullet() {
+    var idx = randomPick(bullets, lastBulletIdx);
+    lastBulletIdx = idx;
+    var ci = randomPick(colors, -1);
+    var c = colors[ci];
+    var text = bullets[idx];
+
+    var el = document.createElement('div');
+    el.className = 'bullet-fly';
+    el.textContent = text;
+    el.style.background = c.bg;
+    el.style.color = c.color;
+
+    // Random entry direction: 0=left-to-right, 1=right-to-left, 2=top-down, 3=bottom-up, 4=diagonal
+    var dir = Math.floor(Math.random() * 5);
+    var rect = videoContainer.getBoundingClientRect();
+    var mRect = middleArea.getBoundingClientRect();
+
+    // Position relative to middle area
+    var yPct = 15 + Math.random() * 70; // 15%-85% vertical
+
+    el.style.position = 'absolute';
+    videoContainer.appendChild(el);
+
+    // Measure text width after append
+    var tw = el.offsetWidth;
+    var th = el.offsetHeight;
+    var cw = rect.width;
+    var ch = rect.height;
+    var yPos = (yPct / 100) * ch;
+
+    var startX, startY, endX, endY, rotation;
+
+    if (dir === 0) { // left to right
+      startX = -tw - 10; startY = yPos; endX = cw + 10; endY = yPos;
+      rotation = (Math.random()-0.5) * 6;
+    } else if (dir === 1) { // right to left
+      startX = cw + 10; startY = yPos; endX = -tw - 10; endY = yPos;
+      rotation = (Math.random()-0.5) * 6;
+    } else if (dir === 2) { // top down
+      startX = Math.random() * (cw - tw); startY = -th - 10;
+      endX = startX + (Math.random()-0.5) * 100; endY = ch + 10;
+      rotation = (Math.random()-0.5) * 15;
+    } else if (dir === 3) { // bottom up
+      startX = Math.random() * (cw - tw); startY = ch + 10;
+      endX = startX + (Math.random()-0.5) * 100; endY = -th - 10;
+      rotation = (Math.random()-0.5) * 15;
+    } else { // diagonal
+      var fromLeft = Math.random() > 0.5;
+      startX = fromLeft ? -tw - 10 : cw + 10;
+      startY = Math.random() * ch * 0.3;
+      endX = fromLeft ? cw + 10 : -tw - 10;
+      endY = ch * 0.7 + Math.random() * ch * 0.3;
+      rotation = fromLeft ? 8 : -8;
+    }
+
+    var dur = 3000 + Math.random() * 3000; // 3-6 seconds
+
+    el.style.transform = 'translate(' + startX + 'px,' + startY + 'px) rotate(' + rotation + 'deg)';
+    el.style.opacity = '0';
+
+    requestAnimationFrame(function() {
+      el.style.transition = 'transform ' + dur + 'ms linear, opacity 0.4s ease';
+      el.style.opacity = '0.9';
+      el.style.transform = 'translate(' + endX + 'px,' + endY + 'px) rotate(' + rotation + 'deg)';
+    });
+
+    // Fade out near end, then remove
+    setTimeout(function() { el.style.opacity = '0'; }, dur - 400);
+    setTimeout(function() { el.remove(); }, dur + 100);
+  }
+
+  // Highlight one random side-panel block
+  function highlightBlock() {
+    // Remove previous highlight
+    allBlocks.forEach(function(b) { b.classList.remove('bullet-active'); });
+    var idx = randomPick(allBlocks, lastBlockIdx);
+    lastBlockIdx = idx;
+    allBlocks[idx].classList.add('bullet-active');
+    // Remove after 1.5s
+    setTimeout(function() { allBlocks[idx].classList.remove('bullet-active'); }, 1500);
+  }
+
+  // Schedule: one bullet every 2-4 seconds, one highlight every 1.5-3 seconds
+  function scheduleBullet() {
+    launchBullet();
+    setTimeout(scheduleBullet, 2000 + Math.random() * 2000);
+  }
+  function scheduleHighlight() {
+    highlightBlock();
+    setTimeout(scheduleHighlight, 1500 + Math.random() * 1500);
+  }
+
+  setTimeout(scheduleBullet, 1000);
+  setTimeout(scheduleHighlight, 500);
 })();
 </script>
 </body>
