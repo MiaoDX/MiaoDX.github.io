@@ -15,7 +15,7 @@ const SITE_CONTENT = {
       zh: '一个人 + 多只龙虾',
       en: 'One Person + multi Claws',
     },
-    portrait: 'LIP/assets/miaodx-profile.C-NPeXP4.jpg',
+    portrait: 'images/miaodx-profile.jpg',
   },
 
   hero: {
