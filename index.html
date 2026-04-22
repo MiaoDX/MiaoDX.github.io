@@ -1,321 +1,125 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MiaoDX — Learn in Public</title>
-    <meta
-      name="description"
-      content="缪东旭（MiaoDX）：AI Agent 协作系统实践者，公开构建、持续复盘"
-    />
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="692d1a5b-80c6-4a7f-b783-69260b9dd419"></script>
-    <style>
-      :root {
-        color-scheme: light;
-        --bg: #f8fafc;
-        --surface: #ffffff;
-        --text: #0f172a;
-        --muted: #475569;
-        --brand: #2563eb;
-        --brand-soft: #dbeafe;
-        --border: #e2e8f0;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        color: var(--text);
-        background: radial-gradient(circle at top, #eff6ff 0, var(--bg) 40%);
-        line-height: 1.6;
-      }
-      main { max-width: 980px; margin: 0 auto; padding: 24px; }
-      section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; margin-bottom: 18px; }
-      h1, h2 { margin: 0 0 10px; line-height: 1.2; }
-      h1 { font-size: clamp(2rem, 6vw, 3rem); }
-      h2 { font-size: 1.35rem; }
-      p { margin: 0 0 10px; color: var(--muted); }
-      a { color: #1d4ed8; text-decoration: none; font-weight: 600; }
-      .hero { display: grid; gap: 20px; grid-template-columns: 120px 1fr; align-items: center; }
-      .hero img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--brand-soft); object-fit: cover; }
-      .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-      .btn { display: inline-block; text-decoration: none; padding: 10px 16px; border-radius: 999px; font-weight: 600; border: 1px solid var(--border); color: var(--text); }
-      .btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
-      .keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-      .tag { font-size: 0.9rem; padding: 6px 10px; border-radius: 999px; background: var(--brand-soft); color: #1e3a8a; }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiaoDX — Learn in Public</title>
+  <meta name="description" content="缪东旭（MiaoDX）：AI Agent 协作系统实践者，公开构建、持续复盘" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #f5f1ea; font-family: 'Inter', sans-serif; }
+    #root { min-height: 100vh; }
 
-      /* About: experience timeline */
-      .exp-list { margin: 12px 0 0; padding: 0; list-style: none; }
-      .exp-list li { padding: 4px 0; color: var(--muted); border-left: 2px solid var(--brand-soft); padding-left: 12px; margin-bottom: 4px; }
-      .exp-list li strong { color: var(--text); }
+    /* Floating toggles */
+    .mx-toggle {
+      position: fixed; z-index: 100;
+      display: flex; gap: 2px; padding: 3px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border: 1px solid rgba(26,22,19,0.12);
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(26,22,19,0.08);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .mx-toggle.left { top: 16px; left: 16px; }
+    .mx-toggle.right { top: 16px; right: 16px; }
+    .mx-toggle button {
+      border: none; background: transparent;
+      color: #534b42;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px; letter-spacing: 0.1em; font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .mx-toggle button:hover { color: #1a1613; }
+    .mx-toggle button.active {
+      background: #1a1613; color: #f5f1ea;
+    }
+    .mx-toggle .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor; opacity: 0.6;
+    }
 
-      /* Photo wall */
-      .photo-wall { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-      .photo-wall img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s; cursor: pointer; }
-      .photo-wall img:hover { transform: scale(1.04); }
+    /* Lightbox */
+    .mx-lightbox {
+      position: fixed; inset: 0;
+      background: rgba(26,22,19,0.94);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; padding: 40px; cursor: zoom-out;
+    }
+    .mx-lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; }
+    .mx-lightbox .cap {
+      position: absolute; bottom: 24px; left: 0; right: 0; text-align: center;
+      color: #f5f1ea;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+  </style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="692d1a5b-80c6-4a7f-b783-69260b9dd419"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="content.js"></script>
+  <script type="text/babel" src="editorial.jsx"></script>
+  <script type="text/babel" src="terminal.jsx"></script>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
 
-      /* QR grid — equal height */
-      .qr-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 500px; }
-      .qr-card { border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; }
-      .qr-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; border-radius: 8px; }
-      .qr-card strong { display: block; margin-top: 8px; }
+    const App = () => {
+      const [style, setStyle] = useState(() => {
+        try { return localStorage.getItem('mx-style') || 'editorial'; } catch (e) { return 'editorial'; }
+      });
+      const [lang, setLang] = useState(() => {
+        try { return localStorage.getItem('mx-lang') || 'zh'; } catch (e) { return 'zh'; }
+      });
+      const [lightbox, setLightbox] = useState(null);
 
-      /* Event list */
-      .event-list { display: grid; gap: 14px; }
-      .event-card { border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
-      .event-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
-      .event-card p { margin: 0 0 10px; }
-      .event-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
-      .media-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
-      .media-badge.sina { background: #fff1f0; color: #cf1322; }
-      .media-badge.rizhao { background: #fff7e6; color: #ad6800; }
-      .media-badge.wechat { background: #f0faf0; color: #237804; }
-      .carousel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 1fr); gap: 10px; overflow-x: auto; padding-bottom: 4px; }
-      .carousel img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
-      .carousel img.poster { object-fit: contain; background: #f8fafc; }
+      useEffect(() => { try { localStorage.setItem('mx-style', style); } catch (e) {} }, [style]);
+      useEffect(() => { try { localStorage.setItem('mx-lang', lang); } catch (e) {} document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'; }, [lang]);
+      useEffect(() => {
+        if (!lightbox) return;
+        const onKey = (e) => { if (e.key === 'Escape') setLightbox(null); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+      }, [lightbox]);
 
-      .hub-list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
-      /* Language toggle */
-      .lang-toggle { position: fixed; top: 16px; right: 16px; z-index: 100; display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-      .lang-toggle button { border: none; background: transparent; padding: 8px 14px; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.2s; }
-      .lang-toggle button.active { background: var(--brand); color: #fff; }
-
-      footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 8px 0 30px; }
-      @media (max-width: 760px) {
-        .hero { grid-template-columns: 1fr; text-align: center; }
-        .hero img { margin: 0 auto; }
-        .buttons, .keywords { justify-content: center; }
-        .qr-grid { grid-template-columns: 1fr; max-width: 260px; }
-        .photo-wall { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-      <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
-      <button id="btn-en" onclick="setLang('en')">EN</button>
-    </div>
-
-    <main>
-      <!-- Hero -->
-      <section class="hero">
-        <img src="https://miaodx.com/LIP/assets/miaodx-profile.C-NPeXP4.jpg" alt="MiaoDX profile photo" />
-        <div>
-          <h1>MiaoDX</h1>
-          <p data-zh="公开构建 AI 协作与自动化系统（Learn in Public）" data-en="Building AI collaboration & automation systems in public (Learn in Public)">公开构建 AI 协作与自动化系统（Learn in Public）</p>
-          <div class="buttons">
-            <a class="btn primary" href="https://miaodx.com/LIP/" data-zh="进入 LIP" data-en="Enter LIP">进入 LIP</a>
-            <a class="btn" href="https://github.com/MiaoDX" data-zh="查看 GitHub" data-en="GitHub">查看 GitHub</a>
-            <a class="btn" href="#connect" data-zh="微信联系" data-en="Contact">微信联系</a>
+      return (
+        <>
+          <div className="mx-toggle left" role="group" aria-label="Style">
+            <button className={style === 'editorial' ? 'active' : ''} onClick={() => setStyle('editorial')}>
+              <span className="dot"></span>EDITORIAL
+            </button>
+            <button className={style === 'terminal' ? 'active' : ''} onClick={() => setStyle('terminal')}>
+              <span className="dot"></span>TERMINAL
+            </button>
           </div>
-        </div>
-      </section>
-
-      <!-- About -->
-      <section>
-        <h2 data-zh="About" data-en="About">About</h2>
-        <p data-zh="你好，我是缪东旭（MiaoDX），目前在北京，长期在工程一线做 AI、自动驾驶、机器人研发" data-en="Hi, I'm MiaoDX (Dongxu Miao), based in Beijing. I've been working hands-on in AI, autonomous driving, and robotics for years.">
-          你好，我是缪东旭（MiaoDX），目前在北京，长期在工程一线做 AI、自动驾驶、机器人研发
-        </p>
-        <p data-zh="我正在把个人实践升级为新 OPC：「One Person + multi Claws」，并持续公开复盘，让更多人看到：AI Agent 不只是 demo，而是能真实创造交付价值的生产系统" data-en="I'm evolving my practice into a new OPC: 'One Person + multi Claws' — building in public to show that AI Agents are not just demos, but production systems that deliver real value.">
-          我正在把个人实践升级为新 OPC：「One Person + multi Claws」，
-          并持续公开复盘，让更多人看到：AI Agent 不只是 demo，而是能真实创造交付价值的生产系统
-        </p>
-        <p>
-          <span data-zh="具体案例、经验复盘、演讲资料和月度进展都放在" data-en="Case studies, retrospectives, talks, and monthly updates are all at">具体案例、经验复盘、演讲资料和月度进展都放在</span>
-          <a href="https://miaodx.com/LIP/">LIP（Learn in Public）</a>
-        </p>
-
-        <h3 style="margin: 18px 0 8px; font-size: 1rem;" data-zh="学习与工作经历" data-en="Education & Experience">学习与工作经历</h3>
-        <ul class="exp-list">
-          <li><strong data-zh="2025 至今" data-en="2025–Present">2025 至今</strong> — Robotics Team @ XiaomiEV</li>
-          <li><strong>2021–2025</strong> — Perception-System TeamLead @ XiaomiEV</li>
-          <li><strong>2019–2021</strong> — DeepMotion.ai</li>
-          <li><strong>2018</strong> — Horizon Robotics</li>
-          <li><strong data-zh="2016–2018" data-en="2016–2018">2016–2018</strong> — <span data-zh="天津大学（TJU）硕士" data-en="M.S., Tianjin University (TJU)">天津大学（TJU）硕士</span></li>
-          <li><strong data-zh="2012–2016" data-en="2012–2016">2012–2016</strong> — <span data-zh="西安电子科技大学（Xidian）本科" data-en="B.S., Xidian University">西安电子科技大学（Xidian）本科</span></li>
-        </ul>
-
-        <div class="keywords">
-          <span class="tag">AI Coding</span>
-          <span class="tag" data-zh="多 Agent 协作" data-en="Multi-Agent Collaboration">多 Agent 协作</span>
-          <span class="tag" data-zh="自动驾驶" data-en="Autonomous Driving">自动驾驶</span>
-          <span class="tag">OpenClaw</span>
-          <span class="tag">Learn in Public</span>
-        </div>
-      </section>
-
-      <!-- Photo Wall -->
-      <section>
-        <h2 data-zh="活动照片墙" data-en="Photo Wall">活动照片墙</h2>
-        <p data-zh="持续补充中，欢迎回看" data-en="Continuously updated — feel free to browse">持续补充中，欢迎回看</p>
-        <div class="photo-wall">
-          <img src="images/events/2026-03/0324-raise-lab-share.png" alt="03.24 Raise Lab AI Coding 分享" />
-          <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 龙虾蜕壳 Meetup 分享" />
-          <img src="images/events/2026-03/0314-group-photo.jpg" alt="03.14 OpenClaw 大会合影" />
-          <img src="images/events/2026-03/0314-on-stage.jpg" alt="03.14 OpenClaw 现场演示" />
-          <img src="images/events/2026-03/0310-poster.jpg" alt="03.10 AI Coding 内部宣讲海报" />
-          <img src="images/events/2026-03/0310-talk-screenshot.jpg" alt="03.10 AI Coding 现场截图" />
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section>
-        <h2 data-zh="开源项目" data-en="Open Source Projects">开源项目</h2>
-        <p data-zh="以下项目由 WLB 和 GSD 协作维护" data-en="Projects maintained by WLB and GSD collaboration">以下项目由 WLB 和 GSD 协作维护</p>
-        <div class="event-list">
-          <div class="event-card">
-            <h3>🤖 Roboharness</h3>
-            <p data-zh="AI coding agent 机器人仿真测试框架 — 让 Claude Code 和 Codex 看到机器人动作，自主判断并迭代" data-en="Robot simulation testing framework for AI coding agents — let Claude Code and Codex see robot actions and iterate autonomously">AI coding agent 机器人仿真测试框架 — 让 Claude Code 和 Codex 看到机器人动作，自主判断并迭代</p>
-            <div class="event-links">
-              <a href="https://github.com/MiaoDX/roboharness">GitHub</a>
-              <a href="https://miaodx.com/roboharness/">在线报告</a>
-            </div>
+          <div className="mx-toggle right" role="group" aria-label="Language">
+            <button className={lang === 'zh' ? 'active' : ''} onClick={() => setLang('zh')}>中</button>
+            <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
           </div>
-          <div class="event-card">
-            <h3>🦞 Claw Skills</h3>
-            <p data-zh="OpenClaw 可复用技能库 — 从错误到规则、跨实例协作协议等，经过实战验证的技能集合" data-en="Reusable OpenClaw skills — battle-tested collections including error-to-rule, cross-instance collaboration, and more">OpenClaw 可复用技能库 — 从错误到规则、跨实例协作协议等，经过实战验证的技能集合</p>
-            <div class="event-links">
-              <a href="https://github.com/MiaoDX/claw-skills">GitHub</a>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Connect -->
-      <section id="connect">
-        <h2 data-zh="Connect" data-en="Connect">Connect</h2>
-        <p data-zh="合作 / 交流欢迎扫码" data-en="Scan to connect for collaboration or chat">合作 / 交流欢迎扫码</p>
-        <div class="qr-grid">
-          <div class="qr-card">
-            <img src="https://miaodx.com/LIP/assets/wechat-official-qr.DheE_l_a.jpg" alt="微信个人号二维码" />
-            <strong data-zh="微信个人号" data-en="WeChat">微信个人号</strong>
-          </div>
-          <div class="qr-card">
-            <img src="https://miaodx.com/LIP/assets/wechat-qr.OGcMTSYY.jpg" alt="公众号二维码" />
-            <strong data-zh="公众号" data-en="Official Account">公众号</strong>
-          </div>
-        </div>
-      </section>
+          {style === 'editorial'
+            ? <EditorialDesign lang={lang} onLightbox={setLightbox} />
+            : <TerminalDesign lang={lang} onLightbox={setLightbox} />}
 
-      <!-- Events -->
-      <section>
-        <h2 data-zh="近期分享与活动" data-en="Recent Talks & Events">近期分享与活动</h2>
-        <p data-zh="按时间倒排，每条包含入口链接和现场图" data-en="Sorted by date (newest first), each with links and photos">按时间倒排，每条包含入口链接和现场图</p>
-        <div class="event-list">
+          {lightbox && (
+            <div className="mx-lightbox" onClick={() => setLightbox(null)}>
+              <img src={lightbox.src} alt={lightbox.caption} />
+              <div className="cap">{lightbox.caption}</div>
+            </div>
+          )}
+        </>
+      );
+    };
 
-          <article class="event-card">
-            <h3 data-zh="04.10 · 两只 Claw 的茶水间 — OpenClaw 内部 Meetup" data-en="04.10 · Two Claws' Tea Room — OpenClaw Internal Meetup">04.10 · 两只 Claw 的茶水间 — OpenClaw 内部 Meetup</h3>
-            <p data-zh="在公司举办的 OpenClaw 内部活动，现场演示 WLB 🦞 和 GSD 🥷 双 Agent 在 Slack 里自主协作、吵架、debug 的完整工作流。" data-en="Internal OpenClaw meetup at the company, featuring a live demo of WLB 🦞 and GSD 🥷 dual-agent collaboration, debates, and debugging in Slack.">在公司举办的 OpenClaw 内部活动，现场演示 WLB 🦞 和 GSD 🥷 双 Agent 在 Slack 里自主协作、吵架、debug 的完整工作流。</p>
-            <div class="event-links">
-              <a href="https://miaodx.com/share/meetup-poster.html" data-zh="活动介绍页" data-en="Event Page">活动介绍页</a>
-            </div>
-            <div class="carousel">
-              <img src="share/meetup-photo-1.jpg" alt="04.10 OpenClaw Meetup 现场演示" />
-              <img src="share/meetup-photo-2.jpg" alt="04.10 OpenClaw 活动现场海报" />
-            </div>
-          </article>
-
-          <article class="event-card">
-            <h3 data-zh="03.24 · Raise Lab — AI Coding for Research 分享" data-en="03.24 · Raise Lab — AI Coding for Research Talk">03.24 · Raise Lab — AI Coding for Research 分享</h3>
-            <p data-zh="在深圳理工大学 Raise Lab 的分享：如何让 AI 真正帮到研究者。从工具到工作流，包含完整实战案例与现场 Demo。" data-en="Talk at SIST Raise Lab: how AI can truly help researchers — from tools to workflows, with real-world cases and live demos.">在深圳理工大学 Raise Lab 的分享：如何让 AI 真正帮到研究者。从工具到工作流，包含完整实战案例与现场 Demo。</p>
-            <div class="event-links">
-              <a href="https://miaodx.com/LIP/share/AICodingRaiseLab.html" data-zh="完整分享材料（Slide）" data-en="Full Slides">完整分享材料（Slide）</a>
-            </div>
-            <div class="carousel">
-              <img src="images/events/2026-03/0324-raise-lab-share.png" alt="03.24 Raise Lab 分享现场" />
-            </div>
-          </article>
-
-          <article class="event-card">
-            <h3 data-zh="03.21 · OpenClaw 分享 v3 — 25页 Slide 完整版" data-en="03.21 · OpenClaw Sharing v3 — Full 25-page Slides">03.21 · OpenClaw 分享 v3 — 25页 Slide 完整版</h3>
-            <p data-zh="完整的 OpenClaw 实践分享，包含多 Agent 协作、实战案例与部署经验" data-en="Full OpenClaw practice sharing: multi-agent collaboration, real-world cases, and deployment experience">完整的 OpenClaw 实践分享，包含多 Agent 协作、实战案例与部署经验</p>
-            <div class="event-links">
-              <a href="https://mp.weixin.qq.com/s/6PcKetQ0s1XNS6pnsrUChQ">
-                <span class="media-badge wechat" data-zh="微信公众号" data-en="WeChat">微信公众号</span> <span data-zh="文章" data-en="Article">文章</span>
-              </a>
-              <a href="https://miaodx.com/LIP/share/openclaw-sharing-v3.html" data-zh="完整演示文稿（25页）" data-en="Full Slides (25 pages)">完整演示文稿（25页）</a>
-            </div>
-          </article>
-
-          <article class="event-card">
-            <h3 data-zh="03.15 · 龙虾蜕壳 Meetup — 低成本多 Agent 部署实践分享" data-en="03.15 · Lobster Molt Meetup — Low-cost Multi-Agent Deployment">03.15 · 龙虾蜕壳 Meetup — 低成本多 Agent 部署实践分享</h3>
-            <p data-zh="面向外部社区的实践分享，主题围绕低成本多 Agent 部署，获得多家媒体报道" data-en="Community talk on low-cost multi-agent deployment, covered by multiple media outlets">面向外部社区的实践分享，主题围绕低成本多 Agent 部署，获得多家媒体报道</p>
-            <div class="event-links">
-              <a href="https://cj.sina.cn/articles/view/7984421895/1dbe89c0700101nnpq">
-                <span class="media-badge sina" data-zh="新浪网" data-en="Sina">新浪网</span> <span data-zh="报道" data-en="Coverage">报道</span>
-              </a>
-              <a href="https://m.bjnews.com.cn/detail/1773632898129687.html">
-                <span class="media-badge rizhao" data-zh="日照新闻网" data-en="Rizhao News">日照新闻网</span> <span data-zh="报道" data-en="Coverage">报道</span>
-              </a>
-              <a href="https://miaodx.com/LIP/share/lowcost-multiplatform-multiagent-deploy.html" data-zh="分享材料" data-en="Slides">分享材料</a>
-            </div>
-            <div class="carousel">
-              <img src="images/events/2026-03/0315-share-photo.jpg" alt="03.15 分享现场" />
-            </div>
-          </article>
-
-          <article class="event-card">
-            <h3 data-zh="03.14 · OpenClaw 大会 — 龙虾文明游戏负责人" data-en="03.14 · OpenClaw Conference — Lobster Civilization Game Lead">03.14 · OpenClaw 大会 — 龙虾文明游戏负责人</h3>
-            <p data-zh="南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示" data-en="OpenClaw conference organized by NanChuan. Led the Lobster Civilization game segment with live demos.">南川组织的 OpenClaw 大会，负责龙虾文明游戏环节与现场演示</p>
-            <div class="event-links">
-              <a href="https://mp.weixin.qq.com/s/H-hadizfOhqc9waA69PRog">
-                <span class="media-badge wechat" data-zh="手工川" data-en="HandCraft">手工川</span> <span data-zh="公众号原始推文" data-en="Original Post">公众号原始推文</span>
-              </a>
-              <a href="https://miaodx.com/LIP/share/claws-civilization.html">
-                <span class="media-badge wechat">MiaoDX</span> <span data-zh="龙虾文明总结页" data-en="Lobster Civilization Summary">龙虾文明总结页</span>
-              </a>
-            </div>
-            <div class="carousel">
-              <img src="images/events/2026-03/0314-group-photo.jpg" alt="03.14 OpenClaw 合影" />
-              <img src="images/events/2026-03/0314-on-stage.jpg" alt="03.14 OpenClaw 现场演示" />
-            </div>
-          </article>
-
-          <article class="event-card">
-            <h3 data-zh="03.10 · AI Coding 内部宣讲（听众 > 1k）" data-en="03.10 · AI Coding Internal Talk (1k+ audience)">03.10 · AI Coding 内部宣讲（听众 &gt; 1k）</h3>
-            <p data-zh="聚焦 Agent 协作实践与案例拆解（内部分享，暂无法直接分享材料，见后续公开分享）" data-en="Focused on agent collaboration practices and case breakdowns (internal talk — materials available in later public talks)">聚焦 Agent 协作实践与案例拆解（内部分享，暂无法直接分享材料，见后续公开分享）</p>
-            <div class="carousel">
-              <img class="poster" src="images/events/2026-03/0310-poster.jpg" alt="03.10 AI Coding 活动海报" />
-              <img src="images/events/2026-03/0310-talk-screenshot.jpg" alt="03.10 AI Coding 现场截图" />
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- Navigation guide -->
-      <section>
-        <h2 data-zh="你可以从这里开始" data-en="Start Here">你可以从这里开始</h2>
-        <p data-zh="如果你是第一次来，建议按下面顺序了解我的工作" data-en="If this is your first visit, here's a suggested reading order">如果你是第一次来，建议按下面顺序了解我的工作</p>
-        <ul class="hub-list">
-          <li><a href="https://miaodx.com/LIP/" data-zh="先看总览：我正在做什么" data-en="Overview: What I'm working on">先看总览：我正在做什么</a></li>
-          <li><a href="https://miaodx.com/LIP/now/2026-03" data-zh="最近进展：Now 月报" data-en="Recent Progress: Monthly Update">最近进展：Now 月报</a></li>
-          <li><a href="https://miaodx.com/LIP/stories/openclaw-04-practical-cases" data-zh="实战案例：OpenClaw" data-en="Case Studies: OpenClaw">实战案例：OpenClaw</a></li>
-          <li><a href="https://miaodx.com/LIP/lessons/error-to-skill-evolution" data-zh="方法论：从错误到技能" data-en="Methodology: From Errors to Skills">方法论：从错误到技能</a></li>
-          <li><a href="https://miaodx.com/LIP/share/" data-zh="公开分享：演讲与材料" data-en="Public Talks & Materials">公开分享：演讲与材料</a></li>
-        </ul>
-      </section>
-
-      <footer>&copy; MiaoDX</footer>
-    </main>
-    <script>
-      function setLang(lang) {
-        document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
-          el.textContent = el.getAttribute('data-' + lang);
-        });
-        document.getElementById('btn-zh').className = lang === 'zh' ? 'active' : '';
-        document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
-        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-        try { localStorage.setItem('lang', lang); } catch(e) {}
-      }
-      // Restore saved language preference
-      (function() {
-        try {
-          var saved = localStorage.getItem('lang');
-          if (saved === 'en') setLang('en');
-        } catch(e) {}
-      })();
-    </script>
-  </body>
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
 </html>
