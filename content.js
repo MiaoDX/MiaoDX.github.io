@@ -226,7 +226,10 @@ const SITE_CONTENT = {
   },
 
   footer: {
-    left: { zh: '© MiaoDX · 一个人 + 多只龙虾', en: '© MiaoDX · One Person + multi Claws' },
+    left: {
+      zh: '自驾与机器人研发工程师\nLIP 实践者 — Learn in public\nOPC 实践者 — One Person, plus multi Claws\n白天和 claude code + codex 一起给机器人写（refactor 解）bug\n其他时间和 AI Agents 一起花费 token，做更多有趣的事',
+      en: 'Autonomous Driving & Robotics Engineer\nLIP Practitioner — Learn in public\nOPC Practitioner — One Person, plus multi Claws\nDaytime: writing (and refactoring) robot bugs with Claude Code + Codex\nOther times: spending tokens with AI Agents to do more interesting things',
+    },
     right: { zh: '北京 · 2026', en: 'Beijing · 2026' },
   },
 };
