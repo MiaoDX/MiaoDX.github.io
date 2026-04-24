@@ -375,7 +375,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
       </section>
 
       <div className="ed-footer">
-        <span>{p(C.footer.left)}</span>
+        <span style={{ whiteSpace: 'pre-line' }}>{p(C.footer.left)}</span>
         <span>{p(C.footer.right)}</span>
       </div>
     </div>

@@ -436,7 +436,7 @@ const TerminalDesign = ({ lang = 'zh', onLightbox }) => {
         </section>
 
         <div className="tm-footer">
-          <span>{p(C.footer.left)}</span>
+          <span style={{ whiteSpace: 'pre-line' }}>{p(C.footer.left)}</span>
           <span><span className="ok">●</span> build ok · {p(C.footer.right)}</span>
         </div>
       </div>
