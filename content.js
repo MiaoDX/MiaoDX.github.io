@@ -73,6 +73,7 @@ const SITE_CONTENT = {
   ],
 
   photos: [
+    { src: 'images/events/2026-04/0426-meetup.jpg', caption: { zh: '04.26 · 直觉机器漫谈 Meetup', en: '04.26 · Intuition Machine Meetup' }, file: '0426_intuition-machine.jpg', tag: 'talk' },
     { src: 'images/events/2026-03/0324-raise-lab-share.png', caption: { zh: '03.24 · Raise Lab 分享', en: '03.24 · Raise Lab talk' }, file: '0324_raise-lab-share.png', tag: 'talk' },
     { src: 'images/events/2026-03/0315-share-photo.jpg', caption: { zh: '03.15 · 龙虾蜕壳 Meetup', en: '03.15 · Lobster Molt Meetup' }, file: '0315_lobster-molt.jpg', tag: 'meetup' },
     { src: 'images/events/2026-03/0314-group-photo.jpg', caption: { zh: '03.14 · OpenClaw 大会合影', en: '03.14 · OpenClaw conference' }, file: '0314_openclaw-group.jpg', tag: 'conf' },
@@ -110,6 +111,23 @@ const SITE_CONTENT = {
   ],
 
   events: [
+    {
+      date: '2026-04-26',
+      short: '04.26',
+      title: {
+        zh: '直觉机器漫谈 · 借助 Claude Code Routine 把想法快速完成 0 到 1',
+        en: 'Intuition Machine Meetup · From 0 to 1 with Claude Code Routine',
+      },
+      desc: {
+        zh: '线下 Meetup 分享：一个人 + 一组 routine 怎么把新项目从 0 推到 alpha，全程基本不坐电脑前',
+        en: 'Offline meetup: how one person + routines push a new project from 0 to alpha, barely touching a computer',
+      },
+      links: [
+        { label: { zh: '完整 Slides', en: 'Full slides' }, href: 'https://miaodx.com/LIP/share/meetup_260426.html' },
+      ],
+      image: 'images/events/2026-04/0426-meetup.jpg',
+      tag: 'community',
+    },
     {
       date: '2026-04-10',
       short: '04.10',
