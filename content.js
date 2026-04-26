@@ -73,6 +73,7 @@ const SITE_CONTENT = {
   ],
 
   photos: [
+    { src: 'images/events/2026-04/0426-forge.jpg', caption: { zh: '04.26 · 手工川 AI 创造营第一期', en: '04.26 · Forge AI Bootcamp #1' }, file: '0426_forge-bootcamp.jpg', tag: 'meetup' },
     { src: 'images/events/2026-04/0426-meetup.jpg', caption: { zh: '04.26 · 直觉机器漫谈 Meetup', en: '04.26 · Intuition Machine Meetup' }, file: '0426_intuition-machine.jpg', tag: 'talk' },
     { src: 'images/events/2026-03/0324-raise-lab-share.png', caption: { zh: '03.24 · Raise Lab 分享', en: '03.24 · Raise Lab talk' }, file: '0324_raise-lab-share.png', tag: 'talk' },
     { src: 'images/events/2026-03/0315-share-photo.jpg', caption: { zh: '03.15 · 龙虾蜕壳 Meetup', en: '03.15 · Lobster Molt Meetup' }, file: '0315_lobster-molt.jpg', tag: 'meetup' },
@@ -111,6 +112,23 @@ const SITE_CONTENT = {
   ],
 
   events: [
+    {
+      date: '2026-04-26',
+      short: '04.26',
+      title: {
+        zh: '手工川 AI 创造营第一期',
+        en: 'Forge AI Bootcamp #1',
+      },
+      desc: {
+        zh: '南川（手工川）主办的线下 AI 创造营第一期，"但愿每个 OPC，都不是 NPC"',
+        en: 'First offline AI bootcamp by NanChuan (Forge) — "May every OPC not be an NPC"',
+      },
+      links: [
+        { label: { zh: '学员墙', en: 'Wall of alumni' }, href: 'https://forge.lovstudio.ai/' },
+      ],
+      image: 'images/events/2026-04/0426-forge.jpg',
+      tag: 'community',
+    },
     {
       date: '2026-04-26',
       short: '04.26',
