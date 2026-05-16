@@ -113,6 +113,23 @@ const SITE_CONTENT = {
 
   events: [
     {
+      date: '2026-05-13',
+      short: '05.13',
+      title: {
+        zh: '从 Ultrathink 到 Goal：AI Coding 工程化的一年',
+        en: 'From Ultrathink to Goal: A Year of AI Coding Engineering',
+      },
+      desc: {
+        zh: '汽车人 AI 进化论第 09 期，50 min lecture：同模型换 harness 差 25pp，Skill / Context / Verification 三轴拆解 Claude Code 405 个版本',
+        en: 'Autobot AI Evolution #09, 50 min lecture: 25pp gap from harness alone, Skill / Context / Verification axis across Claude Code 405 releases',
+      },
+      links: [
+        { label: { zh: '完整 Slides', en: 'Full slides' }, href: 'https://miaodx.com/LIP/share/ultrathink-to-goal/' },
+      ],
+      image: 'images/events/2026-05/0513-ultrathink-to-goal.png',
+      tag: 'talk',
+    },
+    {
       date: '2026-04-26',
       short: '04.26',
       title: {
