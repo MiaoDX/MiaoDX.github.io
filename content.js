@@ -126,7 +126,7 @@ const SITE_CONTENT = {
       links: [
         { label: { zh: '完整分享', en: 'Full talk' }, href: 'https://miaodx.com/LIP/ai-coding/roboharness-self-evaluating-agents' },
       ],
-      image: 'images/events/2026-06/0602-roboharness-hackathon.jpg',
+      image: 'images/events/2026-06/0602-roboharness-hackathon.png',
       tag: 'internal',
     },
     {
