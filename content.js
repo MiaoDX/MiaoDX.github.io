@@ -113,6 +113,23 @@ const SITE_CONTENT = {
 
   events: [
     {
+      date: '2026-06-02',
+      short: '06.02',
+      title: {
+        zh: '自驾内部 Hackathon · Roboharness 一等奖分享',
+        en: 'AD Internal Hackathon · Roboharness First Prize Talk',
+      },
+      desc: {
+        zh: '我们在自驾内部 Hackathon 中凭 Roboharness 获得一等奖，并分享了从真实机器人项目抽出来的 Agent 验收层：metric + visual harness 让长程 AI coding 任务可验证、可迭代',
+        en: 'Roboharness won first prize at the autonomous driving internal hackathon, followed by a talk on the agent acceptance layer extracted from real robotics work: metric + visual harness for verifiable long-horizon AI coding tasks',
+      },
+      links: [
+        { label: { zh: '完整分享', en: 'Full talk' }, href: 'https://miaodx.com/LIP/ai-coding/roboharness-self-evaluating-agents' },
+      ],
+      image: 'images/events/2026-06/0602-roboharness-hackathon.jpg',
+      tag: 'internal',
+    },
+    {
       date: '2026-05-13',
       short: '05.13',
       title: {
