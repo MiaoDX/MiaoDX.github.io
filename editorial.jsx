@@ -16,7 +16,11 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           background: var(--ed-paper);
           color: var(--ed-ink);
           font-family: 'Inter', -apple-system, sans-serif;
-          padding: 56px 72px 80px;
+          box-sizing: border-box;
+          overflow-x: hidden;
+          width: min(100%, 1180px);
+          margin: 0 auto;
+          padding: 64px clamp(32px, 6vw, 88px) 88px;
           font-size: 15px;
           line-height: 1.6;
         }
@@ -30,7 +34,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           display: flex; justify-content: space-between; align-items: baseline;
           border-bottom: 1px solid var(--ed-ink);
           padding-bottom: 14px; margin-bottom: 40px;
-          font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+          font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
           font-family: 'JetBrains Mono', monospace;
         }
         .ed-masthead .ed-brand { font-weight: 600; }
@@ -44,7 +48,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         }
         .ed-hero .ed-eyebrow {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+          font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
           color: var(--ed-accent); margin-bottom: 16px;
         }
         .ed-hero h1 {
@@ -76,14 +80,14 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         }
         .ed-caption {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+          font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
           color: var(--ed-ink-soft);
         }
 
         .ed-section { margin-bottom: 72px; }
         .ed-section-label {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+          font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
           color: var(--ed-ink-soft);
           display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
         }
@@ -118,12 +122,34 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         .ed-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
         .ed-tag {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 11px; padding: 5px 10px;
+          font-size: 12px; padding: 5px 10px;
           border: 1px solid var(--ed-rule); color: var(--ed-ink-soft);
           letter-spacing: 0.04em;
         }
 
-        .ed-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .ed-gallery-marquee {
+          overflow: hidden;
+          margin-inline: calc(-1 * clamp(8px, 2vw, 20px));
+          padding: 2px clamp(8px, 2vw, 20px);
+          mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+        }
+        .ed-gallery {
+          display: grid;
+          grid-auto-flow: column;
+          grid-template-rows: repeat(2, minmax(118px, 168px));
+          grid-auto-columns: clamp(180px, 24vw, 260px);
+          gap: 12px;
+          width: max-content;
+          animation: ed-gallery-scroll 42s linear infinite;
+        }
+        .ed-gallery-marquee:hover .ed-gallery { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) {
+          .ed-gallery { animation: none; }
+        }
+        @keyframes ed-gallery-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(calc(-50% - 6px)); }
+        }
         .ed-gallery-item {
           position: relative; cursor: pointer;
           overflow: hidden; background: var(--ed-ink);
@@ -139,7 +165,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           padding: 14px; background: linear-gradient(to top, rgba(26,22,19,0.88), transparent);
           color: var(--ed-paper);
           font-family: 'JetBrains Mono', monospace;
-          font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+          font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
           opacity: 0; transition: opacity 0.2s;
         }
         .ed-gallery-item:hover .ed-photo-cap { opacity: 1; }
@@ -184,7 +210,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         .ed-project { background: var(--ed-paper); padding: 32px 28px; }
         .ed-project-mark {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 11px; letter-spacing: 0.14em;
+          font-size: 12px; letter-spacing: 0.12em;
           color: var(--ed-accent); margin-bottom: 12px;
         }
         .ed-project h3 { font-size: 28px; margin: 0 0 12px; letter-spacing: -0.01em; }
@@ -225,7 +251,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         }
 
         @media (max-width: 900px) {
-          .ed-root { padding: 32px 24px 60px; }
+          .ed-root { padding: 72px 28px 64px; }
           .ed-hero { grid-template-columns: 1fr; gap: 32px; }
           .ed-hero-aside { border-left: none; padding-left: 0; border-top: 1px solid var(--ed-rule); padding-top: 24px; }
           .ed-about { grid-template-columns: 1fr; gap: 32px; }
@@ -233,7 +259,11 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           .ed-event-img { grid-column: 1 / -1; }
           .ed-projects { grid-template-columns: 1fr; }
           .ed-connect { grid-template-columns: 1fr; }
-          .ed-gallery { grid-template-columns: repeat(2, 1fr); }
+          .ed-gallery {
+            grid-template-rows: repeat(2, minmax(96px, 132px));
+            grid-auto-columns: minmax(150px, 42vw);
+            animation-duration: 34s;
+          }
         }
       `}</style>
 
@@ -304,13 +334,15 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
       <section className="ed-section">
         <div className="ed-section-label">02 / {lang === 'zh' ? '现场' : 'In the Field'}</div>
         <h2>{lang === 'zh' ? '分享、演讲、meetup' : 'Talks, meetups, the occasional stage'}</h2>
-        <div className="ed-gallery">
-          {C.photos.map((ph, i) => (
-            <div key={i} className="ed-gallery-item" onClick={() => onLightbox({ src: ph.src, caption: p(ph.caption) })}>
-              <img src={ph.src} alt={p(ph.caption)} />
-              <div className="ed-photo-cap">{p(ph.caption)}</div>
-            </div>
-          ))}
+        <div className="ed-gallery-marquee" aria-label={lang === 'zh' ? '现场照片' : 'Field photos'}>
+          <div className="ed-gallery">
+            {[...C.photos, ...C.photos].map((ph, i) => (
+              <div key={`${ph.src}-${i}`} className="ed-gallery-item" onClick={() => onLightbox({ src: ph.src, caption: p(ph.caption) })}>
+                <img src={ph.src} alt={p(ph.caption)} />
+                <div className="ed-photo-cap">{p(ph.caption)}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
