@@ -86,28 +86,28 @@ const SITE_CONTENT = {
 
   projects: [
     {
+      name: 'RoboClaws',
+      slug: 'roboclaws',
+      tagline: {
+        zh: '面向机器人开放任务的 AI Agent / 机器人大脑框架 — 用 MCP、Skill 与 Agent SDK 组织机器人能力',
+        en: 'AI Agent / robot brain framework for open-ended robot tasks — organizing robot capabilities with MCP, Skills and Agent SDK',
+      },
+      status: 'active',
+      links: [
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/roboclaws' },
+      ],
+    },
+    {
       name: 'Roboharness',
       slug: 'roboharness',
       tagline: {
-        zh: 'AI coding agent 机器人仿真测试框架 — 让 Claude Code 和 Codex 看到机器人动作，自主判断并迭代',
-        en: 'Robot simulation testing framework for AI coding agents — let Claude Code and Codex see robot actions and iterate autonomously',
+        zh: '面向 AI coding agent 的机器人仿真测试与验收框架 — 让 agent 看到机器人动作、判断结果并迭代',
+        en: 'Robot simulation testing and acceptance framework for AI coding agents — let agents see robot actions, judge outcomes and iterate',
       },
       status: 'active',
       links: [
         { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/roboharness' },
         { label: { zh: '在线报告', en: 'Report' }, href: 'https://miaodx.com/roboharness/' },
-      ],
-    },
-    {
-      name: 'claw-skills',
-      slug: 'claw-skills',
-      tagline: {
-        zh: 'OpenClaw 可复用技能库 — 从错误到规则、跨实例协作协议，经过实战验证的技能集合',
-        en: 'Reusable OpenClaw skills — error-to-rule, cross-instance collaboration protocols, battle-tested',
-      },
-      status: 'active',
-      links: [
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/claw-skills' },
       ],
     },
   ],
