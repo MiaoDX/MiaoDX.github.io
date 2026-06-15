@@ -29,6 +29,7 @@ const SITE_CONTENT = {
     },
     ctas: [
       { label: { zh: '进入 LIP', en: 'Enter LIP' }, href: 'https://miaodx.com/LIP/', primary: true },
+      { label: { zh: '简历', en: 'Resume' }, href: 'resume/' },
       { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX' },
       { label: { zh: '联系', en: 'Contact' }, href: '#connect' },
     ],

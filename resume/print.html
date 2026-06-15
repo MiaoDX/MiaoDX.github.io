@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>缪东旭 | 简历打印版</title>
+  <style>
+    @page { size: A4; margin: 12mm 12mm 13mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #15120f;
+      background: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 10.4px;
+      line-height: 1.42;
+    }
+    a { color: inherit; text-decoration: none; }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 0 0 6px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #cfc6b8;
+      color: #7a3228;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0;
+      font-size: 11.2px;
+      line-height: 1.25;
+    }
+    ul { margin: 3px 0 0; padding-left: 1.1em; }
+    li { margin: 1.6px 0; }
+    .page { width: 100%; }
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #15120f;
+    }
+    .title {
+      margin-top: 5px;
+      color: #4f4740;
+      font-size: 12px;
+    }
+    .summary {
+      margin-top: 8px;
+      max-width: 112mm;
+    }
+    .contact {
+      min-width: 58mm;
+      font-size: 9.7px;
+      color: #302b26;
+    }
+    .contact div { margin-bottom: 2px; }
+    .section { margin-top: 9px; }
+    .highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 14px;
+      margin: 0;
+      padding-left: 1.1em;
+    }
+    .item {
+      display: grid;
+      grid-template-columns: 30mm 1fr;
+      gap: 6mm;
+      margin-top: 6px;
+      break-inside: avoid;
+    }
+    .period {
+      color: #245c73;
+      font-weight: 700;
+      font-size: 9.6px;
+    }
+    .role {
+      color: #5e554c;
+      margin-top: 1px;
+    }
+    .awards {
+      margin-top: 3px;
+      color: #35664c;
+      font-size: 9.4px;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 12px;
+    }
+    .project { break-inside: avoid; }
+    .project p { margin: 2px 0 0; }
+    .two-col {
+      columns: 2;
+      column-gap: 12mm;
+      margin: 0;
+      padding-left: 1.1em;
+    }
+    .skill-list {
+      display: flex;
+      gap: 4px 6px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+    .skill {
+      border: 1px solid #d7cec0;
+      padding: 1px 5px;
+      border-radius: 999px;
+      color: #35664c;
+      font-size: 9.2px;
+    }
+    .footer {
+      margin-top: 8px;
+      padding-top: 5px;
+      border-top: 1px solid #d7cec0;
+      color: #7d7469;
+      font-size: 9px;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <main id="resume-root" class="page"></main>
+  <script src="./resume-data.js"></script>
+  <script>
+    const data = window.RESUME_DATA;
+    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    }[ch]));
+    const bullets = (items, cls = '') => items?.length ? `<ul class="${cls}">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : '';
+    const awards = (items) => items?.length ? `<div class="awards">${esc(items.join(' · '))}</div>` : '';
+    const experience = (items) => items.map((item) => `
+      <article class="item">
+        <div class="period">${esc(item.period)}</div>
+        <div>
+          <h3>${esc(item.company)}</h3>
+          <div class="role">${esc(item.role)}</div>
+          ${bullets(item.bullets)}
+          ${awards(item.awards)}
+        </div>
+      </article>
+    `).join('');
+    const education = (items) => items.map((item) => `
+      <article class="item">
+        <div class="period">${esc(item.period)}</div>
+        <div>
+          <h3>${esc(item.school)}</h3>
+          <div class="role">${esc(item.degree)}</div>
+          ${bullets([...(item.bullets || []), ...(item.papers || [])])}
+          ${awards(item.awards)}
+        </div>
+      </article>
+    `).join('');
+
+    document.getElementById('resume-root').innerHTML = `
+      <header class="header">
+        <div>
+          <h1>${esc(data.person.name)}</h1>
+          <div class="title">${esc(data.person.pinyin)} · ${esc(data.person.title)} · ${esc(data.person.location)}</div>
+          <div class="summary">${esc(data.person.summary)}</div>
+        </div>
+        <div class="contact">
+          <div>Email: ${esc(data.contacts.email)}</div>
+          <div>Tel: ${esc(data.contacts.phone)}</div>
+          <div>GitHub: ${esc(data.contacts.github)}</div>
+          <div>Website: ${esc(data.contacts.website)}</div>
+          <div>公众号：${esc(data.contacts.publicAccount)}</div>
+          <div>Updated: ${esc(data.updated)}</div>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2>近期重点</h2>
+        ${bullets(data.highlights, 'highlights')}
+      </section>
+
+      <section class="section">
+        <h2>工作经历</h2>
+        ${experience(data.experience)}
+      </section>
+
+      <section class="section">
+        <h2>项目与开源</h2>
+        <div class="project-grid">
+          ${data.projects.map((item) => `
+            <article class="project">
+              <h3>${esc(item.name)}</h3>
+              <p>${esc(item.desc)}</p>
+            </article>
+          `).join('')}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>技术分享</h2>
+        ${bullets(data.talks, 'two-col')}
+      </section>
+
+      <section class="section">
+        <h2>教育经历</h2>
+        ${education(data.education)}
+      </section>
+
+      <section class="section">
+        <h2>技术关键词</h2>
+        <div class="skill-list">${data.skills.map((item) => `<span class="skill">${esc(item)}</span>`).join('')}</div>
+      </section>
+
+      <footer class="footer">
+        <span>${esc(data.person.pinyin)} · Resume</span>
+        <span>${esc(data.contacts.website)}</span>
+      </footer>
+    `;
+  </script>
+</body>
+</html>

@@ -16,6 +16,7 @@ layouts in `editorial.jsx` and `terminal.jsx`.
 ├── editorial.jsx           # Editorial layout
 ├── terminal.jsx            # Terminal layout
 │
+├── resume/                 # Chinese resume page + PDF
 ├── images/                 # Portrait, events, misc
 ├── share/                  # Standalone pages + QR/meetup assets linked
 │                           #   from the homepage
@@ -38,5 +39,6 @@ python3 -m http.server 8000
 The [LIP (Learn In Public)](https://miaodx.com/LIP/) VitePress site used to
 publish its build output into this repository, which repeatedly clobbered the
 personal homepage. LIP content has been removed from this repo and should be
-deployed from its own source. A few outbound links in `content.js` still point
-at `https://miaodx.com/LIP/...`; they will resolve once LIP is redeployed.
+deployed from its own source. Outbound links in `content.js` may still point to
+`https://miaodx.com/LIP/...`; keep that content owned by the LIP source repo
+rather than rebuilding it here.
