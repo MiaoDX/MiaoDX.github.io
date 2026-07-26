@@ -80,6 +80,11 @@ const RESUME_DATA = {
       link: 'https://github.com/MiaoDX/roboharness',
       desc: '面向 AI coding agent 的机器人仿真测试与验收框架。用 metric 与 visual evidence 建立可验证闭环，在公开案例中将机器人抓取规划从 16 秒优化到约 3 秒。',
     },
+    {
+      name: 'Intuitive Flow',
+      link: 'https://github.com/MiaoDX/intuitive-flow',
+      desc: '面向 agent-written software 的可移植工作流工具包。为 Claude Code 与 Codex 组织目标澄清、计划、执行、验证和熵减维护，将长期 Agentic Coding 实践沉淀为可复用 Skill 与仓库约定。',
+    },
   ],
   education: [
     {
