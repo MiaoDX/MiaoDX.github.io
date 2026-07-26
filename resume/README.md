@@ -6,7 +6,8 @@ This directory contains the Chinese resume page and its downloadable PDF.
 - `index.html` is the public web version. It intentionally does not render the
   phone number.
 - `print.html` is the print layout used to generate the PDF.
-- `miao-dongxu-resume-zh-2026-06.pdf` is the downloadable static PDF.
+- `miao-dongxu-resume-zh-2026-07.pdf` is the downloadable static PDF. Older
+  PDFs remain available so existing links do not break.
 
 ## Regenerate PDF
 
@@ -23,7 +24,7 @@ Then in another shell:
   --headless \
   --disable-gpu \
   --no-pdf-header-footer \
-  --print-to-pdf="$PWD/resume/miao-dongxu-resume-zh-2026-06.pdf" \
+  --print-to-pdf="$PWD/resume/miao-dongxu-resume-zh-2026-07.pdf" \
   http://127.0.0.1:8000/resume/print.html
 ```
 

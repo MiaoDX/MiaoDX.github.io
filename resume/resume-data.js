@@ -1,24 +1,26 @@
 const RESUME_DATA = {
-  updated: '2026-06',
-  pdfFile: 'miao-dongxu-resume-zh-2026-06.pdf',
+  updated: '2026-07',
+  pdfFile: 'miao-dongxu-resume-zh-2026-07.pdf',
   person: {
     name: '缪东旭',
     pinyin: 'Miao Dongxu',
     title: '自动驾驶与机器人工程师',
+    focus: 'AI-Native 算法工程化',
     location: '北京',
-    summary: '7 年自动驾驶与机器人研发经验，曾负责小米汽车自驾感知系统团队，从 0 到 1 建立量产交付、质量准出与性能优化体系。2025 年主动从团队管理角色切换到机器人业务一线，作为自驾转入机器人团队的首位研发人员，将自驾交付体系迁移到机器人场景。持续关注 AI Agent 时代的研发方式：通过清晰目标、评测闭环、自动化工具和 Agent 协作，提升复杂系统研发的确定性与迭代效率。',
+    summary: '7 年自动驾驶与机器人研发经验，曾负责小米汽车自驾感知系统团队，从 0 到 1 建立量产交付、质量准出与性能优化体系。2025 年主动从团队管理角色切换到机器人业务一线，作为自驾转入机器人团队的首位研发人员，将自驾交付体系迁移到机器人场景。专长是把算法能力交付到受资源约束的产品系统，并将数据、评测、部署与反馈组织成持续迭代闭环；持续用清晰目标、可验证 harness 和 Agent 协作重构复杂系统研发方式。',
   },
   contacts: {
     email: 'miaodx@hotmail.com',
     phone: '13502009660',
     github: 'https://github.com/MiaoDX',
     website: 'https://miaodx.com',
+    aiNativeBrief: 'https://miaodx.com/LIP/consult/ai-native-algorithm-engineering.html',
     publicAccount: '直觉机器漫谈',
   },
   highlights: [
-    '交付体系：将复杂机器人任务从研发调试推进到验收、宣发和持续运营，建立跨模块协作、问题闭环和测试准出机制。',
-    '数据评测闭环：用数据、评测、部署和反馈机制支撑模型与系统持续迭代，让研发从单点优化走向工程闭环。',
-    'AI-native 研发方式：将 AI Coding、Agent 工作流和可验证 harness 纳入复杂系统研发流程，提升验证、迭代和知识沉淀效率。',
+    '算法工程化：将算法能力部署到受资源约束的产品系统，围绕性能、集成、跨模块协作和质量准出推进稳定交付。',
+    '数据与评测：优化数据生产与云端批量评测，用标准指标、结果对比和失败回归支撑模型与系统持续迭代。',
+    'AI-native 研发方式：将 AI Coding、Agent 工作流和可验证 harness 纳入复杂系统研发流程，让任务执行、证据汇总与人工决策形成闭环。',
     '机器人开放任务：面向家庭空间等开放场景，探索机器人理解、规划、调用工具和执行任务的系统架构。',
   ],
   experience: [
@@ -29,7 +31,7 @@ const RESUME_DATA = {
       bullets: [
         '进入机器人业务早期，承担开放方向验证、体系迁移和关键交付工作，连接自驾交付经验与机器人新场景。',
         '工厂交付线：推动工厂机器人项目从研发调试走向内部验收，成为团队标杆项目，并在 2026 年完成正式宣发；过程中建立测试、问题闭环、跨模块协作和持续运营机制。',
-        'VLN / 数据评测线：围绕模型部署、数据管线和自动化评测搭建研发闭环，推动团队从“单点模型训练”转向“数据、评测、部署共同驱动”的持续迭代模式。',
+        'VLN / 数据评测线：负责仿真数据管线性能优化与算法云端批量评测，围绕任务执行、指标汇总、结果对比和失败回归构建稳定流水线。',
         '开放场景线：支撑家庭空间开放场景 demo 链路，推进取放能力和 RoboClaws 机器人大脑方向，用 MCP、Skill、Agent SDK 组织机器人能力，支持开放任务和 clean up 场景。',
         'AI-native 研发方式：将 AI Coding、visual harness 和 Agent 工作流纳入日常研发与验证流程，探索复杂机器人系统中更可验证、更可复用的研发方式。',
       ],
@@ -71,12 +73,12 @@ const RESUME_DATA = {
     {
       name: 'RoboClaws',
       link: 'https://github.com/MiaoDX/roboclaws',
-      desc: '面向家庭空间开放任务的机器人大脑方案。通过 MCP、Skill 与 Agent SDK 组织机器人观测、感知、导航、抓取和任务调度能力，探索 AI Agent 如何参与真实机器人任务规划与执行。',
+      desc: '面向家庭空间开放任务的机器人大脑方案。通过 task、skill、tool 与 backend contract 组织机器人能力，以 runtime map 保存任务状态、运行轨迹和待处理对象，连接仿真、云端服务与真机方向。',
     },
     {
       name: 'Roboharness',
       link: 'https://github.com/MiaoDX/roboharness',
-      desc: '面向 AI coding agent 的机器人仿真测试与验收框架。将 metric 与 visual harness 结合，让 agent 能看到机器人动作、判断结果并迭代，服务于 AI-native 团队的研发验证闭环。',
+      desc: '面向 AI coding agent 的机器人仿真测试与验收框架。用 metric 与 visual evidence 建立可验证闭环，在公开案例中将机器人抓取规划从 16 秒优化到约 3 秒。',
     },
   ],
   education: [
