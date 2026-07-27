@@ -33,7 +33,7 @@ const RESUME_DATA = {
         '工厂交付线：推动工厂机器人项目从研发调试走向内部验收，成为团队标杆项目，并在 2026 年完成正式宣发；过程中建立测试、问题闭环、跨模块协作和持续运营机制。',
         'VLN / 数据评测线：负责仿真数据管线性能优化与算法云端批量评测，围绕任务执行、指标汇总、结果对比和失败回归构建稳定流水线。',
         '开放场景线：支撑家庭空间开放场景 demo 链路，推进取放能力和 RoboClaws 机器人大脑方向，用 MCP、Skill、Agent SDK 组织机器人能力，支持开放任务和 clean up 场景。',
-        'AI-native 研发方式：将 AI Coding、visual harness 和 Agent 工作流纳入日常研发与验证流程，探索复杂机器人系统中更可验证、更可复用的研发方式。',
+        'AI-native 研发方式：将 AI Coding、visual harness 和 Agent 工作流纳入日常研发与验证流程；通过系列内部分享、AI Hackathon 与工作流沉淀，推动 Agentic Coding 在自动驾驶与机器人部门的理解、实践与复用。',
       ],
       awards: ['2025 H1 汽车部专项项目奖', '2025 H1 自驾最佳纽带奖', '2026 自动驾驶与机器人部 AI Hackathon 一等奖'],
     },
@@ -83,7 +83,7 @@ const RESUME_DATA = {
     {
       name: 'Intuitive Flow',
       link: 'https://github.com/MiaoDX/intuitive-flow',
-      desc: '面向 agent-written software 的可移植工作流工具包。为 Claude Code 与 Codex 组织目标澄清、计划、执行、验证和熵减维护，将长期 Agentic Coding 实践沉淀为可复用 Skill 与仓库约定。',
+      desc: '面向 agent-written software 的可移植工作流工具包。为 Claude Code 与 Codex 组织目标澄清、计划、执行、验证和熵减维护，将长期 Agentic Coding 实践沉淀为可复用 Skill 与仓库约定，并用于部门内部的方法推广与工程实践分享。',
     },
   ],
   education: [
