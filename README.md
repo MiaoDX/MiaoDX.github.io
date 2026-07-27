@@ -32,6 +32,13 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
+## Deployment
+
+Pushes to `main` run `.github/workflows/deploy.yml`. The workflow stages the
+repository root as a static site, preserves `CNAME` and `.nojekyll`, excludes
+repository metadata and workflow files, and deploys the artifact through GitHub
+Pages.
+
 ## Note on LIP
 
 The [LIP (Learn In Public)](https://miaodx.com/LIP/) VitePress site used to
