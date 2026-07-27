@@ -7,10 +7,10 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
     <div className="ed-root">
       <style>{`
         .ed-root {
-          --ed-paper: #f5f1ea;
+          --ed-paper: #f7f7f3;
           --ed-ink: #1a1613;
           --ed-ink-soft: #534b42;
-          --ed-rule: #c9bfb0;
+          --ed-rule: #c8c7c1;
           --ed-accent: oklch(0.48 0.14 25);
           --ed-accent-soft: oklch(0.92 0.04 25);
           background: var(--ed-paper);
@@ -28,7 +28,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         .ed-root h1, .ed-root h2, .ed-root h3, .ed-root .ed-serif {
           font-family: 'Noto Serif SC', 'Source Serif Pro', Georgia, serif;
           font-weight: 500;
-          letter-spacing: -0.01em;
+          letter-spacing: 0;
         }
         .ed-masthead {
           display: flex; justify-content: space-between; align-items: baseline;
@@ -52,8 +52,8 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           color: var(--ed-accent); margin-bottom: 16px;
         }
         .ed-hero h1 {
-          font-size: clamp(48px, 6vw, 88px); line-height: 0.98;
-          margin: 0 0 24px; letter-spacing: -0.02em;
+          font-size: 72px; line-height: 1.02;
+          margin: 0 0 24px; letter-spacing: 0;
         }
         .ed-hero h1 em { font-style: italic; color: var(--ed-accent); font-weight: 400; }
         .ed-hero .ed-lede {
@@ -110,6 +110,20 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           margin: 20px 0;
         }
 
+        .ed-focus {
+          display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 28px; margin-top: 40px;
+        }
+        .ed-focus-item { border-top: 1px solid var(--ed-ink); padding-top: 18px; }
+        .ed-focus-index {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px; color: var(--ed-accent); margin-bottom: 28px;
+        }
+        .ed-focus-item h3 { font-size: 21px; margin: 0 0 10px; }
+        .ed-focus-item p {
+          margin: 0; color: var(--ed-ink-soft); font-size: 14px; line-height: 1.65;
+        }
+
         .ed-exp { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ed-rule); }
         .ed-exp li {
           display: grid; grid-template-columns: 96px 1fr;
@@ -128,32 +142,19 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         }
 
         .ed-gallery-marquee {
-          overflow: hidden;
-          margin-inline: calc(-1 * clamp(8px, 2vw, 20px));
-          padding: 2px clamp(8px, 2vw, 20px);
-          mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+          overflow: visible;
         }
         .ed-gallery {
           display: grid;
-          grid-auto-flow: column;
-          grid-template-rows: repeat(2, minmax(118px, 168px));
-          grid-auto-columns: clamp(180px, 24vw, 260px);
-          gap: 12px;
-          width: max-content;
-          animation: ed-gallery-scroll 42s linear infinite;
-        }
-        .ed-gallery-marquee:hover .ed-gallery { animation-play-state: paused; }
-        @media (prefers-reduced-motion: reduce) {
-          .ed-gallery { animation: none; }
-        }
-        @keyframes ed-gallery-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(calc(-50% - 6px)); }
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 10px;
+          width: 100%;
         }
         .ed-gallery-item {
           position: relative; cursor: pointer;
           overflow: hidden; background: var(--ed-ink);
           aspect-ratio: 4/3;
+          border: 0; padding: 0; text-align: left; color: inherit;
         }
         .ed-gallery-item img {
           width: 100%; height: 100%; object-fit: cover;
@@ -204,7 +205,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         .ed-event-img:hover { transform: scale(1.02); }
 
         .ed-projects {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+          display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px;
           background: var(--ed-rule); border: 1px solid var(--ed-rule);
         }
         .ed-project { background: var(--ed-paper); padding: 32px 28px; }
@@ -213,7 +214,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           font-size: 12px; letter-spacing: 0.12em;
           color: var(--ed-accent); margin-bottom: 12px;
         }
-        .ed-project h3 { font-size: 28px; margin: 0 0 12px; letter-spacing: -0.01em; }
+        .ed-project h3 { font-size: 26px; margin: 0 0 12px; letter-spacing: 0; }
         .ed-project p {
           font-family: 'Noto Serif SC', Georgia, serif;
           font-size: 15px; color: var(--ed-ink-soft); margin: 0 0 18px;
@@ -255,22 +256,40 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
           .ed-hero { grid-template-columns: 1fr; gap: 32px; }
           .ed-hero-aside { border-left: none; padding-left: 0; border-top: 1px solid var(--ed-rule); padding-top: 24px; }
           .ed-about { grid-template-columns: 1fr; gap: 32px; }
+          .ed-focus { grid-template-columns: 1fr; gap: 24px; }
+          .ed-focus-index { margin-bottom: 12px; }
           .ed-event { grid-template-columns: 64px 1fr; }
           .ed-event-img { grid-column: 1 / -1; }
           .ed-projects { grid-template-columns: 1fr; }
           .ed-connect { grid-template-columns: 1fr; }
           .ed-gallery {
-            grid-template-rows: repeat(2, minmax(96px, 132px));
-            grid-auto-columns: minmax(150px, 42vw);
-            animation-duration: 34s;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
           }
+        }
+        @media (max-width: 600px) {
+          .ed-root { padding: 64px 20px 48px; }
+          .ed-masthead { margin-bottom: 32px; }
+          .ed-masthead .ed-meta { display: none; }
+          .ed-hero { gap: 20px; margin-bottom: 24px; padding-bottom: 28px; }
+          .ed-hero h1 { font-size: 42px; line-height: 1.08; }
+          .ed-hero .ed-lede { font-size: 17px; line-height: 1.6; }
+          .ed-btn { padding: 10px 14px; }
+          .ed-hero-aside { display: flex; align-items: center; gap: 14px; padding-top: 16px; }
+          .ed-portrait { width: 72px; margin: 0; }
+          .ed-section { margin-bottom: 56px; }
+          .ed-section h2 { font-size: 30px; }
+          .ed-event { grid-template-columns: 1fr; gap: 10px; }
+          .ed-event-img { grid-column: auto; margin-top: 8px; }
+          .ed-connect { padding: 32px 0; }
+          .ed-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .ed-footer { flex-direction: column; gap: 20px; }
         }
       `}</style>
 
       <div className="ed-masthead">
-        <span className="ed-brand">MiaoDX · Learn in Public</span>
+        <span className="ed-brand">MiaoDX · Intelligent Systems</span>
         <div className="ed-meta">
-          <span>{lang === 'zh' ? '公开构建' : 'Learn in Public'}</span>
+          <span>{lang === 'zh' ? '公开构建 · 持续复盘' : 'Build · Reflect · Share'}</span>
           <span>{p(C.meta.location)}</span>
         </div>
       </div>
@@ -293,7 +312,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
         </div>
         <div className="ed-hero-aside">
           <img className="ed-portrait" src={C.meta.portrait} alt={p(C.meta.name)} />
-          <div className="ed-caption">{p(C.meta.name)} · {C.meta.handle} · 2026</div>
+          <div className="ed-caption">{p(C.meta.name)} · {C.meta.handle} · {p(C.meta.location)}</div>
         </div>
       </section>
 
@@ -329,26 +348,20 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
             </ul>
           </div>
         </div>
-      </section>
-
-      <section className="ed-section">
-        <div className="ed-section-label">02 / {lang === 'zh' ? '现场' : 'In the Field'}</div>
-        <h2>{lang === 'zh' ? '分享、演讲、meetup' : 'Talks, meetups, the occasional stage'}</h2>
-        <div className="ed-gallery-marquee" aria-label={lang === 'zh' ? '现场照片' : 'Field photos'}>
-          <div className="ed-gallery">
-            {[...C.photos, ...C.photos].map((ph, i) => (
-              <div key={`${ph.src}-${i}`} className="ed-gallery-item" onClick={() => onLightbox({ src: ph.src, caption: p(ph.caption) })}>
-                <img src={ph.src} alt={p(ph.caption)} />
-                <div className="ed-photo-cap">{p(ph.caption)}</div>
-              </div>
-            ))}
-          </div>
+        <div className="ed-focus">
+          {C.focus.map((item) => (
+            <article key={item.index} className="ed-focus-item">
+              <div className="ed-focus-index">{item.index} / FOCUS</div>
+              <h3>{p(item.title)}</h3>
+              <p>{p(item.body)}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="ed-section">
-        <div className="ed-section-label">03 / {lang === 'zh' ? '开源' : 'Open Source'}</div>
-        <h2>{lang === 'zh' ? '精选项目' : 'Selected Projects'}</h2>
+      <section id="work" className="ed-section">
+        <div className="ed-section-label">02 / {lang === 'zh' ? '代表工作' : 'Selected Work'}</div>
+        <h2>{lang === 'zh' ? '把方法沉淀为可验证的工程系统' : 'Methods made concrete in verifiable systems'}</h2>
         <div className="ed-projects">
           {C.projects.map((pr, i) => (
             <div key={i} className="ed-project">
@@ -366,10 +379,26 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
       </section>
 
       <section className="ed-section">
-        <div className="ed-section-label">04 / {lang === 'zh' ? '近期分享' : 'Recent Talks'}</div>
-        <h2>{lang === 'zh' ? '按时间倒排' : 'Most recent first'}</h2>
+        <div className="ed-section-label">03 / {lang === 'zh' ? '公开实践' : 'In Public'}</div>
+        <h2>{lang === 'zh' ? '在项目、分享与现场中持续验证' : 'Testing ideas through projects, talks and practice'}</h2>
+        <div className="ed-gallery-marquee" aria-label={lang === 'zh' ? '公开实践照片' : 'In-public photos'}>
+          <div className="ed-gallery">
+            {C.photos.map((ph, i) => (
+              <button type="button" key={`${ph.src}-${i}`} className="ed-gallery-item"
+                aria-label={p(ph.caption)} onClick={() => onLightbox({ src: ph.src, caption: p(ph.caption) })}>
+                <img src={ph.src} alt={p(ph.caption)} />
+                <div className="ed-photo-cap">{p(ph.caption)}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="ed-section">
+        <div className="ed-section-label">04 / {lang === 'zh' ? '精选分享' : 'Selected Talks'}</div>
+        <h2>{lang === 'zh' ? '工程实践的公开记录' : 'Public notes from engineering practice'}</h2>
         <div className="ed-events">
-          {C.events.map((e, i) => (
+          {C.events.filter((e) => e.featured).map((e, i) => (
             <article key={i} className="ed-event">
               <div className="ed-date">{e.short}</div>
               <div>

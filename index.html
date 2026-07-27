@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiaoDX — Learn in Public</title>
-  <meta name="description" content="缪东旭（MiaoDX）：AI Agent 协作系统实践者，公开构建、持续复盘" />
+  <title>MiaoDX — 机器人、自动驾驶与 AI-Native 研发</title>
+  <meta name="description" content="缪东旭（MiaoDX）：机器人与自动驾驶领域的技术负责人，关注复杂智能系统交付、算法工程化、数据评测与 AI-Native 研发" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    html, body { margin: 0; padding: 0; background: #f5f1ea; font-family: 'Inter', sans-serif; }
+    html, body { margin: 0; padding: 0; background: #f7f7f3; font-family: 'Inter', sans-serif; }
     #root { min-height: 100vh; }
 
-    /* Floating toggles */
+    /* Floating language toggle */
     .mx-toggle {
       position: fixed; z-index: 100;
       display: flex; gap: 2px; padding: 3px;
@@ -22,7 +22,6 @@
       box-shadow: 0 4px 14px rgba(26,22,19,0.08);
       font-family: 'JetBrains Mono', monospace;
     }
-    .mx-toggle.left { top: 16px; left: 16px; }
     .mx-toggle.right { top: 16px; right: 16px; }
     .mx-toggle button {
       border: none; background: transparent;
@@ -39,11 +38,6 @@
     .mx-toggle button.active {
       background: #1a1613; color: #f5f1ea;
     }
-    .mx-toggle .dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: currentColor; opacity: 0.6;
-    }
-
     /* Lightbox */
     .mx-lightbox {
       position: fixed; inset: 0;
@@ -68,21 +62,21 @@
   <div id="root"></div>
   <script src="content.js"></script>
   <script type="text/babel" src="editorial.jsx"></script>
-  <script type="text/babel" src="terminal.jsx"></script>
   <script type="text/babel">
     const { useState, useEffect } = React;
 
     const App = () => {
-      const [style, setStyle] = useState(() => {
-        try { return localStorage.getItem('mx-style') || 'editorial'; } catch (e) { return 'editorial'; }
-      });
       const [lang, setLang] = useState(() => {
         try { return localStorage.getItem('mx-lang') || 'zh'; } catch (e) { return 'zh'; }
       });
       const [lightbox, setLightbox] = useState(null);
 
-      useEffect(() => { try { localStorage.setItem('mx-style', style); } catch (e) {} }, [style]);
-      useEffect(() => { try { localStorage.setItem('mx-lang', lang); } catch (e) {} document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'; }, [lang]);
+      useEffect(() => {
+        try { localStorage.setItem('mx-lang', lang); } catch (e) {}
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.title = pick(SITE_CONTENT.meta.pageTitle, lang);
+        document.querySelector('meta[name="description"]').setAttribute('content', pick(SITE_CONTENT.meta.description, lang));
+      }, [lang]);
       useEffect(() => {
         if (!lightbox) return;
         const onKey = (e) => { if (e.key === 'Escape') setLightbox(null); };
@@ -92,25 +86,16 @@
 
       return (
         <>
-          <div className="mx-toggle left" role="group" aria-label="Style">
-            <button className={style === 'editorial' ? 'active' : ''} onClick={() => setStyle('editorial')}>
-              <span className="dot"></span>EDITORIAL
-            </button>
-            <button className={style === 'terminal' ? 'active' : ''} onClick={() => setStyle('terminal')}>
-              <span className="dot"></span>TERMINAL
-            </button>
-          </div>
           <div className="mx-toggle right" role="group" aria-label="Language">
             <button className={lang === 'zh' ? 'active' : ''} onClick={() => setLang('zh')}>中</button>
             <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
           </div>
 
-          {style === 'editorial'
-            ? <EditorialDesign lang={lang} onLightbox={setLightbox} />
-            : <TerminalDesign lang={lang} onLightbox={setLightbox} />}
+          <EditorialDesign lang={lang} onLightbox={setLightbox} />
 
           {lightbox && (
-            <div className="mx-lightbox" onClick={() => setLightbox(null)}>
+            <div className="mx-lightbox" role="dialog" aria-modal="true" aria-label={lightbox.caption}
+              onClick={() => setLightbox(null)}>
               <img src={lightbox.src} alt={lightbox.caption} />
               <div className="cap">{lightbox.caption}</div>
             </div>

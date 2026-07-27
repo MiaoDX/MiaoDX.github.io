@@ -3,9 +3,8 @@
 Source for [miaodx.com](https://miaodx.com), served as a GitHub Pages site from
 this repository (CNAME → `miaodx.com`, Jekyll disabled via `.nojekyll`).
 
-The site is a single-page React app at `/` with two visual directions
-(`editorial` / `terminal`) and a ZH/EN toggle. Content lives in `content.js`;
-layouts in `editorial.jsx` and `terminal.jsx`.
+The site is a single-page React app at `/` with an editorial layout and a ZH/EN
+toggle. Content lives in `content.js`; the layout lives in `editorial.jsx`.
 
 ## Layout
 
@@ -14,7 +13,6 @@ layouts in `editorial.jsx` and `terminal.jsx`.
 ├── index.html              # Entry
 ├── content.js              # Copy + links (ZH/EN)
 ├── editorial.jsx           # Editorial layout
-├── terminal.jsx            # Terminal layout
 │
 ├── resume/                 # Chinese resume page + PDF
 ├── images/                 # Portrait, events, misc

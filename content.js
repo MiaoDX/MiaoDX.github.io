@@ -1,5 +1,5 @@
 // Single source of content for the site.
-// Edit here — both Editorial and Terminal styles read from this file.
+// Edit here — the Editorial homepage reads from this file.
 // Each text field is { zh, en }.
 
 const SITE_CONTENT = {
@@ -7,96 +7,117 @@ const SITE_CONTENT = {
     name: { zh: '缪东旭', en: 'Dongxu Miao' },
     handle: 'MiaoDX',
     location: { zh: '北京', en: 'Beijing' },
-    tagline: {
-      zh: '公开构建 AI 协作与自动化系统',
-      en: 'Building AI collaboration & automation systems in public',
+    pageTitle: {
+      zh: 'MiaoDX — 机器人、自动驾驶与 AI-Native 研发',
+      en: 'MiaoDX — Robotics, Autonomous Driving & AI-Native Engineering',
     },
-    motto: {
-      zh: '一个人 + 多只龙虾',
-      en: 'One Person + multi Claws',
+    description: {
+      zh: '缪东旭（MiaoDX）：机器人与自动驾驶领域的技术负责人，关注复杂智能系统交付、算法工程化、数据评测与 AI-Native 研发',
+      en: 'Dongxu Miao (MiaoDX): an engineering leader in robotics and autonomous driving, focused on real-world delivery, algorithm engineering, evaluation and AI-Native development',
+    },
+    tagline: {
+      zh: '机器人 · 自动驾驶 · AI-Native 研发',
+      en: 'Robotics · Autonomous Driving · AI-Native Engineering',
     },
     portrait: 'images/miaodx-profile.jpg',
   },
 
   hero: {
     headline: {
-      zh: ['一个人', '多只龙虾'],
-      en: ['One Person', 'Multi Claws'],
+      zh: ['让复杂智能系统', '走向真实交付'],
+      en: ['Intelligent systems', 'built for the real world'],
     },
     lede: {
-      zh: '缪东旭，在北京 — 把 AI Agent 从 demo 推进到能真实创造价值的生产系统，并持续公开复盘',
-      en: 'Dongxu Miao, based in Beijing — pushing AI Agents from demos into production systems that deliver real value, documented in public',
+      zh: '我是缪东旭，一名长期扎根机器人与自动驾驶一线、亲自深入关键工程问题的技术负责人，关注算法工程化、产品交付与研发体系建设',
+      en: 'I am Dongxu Miao, a hands-on engineering leader turning robotics and autonomous-driving systems into reliable products',
     },
     ctas: [
-      { label: { zh: '进入 LIP', en: 'Enter LIP' }, href: 'https://miaodx.com/LIP/', primary: true },
+      { label: { zh: '代表工作', en: 'Selected work' }, href: '#work', primary: true },
+      { label: { zh: '文章与分享', en: 'Writing & talks' }, href: 'https://miaodx.com/LIP/' },
       { label: { zh: '简历', en: 'Resume' }, href: 'resume/' },
-      { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX' },
-      { label: { zh: '联系', en: 'Contact' }, href: '#connect' },
+      { label: { zh: 'AI-Native 专题', en: 'AI-Native brief' }, href: 'https://miaodx.com/LIP/consult/ai-native-algorithm-engineering.html' },
     ],
   },
 
   about: {
     heading: {
-      zh: '长期在工程一线做 AI、自动驾驶、机器人',
-      en: 'A decade of hands-on work in AI, autonomous driving and robotics',
+      zh: '在复杂系统里，把算法做成真正可交付的产品能力',
+      en: 'Turning algorithms into dependable product capabilities',
     },
     paragraphs: [
       {
-        zh: '你好，我是缪东旭，目前在北京。正在把个人实践升级为新 OPC——「One Person + multi Claws」，并公开复盘全部过程',
-        en: 'Hi, I\'m MiaoDX. I\'m evolving my practice into a new OPC — "One Person + multi Claws" — and building the whole thing in public',
+        zh: '你好，我是缪东旭，目前在北京。我长期在自动驾驶感知、量产系统和机器人开放任务一线工作，既关注关键算法与系统细节，也关注团队如何建立稳定交付、质量准出和持续迭代机制',
+        en: 'Hi, I am MiaoDX, based in Beijing. My work spans autonomous-driving perception, production systems and open-ended robotics. I care about both the critical engineering details and how teams build reliable delivery, quality gates and iteration loops',
+      },
+      {
+        zh: '近年的重点，是把数据与评测、可验证 Harness 和 AI Agent 工作流带进复杂系统研发，让执行过程更可追踪、结果更可判断、工程经验更可复用',
+        en: 'More recently, I have been bringing data and evaluation, verifiable harnesses and AI-agent workflows into complex-system development, making execution traceable, outcomes testable and engineering knowledge reusable',
       },
     ],
     pullquote: {
-      zh: '让更多人看到：AI Agent 不只是 demo，而是能真实创造交付价值的生产系统',
-      en: 'To show that AI Agents are not just demos — they are production systems that deliver real value',
+      zh: 'AI-Native 不是另一层工具，而是让复杂研发更快形成「目标—执行—验证—迭代」闭环',
+      en: 'AI-Native engineering is not another layer of tooling; it is a tighter loop from intent to execution, verification and iteration',
     },
     closing: {
-      zh: ['案例、复盘、演讲和月报都在 ', 'LIP', ''],
-      en: ['Case studies, retros, talks and monthly updates at ', 'LIP', ''],
+      zh: ['案例、复盘与演讲持续发布在 ', 'Learn in Public', ''],
+      en: ['Case studies, retrospectives and talks are published through ', 'Learn in Public', ''],
     },
     closingHref: 'https://miaodx.com/LIP/',
     tags: [
-      { zh: 'AI Coding', en: 'AI Coding' },
-      { zh: '多 Agent', en: 'Multi-Agent' },
+      { zh: '机器人系统', en: 'Robotics Systems' },
       { zh: '自动驾驶', en: 'Autonomous Driving' },
-      { zh: 'OpenClaw', en: 'OpenClaw' },
+      { zh: '算法工程化', en: 'Algorithm Engineering' },
+      { zh: '数据与评测', en: 'Data & Evaluation' },
+      { zh: 'AI-Native 研发', en: 'AI-Native Engineering' },
       { zh: 'Learn in Public', en: 'Learn in Public' },
     ],
   },
 
+  focus: [
+    {
+      index: '01',
+      title: { zh: '真实系统交付', en: 'Real-world delivery' },
+      body: {
+        zh: '把算法能力部署到受资源约束的产品系统，处理性能、集成、质量准出与跨模块协作',
+        en: 'Deploying algorithms into resource-constrained products across performance, integration, quality gates and cross-team execution',
+      },
+    },
+    {
+      index: '02',
+      title: { zh: '数据与评测闭环', en: 'Data & evaluation loops' },
+      body: {
+        zh: '用稳定的数据生产、批量评测、结果对比与失败回归，支撑模型和系统持续迭代',
+        en: 'Building stable data pipelines, batch evaluation, comparison and failure regression for continuous system improvement',
+      },
+    },
+    {
+      index: '03',
+      title: { zh: 'AI-Native 研发', en: 'AI-Native engineering' },
+      body: {
+        zh: '让清晰目标、可验证 Harness、Agent 执行与人工决策组成可追踪、可复用的研发闭环',
+        en: 'Connecting clear intent, verifiable harnesses, agent execution and human judgment into a traceable development loop',
+      },
+    },
+  ],
+
   experience: [
-    { year: '2025—', role: { zh: 'Robotics Team · XiaomiEV', en: 'Robotics Team · XiaomiEV' }, kind: 'current' },
-    { year: '2021—25', role: { zh: 'Perception Team Lead · XiaomiEV', en: 'Perception Team Lead · XiaomiEV' }, kind: 'lead' },
-    { year: '2019—21', role: { zh: 'DeepMotion.ai', en: 'DeepMotion.ai' }, kind: 'eng' },
-    { year: '2018', role: { zh: 'Horizon Robotics', en: 'Horizon Robotics' }, kind: 'eng' },
+    { year: '2025—', role: { zh: '小米汽车 · 机器人实验室 · 高级算法工程师', en: 'Robotics Lab · Xiaomi EV · Senior Algorithm Engineer' }, kind: 'current' },
+    { year: '2021—25', role: { zh: '小米汽车 · 自驾感知系统团队负责人', en: 'Perception Systems Lead · Xiaomi EV' }, kind: 'lead' },
+    { year: '2019—21', role: { zh: 'DeepMotion.ai · 算法工程师', en: 'Algorithm Engineer · DeepMotion.ai' }, kind: 'eng' },
+    { year: '2018', role: { zh: '地平线机器人 · 算法工程师', en: 'Algorithm Engineer · Horizon Robotics' }, kind: 'eng' },
     { year: '2016—18', role: { zh: '天津大学 · 硕士', en: 'Tianjin University · M.S.' }, kind: 'edu' },
     { year: '2012—16', role: { zh: '西安电子科技大学 · 本科', en: 'Xidian University · B.S.' }, kind: 'edu' },
   ],
 
   photos: [
-    { src: 'images/events/2026-04/0426-forge.jpg', caption: { zh: '04.26 · 手工川 AI 创造营第一期', en: '04.26 · Forge AI Bootcamp #1' }, file: '0426_forge-bootcamp.jpg', tag: 'meetup' },
+    { src: 'images/events/2026-06/0602-roboharness-hackathon.png', caption: { zh: '06.02 · Roboharness 一等奖分享', en: '06.02 · Roboharness first-prize talk' }, file: '0602_roboharness.jpg', tag: 'project' },
+    { src: 'images/events/2026-05/0513-ultrathink-to-goal.png', caption: { zh: '05.13 · AI Coding 工程化分享', en: '05.13 · AI Coding engineering talk' }, file: '0513_ai-coding-engineering.jpg', tag: 'talk' },
     { src: 'images/events/2026-04/0426-meetup.jpg', caption: { zh: '04.26 · 直觉机器漫谈 Meetup', en: '04.26 · Intuition Machine Meetup' }, file: '0426_intuition-machine.jpg', tag: 'talk' },
     { src: 'images/events/2026-03/0324-raise-lab-share.png', caption: { zh: '03.24 · Raise Lab 分享', en: '03.24 · Raise Lab talk' }, file: '0324_raise-lab-share.png', tag: 'talk' },
-    { src: 'images/events/2026-03/0315-share-photo.jpg', caption: { zh: '03.15 · 龙虾蜕壳 Meetup', en: '03.15 · Lobster Molt Meetup' }, file: '0315_lobster-molt.jpg', tag: 'meetup' },
-    { src: 'images/events/2026-03/0314-group-photo.jpg', caption: { zh: '03.14 · OpenClaw 大会合影', en: '03.14 · OpenClaw conference' }, file: '0314_openclaw-group.jpg', tag: 'conf' },
-    { src: 'images/events/2026-03/0314-on-stage.jpg', caption: { zh: '03.14 · OpenClaw 现场', en: '03.14 · OpenClaw live' }, file: '0314_on-stage.jpg', tag: 'stage' },
-    { src: 'share/meetup-photo-1.jpg', caption: { zh: '04.10 · 两只 Claw 的茶水间', en: '04.10 · Two Claws\' Tea Room' }, file: '0410_two-claws-meetup.jpg', tag: 'meetup' },
     { src: 'images/events/2026-03/0310-talk-screenshot.jpg', caption: { zh: '03.10 · AI Coding 宣讲', en: '03.10 · AI Coding talk' }, file: '0310_ai-coding-talk.jpg', tag: 'talk' },
   ],
 
   projects: [
-    {
-      name: 'RoboClaws',
-      slug: 'roboclaws',
-      tagline: {
-        zh: '面向机器人开放任务的 AI Agent / 机器人大脑框架 — 用 MCP、Skill 与 Agent SDK 组织机器人能力',
-        en: 'AI Agent / robot brain framework for open-ended robot tasks — organizing robot capabilities with MCP, Skills and Agent SDK',
-      },
-      status: 'active',
-      links: [
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/roboclaws' },
-      ],
-    },
     {
       name: 'Roboharness',
       slug: 'roboharness',
@@ -110,12 +131,37 @@ const SITE_CONTENT = {
         { label: { zh: '在线报告', en: 'Report' }, href: 'https://miaodx.com/roboharness/' },
       ],
     },
+    {
+      name: 'RoboClaws',
+      slug: 'roboclaws',
+      tagline: {
+        zh: '面向机器人开放任务的 AI Agent / 机器人大脑框架 — 用 MCP、Skill 与 Agent SDK 组织机器人能力',
+        en: 'AI Agent / robot brain framework for open-ended robot tasks — organizing robot capabilities with MCP, Skills and Agent SDK',
+      },
+      status: 'active',
+      links: [
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/roboclaws' },
+      ],
+    },
+    {
+      name: 'Intuitive Flow',
+      slug: 'intuitive-flow',
+      tagline: {
+        zh: '面向 agent-written software 的可移植工作流工具包 — 组织目标澄清、计划、执行、验证与持续熵减',
+        en: 'Portable workflows for agent-written software — organizing intent, planning, execution, verification and ongoing entropy reduction',
+      },
+      status: 'active',
+      links: [
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/intuitive-flow' },
+      ],
+    },
   ],
 
   events: [
     {
       date: '2026-06-02',
       short: '06.02',
+      featured: true,
       title: {
         zh: '自驾内部 Hackathon · Roboharness 一等奖分享',
         en: 'AD Internal Hackathon · Roboharness First Prize Talk',
@@ -133,6 +179,7 @@ const SITE_CONTENT = {
     {
       date: '2026-05-13',
       short: '05.13',
+      featured: true,
       title: {
         zh: '从 Ultrathink 到 Goal：AI Coding 工程化的一年',
         en: 'From Ultrathink to Goal: A Year of AI Coding Engineering',
@@ -167,6 +214,7 @@ const SITE_CONTENT = {
     {
       date: '2026-04-26',
       short: '04.26',
+      featured: true,
       title: {
         zh: '直觉机器漫谈 · 借助 Claude Code Routine 把想法快速完成 0 到 1',
         en: 'Intuition Machine Meetup · From 0 to 1 with Claude Code Routine',
@@ -201,6 +249,7 @@ const SITE_CONTENT = {
     {
       date: '2026-03-24',
       short: '03.24',
+      featured: true,
       title: {
         zh: 'Raise Lab · AI Coding for Research 分享',
         en: 'Raise Lab · AI Coding for Research Talk',
@@ -298,10 +347,10 @@ const SITE_CONTENT = {
 
   footer: {
     left: {
-      zh: '自驾与机器人研发工程师\nLIP 实践者 — Learn in public\nOPC 实践者 — One Person, plus multi Claws\n白天和 claude code + codex 一起给机器人写（refactor 解）bug\n其他时间和 AI Agents 一起花费 token，做更多有趣的事',
-      en: 'Autonomous Driving & Robotics Engineer\nLIP Practitioner — Learn in public\nOPC Practitioner — One Person, plus multi Claws\nDaytime: writing (and refactoring) robot bugs with Claude Code + Codex\nOther times: spending tokens with AI Agents to do more interesting things',
+      zh: '机器人与自动驾驶技术负责人\n算法工程化 · 数据与评测 · AI-Native 研发\n持续公开构建，持续复盘',
+      en: 'Engineering leader in robotics and autonomous driving\nAlgorithm engineering · Data & evaluation · AI-Native development\nBuilding and learning in public',
     },
-    right: { zh: '北京 · 2026', en: 'Beijing · 2026' },
+    right: { zh: '北京 · MiaoDX', en: 'Beijing · MiaoDX' },
   },
 };
 
