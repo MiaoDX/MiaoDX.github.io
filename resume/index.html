@@ -266,7 +266,7 @@
     <nav class="topbar">
       <a class="back" href="../">← miaodx.com</a>
       <div class="actions">
-        <a id="brief-link" class="btn" href="https://miaodx.com/LIP/consult/ai-native-algorithm-engineering.html">AI-Native 专题</a>
+        <a id="work-timeline-link" class="btn" href="https://miaodx.com/LIP/share/work-timeline.html">工作 Timeline</a>
         <a id="pdf-link" class="btn primary" href="./miao-dongxu-resume-zh-2026-07.pdf" download>下载 PDF</a>
       </div>
     </nav>
@@ -276,7 +276,7 @@
   <script src="./resume-data.js"></script>
   <script>
     const data = window.RESUME_DATA;
-    document.getElementById('brief-link').href = data.contacts.aiNativeBrief;
+    document.getElementById('work-timeline-link').href = data.contacts.workTimeline;
     document.getElementById('pdf-link').href = './' + data.pdfFile;
 
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({

@@ -14,7 +14,7 @@ const RESUME_DATA = {
     phone: '13502009660',
     github: 'https://github.com/MiaoDX',
     website: 'https://miaodx.com',
-    aiNativeBrief: 'https://miaodx.com/LIP/consult/ai-native-algorithm-engineering.html',
+    workTimeline: 'https://miaodx.com/LIP/share/work-timeline.html',
     publicAccount: '直觉机器漫谈',
   },
   highlights: [

@@ -35,7 +35,7 @@ const SITE_CONTENT = {
       { label: { zh: '代表工作', en: 'Selected work' }, href: '#work', primary: true },
       { label: { zh: '文章与分享', en: 'Writing & talks' }, href: 'https://miaodx.com/LIP/' },
       { label: { zh: '简历', en: 'Resume' }, href: 'resume/' },
-      { label: { zh: 'AI-Native 专题', en: 'AI-Native brief' }, href: 'https://miaodx.com/LIP/consult/ai-native-algorithm-engineering.html' },
+      { label: { zh: '工作 Timeline', en: 'Work timeline' }, href: 'https://miaodx.com/LIP/share/work-timeline.html' },
     ],
   },
 
