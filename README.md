@@ -32,6 +32,18 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
+When this repository is initialized as `sites/miaodx.com/` inside the LIP
+workspace, the parent repository also provides:
+
+```sh
+npm run site:dev
+# → http://localhost:8001
+```
+
+The personal site remains an independent repository and deployment unit.
+Commit and push changes here first, then update the `sites/miaodx.com` gitlink
+in LIP. Do not maintain a second sibling checkout as another content source.
+
 ## Deployment
 
 Pushes to `main` run `.github/workflows/deploy.yml`. The workflow stages the
