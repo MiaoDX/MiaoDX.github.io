@@ -110,7 +110,7 @@ const SITE_CONTENT = {
   ],
 
   photos: [
-    { src: 'images/events/2026-06/0602-roboharness-hackathon.png', caption: { zh: '06.02 · Roboharness 一等奖分享', en: '06.02 · Roboharness first-prize talk' }, file: '0602_roboharness.jpg', tag: 'project' },
+    { src: 'images/events/2026-06/0602-roboharness-hackathon.png', caption: { zh: '06.02 · RoboHarness 一等奖分享', en: '06.02 · RoboHarness first-prize talk' }, file: '0602_roboharness.jpg', tag: 'project' },
     { src: 'images/events/2026-05/0513-ultrathink-to-goal.png', caption: { zh: '05.13 · AI Coding 工程化分享', en: '05.13 · AI Coding engineering talk' }, file: '0513_ai-coding-engineering.jpg', tag: 'talk' },
     { src: 'images/events/2026-04/0426-meetup.jpg', caption: { zh: '04.26 · 直觉机器漫谈 Meetup', en: '04.26 · Intuition Machine Meetup' }, file: '0426_intuition-machine.jpg', tag: 'talk' },
     { src: 'images/events/2026-03/0324-raise-lab-share.png', caption: { zh: '03.24 · Raise Lab 分享', en: '03.24 · Raise Lab talk' }, file: '0324_raise-lab-share.png', tag: 'talk' },
@@ -119,11 +119,11 @@ const SITE_CONTENT = {
 
   projects: [
     {
-      name: 'Roboharness',
+      name: 'RoboHarness',
       slug: 'roboharness',
       tagline: {
-        zh: '面向 AI coding agent 的机器人仿真测试与验收框架 — 让 agent 看到机器人动作、判断结果并迭代',
-        en: 'Robot simulation testing and acceptance framework for AI coding agents — let agents see robot actions, judge outcomes and iterate',
+        zh: '面向 AI Coding Agent 的机器人仿真测试与验收框架 — 让 Agent 看到机器人动作、判断结果并迭代',
+        en: 'Robot simulation testing and acceptance framework for AI Coding Agents — let Agents see robot actions, judge outcomes and iterate',
       },
       status: 'active',
       links: [
@@ -147,7 +147,7 @@ const SITE_CONTENT = {
       name: 'Intuitive Flow',
       slug: 'intuitive-flow',
       tagline: {
-        zh: '面向 agent-written software 的可移植工作流工具包 — 组织目标澄清、计划、执行、验证与持续熵减',
+        zh: '面向 Agent 软件开发的可移植工作流工具包 — 组织目标澄清、计划、执行、验证以及长期维护与简化',
         en: 'Portable workflows for agent-written software — organizing intent, planning, execution, verification and ongoing entropy reduction',
       },
       status: 'active',
@@ -163,12 +163,12 @@ const SITE_CONTENT = {
       short: '06.02',
       featured: true,
       title: {
-        zh: '自驾内部 Hackathon · Roboharness 一等奖分享',
-        en: 'AD Internal Hackathon · Roboharness First Prize Talk',
+        zh: '自驾内部 Hackathon · RoboHarness 一等奖分享',
+        en: 'AD Internal Hackathon · RoboHarness First Prize Talk',
       },
       desc: {
-        zh: '我们在自驾内部 Hackathon 中凭 Roboharness 获得一等奖，并分享了从真实机器人项目抽出来的 Agent 验收层：metric + visual harness 让长程 AI coding 任务可验证、可迭代',
-        en: 'Roboharness won first prize at the autonomous driving internal hackathon, followed by a talk on the agent acceptance layer extracted from real robotics work: metric + visual harness for verifiable long-horizon AI coding tasks',
+        zh: '我们在自驾内部 Hackathon 中凭 RoboHarness 获得一等奖，并分享了从真实机器人项目抽出来的 Agent 验收层：指标与可视化验收框架让长程 AI Coding 任务可验证、可迭代',
+        en: 'RoboHarness won first prize at the autonomous driving internal hackathon, followed by a talk on the Agent acceptance layer extracted from real robotics work: metric + visual harness for verifiable long-horizon AI Coding tasks',
       },
       links: [
         { label: { zh: '完整分享', en: 'Full talk' }, href: 'https://miaodx.com/LIP/ai-coding/roboharness-self-evaluating-agents' },
@@ -185,7 +185,7 @@ const SITE_CONTENT = {
         en: 'From Ultrathink to Goal: A Year of AI Coding Engineering',
       },
       desc: {
-        zh: '汽车人 AI 进化论第 09 期，50 min lecture：同模型换 harness 差 25pp，Skill / Context / Verification 三轴拆解 Claude Code 405 个版本',
+        zh: '汽车人 AI 进化论第 09 期，50 min lecture：同一模型更换验收框架相差 25pp，Skill / Context / Verification 三轴拆解 Claude Code 405 个版本',
         en: 'Autobot AI Evolution #09, 50 min lecture: 25pp gap from harness alone, Skill / Context / Verification axis across Claude Code 405 releases',
       },
       links: [

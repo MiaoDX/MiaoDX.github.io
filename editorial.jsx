@@ -361,7 +361,7 @@ const EditorialDesign = ({ lang = 'zh', onLightbox }) => {
 
       <section id="work" className="ed-section">
         <div className="ed-section-label">02 / {lang === 'zh' ? '代表工作' : 'Selected Work'}</div>
-        <h2>{lang === 'zh' ? '把方法沉淀为可验证的工程系统' : 'Methods made concrete in verifiable systems'}</h2>
+        <h2>{lang === 'zh' ? '把方法转化为可验证的工程系统' : 'Methods made concrete in verifiable systems'}</h2>
         <div className="ed-projects">
           {C.projects.map((pr, i) => (
             <div key={i} className="ed-project">
