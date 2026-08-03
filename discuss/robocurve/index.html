@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Conversation with RoboCurve — Robot Evaluation & Inference</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: rgba(18, 32, 52, 0.84);
+      --panel-strong: #14243a;
+      --text: #f4f7fb;
+      --muted: #a9b9cd;
+      --teal: #44d4c4;
+      --teal-soft: rgba(68, 212, 196, 0.14);
+      --blue: #7aa9ff;
+      --blue-soft: rgba(122, 169, 255, 0.13);
+      --amber: #ffca72;
+      --rose: #ff8da1;
+      --line: rgba(190, 211, 236, 0.18);
+      --shadow: 0 22px 65px rgba(0, 0, 0, 0.3);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(58, 110, 190, 0.18), transparent 31rem),
+        radial-gradient(circle at 12% 74%, rgba(38, 177, 162, 0.12), transparent 28rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: clamp(17px, 1.35vw, 22px);
+      line-height: 1.56;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--teal); text-underline-offset: 0.18em; }
+    a:hover { color: #79eee1; }
+
+    button { font: inherit; }
+
+    .progress {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      box-shadow: 0 0 18px rgba(68, 212, 196, 0.55);
+      transition: width 220ms ease;
+    }
+
+    .toolbar {
+      position: fixed;
+      z-index: 90;
+      top: 18px;
+      right: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(7, 16, 29, 0.72);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(18px);
+    }
+
+    .toolbar button {
+      min-width: 38px;
+      height: 36px;
+      padding: 0 11px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .toolbar button:hover,
+    .toolbar button:focus-visible { background: var(--teal-soft); outline: none; }
+
+    .counter {
+      min-width: 62px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.78em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .slide {
+      position: relative;
+      display: flex;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      align-items: center;
+      padding: clamp(64px, 8vh, 94px) clamp(28px, 6vw, 90px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .slide::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      opacity: 0.72;
+      pointer-events: none;
+    }
+
+    .slide:nth-of-type(3n + 1)::before {
+      background: linear-gradient(145deg, rgba(38, 83, 138, 0.12), transparent 46%);
+    }
+
+    .slide:nth-of-type(3n + 2)::before {
+      background: linear-gradient(25deg, rgba(32, 136, 124, 0.09), transparent 48%);
+    }
+
+    .frame {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55em;
+      margin-bottom: 0.9rem;
+      color: var(--teal);
+      font-weight: 750;
+      font-size: 0.78em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 30px;
+      height: 2px;
+      content: "";
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 1000px;
+      margin-bottom: 0.55em;
+      font-size: clamp(3rem, 7vw, 6.7rem);
+      font-weight: 820;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    h2 {
+      margin-bottom: 0.65em;
+      font-size: clamp(2.05rem, 4vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin-bottom: 0.55em;
+      font-size: 1.08em;
+      line-height: 1.25;
+    }
+
+    .lead {
+      max-width: 950px;
+      color: #dbe6f3;
+      font-size: clamp(1.18rem, 2.3vw, 2rem);
+      line-height: 1.42;
+    }
+
+    .muted { color: var(--muted); }
+    .accent { color: var(--teal); }
+    .blue { color: var(--blue); }
+    .amber { color: var(--amber); }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2.1rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42em 0.8em;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.035);
+      font-size: 0.83em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      padding: clamp(19px, 2.3vw, 29px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .card.teal { background: linear-gradient(145deg, var(--teal-soft), var(--panel)); }
+    .card.blue-card { background: linear-gradient(145deg, var(--blue-soft), var(--panel)); }
+
+    .card p:last-child,
+    .card ul:last-child { margin-bottom: 0; }
+
+    ul.clean {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    ul.clean li {
+      position: relative;
+      margin: 0.55em 0;
+      padding-left: 1.2em;
+    }
+
+    ul.clean li::before {
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      content: "•";
+    }
+
+    .question {
+      margin-top: 1.3rem;
+      padding: 1rem 1.2rem;
+      border-left: 4px solid var(--teal);
+      border-radius: 0 14px 14px 0;
+      color: #eefafa;
+      background: rgba(68, 212, 196, 0.09);
+      font-size: 1.02em;
+      font-weight: 690;
+      line-height: 1.42;
+    }
+
+    .question.blue-q {
+      border-left-color: var(--blue);
+      background: rgba(122, 169, 255, 0.09);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin-top: 1.2rem;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 92px minmax(170px, 0.8fr) 2.25fr;
+      gap: 18px;
+      align-items: center;
+      padding: 0.65em 0.85em;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .timeline-row:hover { border-color: var(--line); }
+    .time { color: var(--teal); font-weight: 760; font-variant-numeric: tabular-nums; }
+    .topic { font-weight: 720; }
+    .prompt { color: var(--muted); font-size: 0.93em; }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 1.2rem 0;
+    }
+
+    .flow .node {
+      padding: 0.58em 0.78em;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.045);
+      font-size: 0.88em;
+      font-weight: 680;
+      white-space: nowrap;
+    }
+
+    .flow .node.hot {
+      border-color: rgba(68, 212, 196, 0.5);
+      color: #e8fffc;
+      background: var(--teal-soft);
+    }
+
+    .arrow { color: var(--muted); font-weight: 800; }
+
+    .decision-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .decision-list li {
+      padding: 0.62em 0.75em;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #dbe7f4;
+      background: rgba(255, 255, 255, 0.035);
+      font-size: 0.9em;
+    }
+
+    .protocol {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .protocol span {
+      padding: 0.65em 0.7em;
+      border: 1px solid rgba(122, 169, 255, 0.25);
+      border-radius: 12px;
+      color: #dce7ff;
+      background: var(--blue-soft);
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78em;
+    }
+
+    .ladder {
+      display: grid;
+      gap: 10px;
+      margin: 1rem 0;
+    }
+
+    .rung {
+      display: grid;
+      grid-template-columns: 42px minmax(180px, 0.85fr) 2fr;
+      gap: 15px;
+      align-items: center;
+      width: calc(72% + var(--i) * 6%);
+      padding: 0.65em 0.8em;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(68, 212, 196, 0.1), rgba(122, 169, 255, 0.06));
+    }
+
+    .rung .num {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--bg);
+      background: var(--teal);
+      font-size: 0.78em;
+      font-weight: 850;
+    }
+
+    .rung strong { font-size: 0.92em; }
+    .rung small { color: var(--muted); font-size: 0.8em; }
+
+    .evidence {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .evidence div {
+      padding: 0.65em 0.7em;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.035);
+      font-size: 0.82em;
+    }
+
+    .ecosystem {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr 1.15fr;
+      gap: 14px;
+      margin-top: 1rem;
+    }
+
+    .layer {
+      min-height: 135px;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+    }
+
+    .layer.anchor {
+      border-color: rgba(68, 212, 196, 0.58);
+      background: rgba(68, 212, 196, 0.1);
+      box-shadow: 0 0 36px rgba(68, 212, 196, 0.08);
+    }
+
+    .layer .name {
+      display: block;
+      margin-bottom: 0.45em;
+      color: var(--teal);
+      font-size: 0.78em;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .layer p { margin-bottom: 0; color: var(--muted); font-size: 0.83em; }
+
+    .big-three {
+      display: grid;
+      gap: 15px;
+      margin: 1.5rem 0;
+      counter-reset: keyq;
+    }
+
+    .big-three .item {
+      position: relative;
+      padding: 0.9em 1em 0.9em 3.4em;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 1.03em;
+      font-weight: 680;
+      counter-increment: keyq;
+    }
+
+    .big-three .item::before {
+      position: absolute;
+      left: 0.85em;
+      top: 50%;
+      display: grid;
+      width: 1.9em;
+      height: 1.9em;
+      content: counter(keyq);
+      place-items: center;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      color: var(--bg);
+      background: linear-gradient(135deg, var(--teal), #9ce7ff);
+      font-weight: 900;
+    }
+
+    .footer-note {
+      position: absolute;
+      right: clamp(28px, 6vw, 90px);
+      bottom: 24px;
+      color: rgba(169, 185, 205, 0.58);
+      font-size: 0.7em;
+    }
+
+    .cover .frame { padding-top: 2vh; }
+
+    .cover-mark {
+      display: inline-grid;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 1.6rem;
+      place-items: center;
+      border: 1px solid rgba(68, 212, 196, 0.55);
+      border-radius: 18px;
+      color: var(--teal);
+      background: var(--teal-soft);
+      box-shadow: 0 0 40px rgba(68, 212, 196, 0.16);
+      font-weight: 900;
+    }
+
+    .opening {
+      max-width: 1060px;
+      margin-top: 1.4rem;
+      padding: 1.2rem 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: #d9e4f0;
+      background: rgba(255, 255, 255, 0.035);
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 900px) {
+      html { scroll-snap-type: y proximity; }
+      .slide { min-height: 100vh; align-items: flex-start; padding-top: 76px; }
+      .grid.two, .grid.three, .ecosystem { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 72px 1fr; }
+      .timeline-row .prompt { grid-column: 2; }
+      .decision-list, .protocol, .evidence { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rung { width: 100%; grid-template-columns: 38px 1fr; }
+      .rung small { grid-column: 2; }
+      .toolbar { top: auto; right: 12px; bottom: 12px; }
+      .footer-note { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .decision-list, .protocol, .evidence { grid-template-columns: 1fr; }
+      .toolbar button.full { display: none; }
+    }
+
+    @media print {
+      @page { size: landscape; margin: 0; }
+      html { scroll-snap-type: none; }
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .toolbar, .progress { display: none !important; }
+      .slide {
+        min-height: 100vh;
+        break-after: page;
+        page-break-after: always;
+      }
+      a { color: var(--teal); text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <nav class="toolbar" aria-label="Presentation navigation">
+    <button type="button" id="prev" aria-label="Previous slide" title="Previous slide (Left Arrow / PageUp)">←</button>
+    <span class="counter" id="counter">1 / 9</span>
+    <button type="button" id="next" aria-label="Next slide" title="Next slide (Right Arrow / PageDown)">→</button>
+    <button type="button" class="full" id="fullscreen" title="Full screen (F)">Full screen</button>
+  </nav>
+
+  <main>
+    <section class="slide cover" id="cover" data-title="Opening">
+      <div class="frame">
+        <div class="cover-mark">RC</div>
+        <div class="eyebrow">Conversation with RoboCurve</div>
+        <h1>Robot Evaluation<br><span class="accent">× Inference</span></h1>
+        <p class="lead">As the building blocks mature, which problems remain genuinely hard and worth sustained investment?</p>
+        <div class="opening">
+          <strong>Central question:</strong> Should robot evaluation remain a benchmark runner, or reuse the real deployment path to produce auditable, comparable evidence?
+        </div>
+        <div class="meta">
+          <span class="pill">30 min</span>
+          <span class="pill">Peer conversation</span>
+          <span class="pill">2026-08-03</span>
+        </div>
+      </div>
+      <div class="footer-note">Arrow keys / PageUp / PageDown to navigate · F for full screen</div>
+    </section>
+
+    <section class="slide" id="agenda" data-title="Conversation Flow">
+      <div class="frame">
+        <div class="eyebrow">Conversation Flow</div>
+        <h2>Five questions for a 30-minute conversation</h2>
+        <div class="timeline">
+          <div class="timeline-row"><span class="time">0–3</span><span class="topic">Shared observation</span><span class="prompt">What is becoming cheaper, and what still resists tooling?</span></div>
+          <div class="timeline-row"><span class="time">3–9</span><span class="topic">Eval ↔ deployment</span><span class="prompt">Does a score belong to a model or a complete running system?</span></div>
+          <div class="timeline-row"><span class="time">9–15</span><span class="topic">Inference runtime</span><span class="prompt">How should async execution, thinking, chunk fusion, and deadlines work?</span></div>
+          <div class="timeline-row"><span class="time">15–20</span><span class="topic">Isolation & protocol</span><span class="prompt">Standardize Python, environment recipes, or a process protocol?</span></div>
+          <div class="timeline-row"><span class="time">20–25</span><span class="topic">Simulation</span><span class="prompt">CI, stress testing, or a proxy for real-world evaluation?</span></div>
+          <div class="timeline-row"><span class="time">25–29</span><span class="topic">Continuous evidence</span><span class="prompt">How do we audit, attribute, and run continuous regression?</span></div>
+          <div class="timeline-row"><span class="time">29–30</span><span class="topic">Closing</span><span class="prompt">Which layer is most worth solving together?</span></div>
+        </div>
+        <p class="muted" style="margin-top:1rem">We do not need to cover everything; if one direction resonates, we can stay with it</p>
+      </div>
+      <div class="footer-note">02 / Discussion flow</div>
+    </section>
+
+    <section class="slide" id="lifecycle" data-title="Evaluation Boundary">
+      <div class="frame">
+        <div class="eyebrow">01 · Eval ↔ Deployment</div>
+        <h2>Evaluation is more than <span class="accent">obs → action → success</span></h2>
+        <div class="flow" aria-label="Real-world robot evaluation lifecycle">
+          <span class="node">Bring-up</span><span class="arrow">→</span>
+          <span class="node">Calibration</span><span class="arrow">→</span>
+          <span class="node">Reset</span><span class="arrow">→</span>
+          <span class="node">Warm-up</span><span class="arrow">→</span>
+          <span class="node hot">Rollout</span><span class="arrow">→</span>
+          <span class="node hot">Detect failure</span><span class="arrow">→</span>
+          <span class="node hot">Recover / Assist</span><span class="arrow">→</span>
+          <span class="node">Score</span><span class="arrow">→</span>
+          <span class="node">Cleanup</span>
+        </div>
+        <div class="grid two">
+          <div class="card teal">
+            <h3>What does deployment add?</h3>
+            <ul class="clean">
+              <li>Timeouts, disconnects, driver faults, and safety stops</li>
+              <li>Policy recovery, operator intervention, and retries</li>
+              <li>Reset, scene preparation, calibration, and hardware drift</li>
+              <li>Controller, normalizer, and hardware differences</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Failure attribution</h3>
+            <ul class="clean">
+              <li>Model / perception failure</li>
+              <li>Adapter / semantics failure</li>
+              <li>Runtime / transport failure</li>
+              <li>Hardware / operator failure</li>
+            </ul>
+          </div>
+        </div>
+        <div class="question">What is the smallest end-to-end unit that deserves a score: a checkpoint, a policy runtime, or the complete deployed system?</div>
+      </div>
+      <div class="footer-note">03 / Evaluation boundary</div>
+    </section>
+
+    <section class="slide" id="execution" data-title="Execution Semantics">
+      <div class="frame">
+        <div class="eyebrow">02 · Inference Runtime</div>
+        <h2><span class="accent">Think while acting</span>: speedups can change behavior</h2>
+        <div class="grid two">
+          <div class="card blue-card">
+            <h3>Asynchronous execution pipeline</h3>
+            <div class="flow">
+              <span class="node">Sensors</span><span class="arrow">→</span>
+              <span class="node hot">Policy thinking</span><span class="arrow">→</span>
+              <span class="node">Chunk buffer</span><span class="arrow">→</span>
+              <span class="node">Controller</span><span class="arrow">→</span>
+              <span class="node hot">Robot</span>
+            </div>
+            <p class="muted">Sensing, inference, and action execution overlap; an old chunk may still be running when a new one arrives</p>
+          </div>
+          <div class="card">
+            <h3>Semantics that must be explicit</h3>
+            <ul class="decision-list">
+              <li>Open-loop / receding horizon</li>
+              <li>Temporal ensemble / fusion</li>
+              <li>Preempt / cancel stale chunk</li>
+              <li>Buffer empty: hold or stop?</li>
+              <li>Wall clock / paused sim time</li>
+              <li>GPU batch / deadline jitter</li>
+            </ul>
+          </div>
+        </div>
+        <div class="question">Who owns action execution semantics: the model, the policy server, the evaluator, or the robot controller?</div>
+        <div class="question blue-q">How can evaluation be parallelized without changing the behavior that would occur in deployment?</div>
+      </div>
+      <div class="footer-note">04 / Async inference & action chunks</div>
+    </section>
+
+    <section class="slide" id="protocol" data-title="Isolation & Protocol">
+      <div class="frame">
+        <div class="eyebrow">03 · Isolation & Interop</div>
+        <h2>Standardize the <span class="blue">boundary</span>, not every Python environment</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Deployment options</h3>
+            <ul class="clean">
+              <li><strong>Same process:</strong> simple and low-latency, but fragile dependencies</li>
+              <li><strong>Conda / uv:</strong> isolate model and simulator environments</li>
+              <li><strong>Docker / OCI:</strong> easier to archive and run remotely</li>
+              <li><strong>Remote host:</strong> closer to robot and security boundaries</li>
+            </ul>
+          </div>
+          <div class="card teal">
+            <h3>The reusable contract</h3>
+            <p class="muted">Environments may differ, but lifecycle, timing, and action semantics must remain consistent</p>
+            <div class="protocol">
+              <span>handshake</span><span>describe</span><span>reset</span><span>observe/act</span>
+              <span>deadline</span><span>cancel</span><span>health</span><span>shutdown</span>
+            </div>
+          </div>
+        </div>
+        <div class="question">Should the ecosystem converge on one Python runtime, or on a versioned process protocol plus conformance tests?</div>
+        <div class="question blue-q">What should be portable: source code, an environment, a policy service, or a signed deployment artifact?</div>
+      </div>
+      <div class="footer-note">05 / Process boundary</div>
+    </section>
+
+    <section class="slide" id="simulation" data-title="Simulation Strategy">
+      <div class="frame">
+        <div class="eyebrow">04 · Simulation Strategy</div>
+        <h2>Simulation is not one backend; it is an <span class="accent">evidence ladder</span></h2>
+        <div class="ladder">
+          <div class="rung" style="--i:0"><span class="num">1</span><strong>Smoke / CI</strong><small>Interface, shape, reset, camera, and action contract</small></div>
+          <div class="rung" style="--i:1"><span class="num">2</span><strong>Native reproduction</strong><small>Preserve the upstream evaluator, terminal semantics, and published baseline</small></div>
+          <div class="rung" style="--i:2"><span class="num">3</span><strong>Stress & robustness</strong><small>Domain randomization, latency, noise, and edge cases</small></div>
+          <div class="rung" style="--i:3"><span class="num">4</span><strong>Real-world screening</strong><small>Reject weak candidates before spending robot-hours</small></div>
+          <div class="rung" style="--i:4"><span class="num">5</span><strong>Sim-real calibration</strong><small>Test correlation in rankings, failure modes, and intervention needs</small></div>
+        </div>
+        <div class="grid two">
+          <div class="question">What simulation evidence is strong enough to justify or predict a real-world claim?</div>
+          <div class="question blue-q">Is the goal to unify simulators—or preserve native semantics while standardizing evidence?</div>
+        </div>
+      </div>
+      <div class="footer-note">06 / Simulation as evidence</div>
+    </section>
+
+    <section class="slide" id="evidence" data-title="Continuous Evidence">
+      <div class="frame">
+        <div class="eyebrow">05 · Continuous Evaluation</div>
+        <h2>From a one-off leaderboard to <span class="accent">continuous capability evidence</span></h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Any change can introduce regression</h3>
+            <ul class="clean">
+              <li>Checkpoint / quantization / inference engine</li>
+              <li>Normalizer / controller / chunk strategy</li>
+              <li>Camera / firmware / driver / calibration</li>
+              <li>CUDA / physics / renderer / assets</li>
+              <li>Hardware wear / lighting / operator behavior</li>
+            </ul>
+          </div>
+          <div class="card teal">
+            <h3>What should each run preserve?</h3>
+            <div class="evidence">
+              <div>Weights & code identity</div><div>Runtime & controller</div><div>Action semantics</div>
+              <div>Env & asset digest</div><div>Hardware & calibration</div><div>Full event timeline</div>
+              <div>Latency & dropped data</div><div>Assist / retry / reset</div><div>Failure taxonomy</div>
+            </div>
+          </div>
+        </div>
+        <div class="question">How do we distinguish genuine policy improvement from changes in the runtime, simulator, operator, or physical rig?</div>
+        <div class="question blue-q">Can another team audit a score using only its artifact manifest and trace?</div>
+      </div>
+      <div class="footer-note">07 / Evidence & regression</div>
+    </section>
+
+    <section class="slide" id="ecosystem" data-title="Ecosystem Boundaries">
+      <div class="frame">
+        <div class="eyebrow">RoboCurve & the Ecosystem</div>
+        <h2>Where should <span class="accent">Inspect Robots</span> draw its boundary?</h2>
+        <div class="ecosystem">
+          <div class="layer anchor"><span class="name">Discussion Anchor</span><strong>RoboCurve · Inspect Robots</strong><p>Current product surface: Task / Policy / Embodiment, operator workflow, safety, and EvalLog</p></div>
+          <div class="layer"><span class="name">Models & Data</span><strong>LeRobot · OpenPI</strong><p>Policy artifacts, datasets, hardware interfaces, and model distribution</p></div>
+          <div class="layer"><span class="name">Policy Serving</span><strong>XPolicyLab</strong><p>Model isolation, observation/action contracts, and sim-real serving</p></div>
+          <div class="layer"><span class="name">Sim Evaluation</span><strong>vla-eval · RoboDojo</strong><p>Benchmark execution, parallelism, reproducibility, and simulation leaderboards</p></div>
+          <div class="layer"><span class="name">Evidence & Debugging</span><strong>Rerun · Copper</strong><p>Multimodal traces, record/replay, failure attribution, and regression</p></div>
+          <div class="layer"><span class="name">Measurement Approaches</span><strong>PhAIL · RoboArena</strong><p>Industrial metrics, methodology, trusted execution, and distributed validation</p></div>
+        </div>
+        <div class="grid three" style="margin-top:1rem">
+          <div class="card"><h3>Safety</h3><p class="muted">Which layer owns the final action veto and responsibility?</p></div>
+          <div class="card"><h3>OSS ownership</h3><p class="muted">How should core, vendor, and community adapters be tiered?</p></div>
+          <div class="card"><h3>Distributed real eval</h3><p class="muted">How should standardization trade off against real-world diversity?</p></div>
+        </div>
+      </div>
+      <div class="footer-note">08 / What is still missing?</div>
+    </section>
+
+    <section class="slide" id="close" data-title="Closing">
+      <div class="frame">
+        <div class="eyebrow">If Time Is Short</div>
+        <h2>Three questions to keep</h2>
+        <div class="big-three">
+          <div class="item">What is the smallest end-to-end unit that deserves a score: a model, a policy runtime, or a deployed system?</div>
+          <div class="item">Who owns async execution, thinking time, action-chunk fusion, recovery, and real-time deadlines?</div>
+          <div class="item">What simulation evidence is strong enough to predict or justify a real-world result?</div>
+        </div>
+        <div class="opening">
+          <strong>A closing thought:</strong><br>
+          I think the interesting question is less about which framework wins, and more about which contracts and evidence the ecosystem should converge on. Which part do you think is still most underbuilt and worth the community solving together?
+        </div>
+      </div>
+      <div class="footer-note">09 / Closing</div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll('.slide')];
+      const counter = document.getElementById('counter');
+      const progress = document.getElementById('progress');
+      let active = 0;
+
+      const show = (index) => {
+        active = Math.max(0, Math.min(slides.length - 1, index));
+        slides[active].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        update(active);
+      };
+
+      const update = (index) => {
+        active = index;
+        counter.textContent = `${index + 1} / ${slides.length}`;
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        document.title = `${slides[index].dataset.title} — Conversation with RoboCurve`;
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) update(slides.indexOf(visible.target));
+      }, { threshold: [0.55, 0.75] });
+
+      slides.forEach((slide) => observer.observe(slide));
+
+      document.getElementById('prev').addEventListener('click', () => show(active - 1));
+      document.getElementById('next').addEventListener('click', () => show(active + 1));
+      document.getElementById('fullscreen').addEventListener('click', async () => {
+        if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.();
+        else await document.exitFullscreen?.();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.target.matches('input, textarea, select')) return;
+        if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) {
+          event.preventDefault(); show(active + 1);
+        } else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) {
+          event.preventDefault(); show(active - 1);
+        } else if (event.key === 'Home') {
+          event.preventDefault(); show(0);
+        } else if (event.key === 'End') {
+          event.preventDefault(); show(slides.length - 1);
+        } else if (event.key.toLowerCase() === 'f') {
+          document.getElementById('fullscreen').click();
+        }
+      });
+
+      update(0);
+    })();
+  </script>
+</body>
+</html>
