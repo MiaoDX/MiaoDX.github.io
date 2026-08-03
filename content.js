@@ -8,16 +8,16 @@ const SITE_CONTENT = {
     handle: 'MiaoDX',
     location: { zh: '北京', en: 'Beijing' },
     pageTitle: {
-      zh: 'MiaoDX — 机器人、自动驾驶与 AI-Native 研发',
-      en: 'MiaoDX — Robotics, Autonomous Driving & AI-Native Engineering',
+      zh: 'MiaoDX — 机器人系统技术负责人',
+      en: 'MiaoDX — Robotics Systems Technical Lead',
     },
     description: {
-      zh: '缪东旭（MiaoDX）：机器人与自动驾驶领域的技术负责人，关注复杂智能系统交付、算法工程化、数据评测与 AI-Native 研发',
-      en: 'Dongxu Miao (MiaoDX): an engineering leader in robotics and autonomous driving, focused on real-world delivery, algorithm engineering, evaluation and AI-Native development',
+      zh: '缪东旭（MiaoDX）：机器人系统技术负责人，关注具身智能、复杂系统交付、算法工程化与团队建设',
+      en: 'Dongxu Miao (MiaoDX): a robotics systems technical lead focused on embodied intelligence, complex-system delivery, algorithm engineering and team building',
     },
     tagline: {
-      zh: '机器人 · 自动驾驶 · AI-Native 研发',
-      en: 'Robotics · Autonomous Driving · AI-Native Engineering',
+      zh: '机器人系统 · 具身智能 · 复杂系统交付',
+      en: 'Robotics Systems · Embodied AI · Complex-System Delivery',
     },
     portrait: 'images/miaodx-profile.jpg',
   },
@@ -28,8 +28,8 @@ const SITE_CONTENT = {
       en: ['Intelligent systems', 'built for the real world'],
     },
     lede: {
-      zh: '我是缪东旭，一名长期扎根机器人与自动驾驶一线、亲自深入关键工程问题的技术负责人，关注算法工程化、产品交付与研发体系建设',
-      en: 'I am Dongxu Miao, a hands-on engineering leader turning robotics and autonomous-driving systems into reliable products',
+      zh: '我是缪东旭，小米汽车自动驾驶初创团队成员，也是首位从小米汽车自动驾驶转入机器人业务的工程师；现在专注于把模型、系统工程和团队协作组织成可持续交付的机器人系统',
+      en: 'I am Dongxu Miao, an early Xiaomi EV autonomous-driving team member and the first engineer to move from its autonomous-driving organization into robotics, now focused on building robotics systems that teams can deliver and improve continuously',
     },
     ctas: [
       { label: { zh: '代表工作', en: 'Selected work' }, href: '#work', primary: true },
@@ -46,17 +46,17 @@ const SITE_CONTENT = {
     },
     paragraphs: [
       {
-        zh: '你好，我是缪东旭，目前在北京。我长期在自动驾驶感知、量产系统和机器人开放任务一线工作，既关注关键算法与系统细节，也关注团队如何建立稳定交付、质量准出和持续迭代机制',
-        en: 'Hi, I am MiaoDX, based in Beijing. My work spans autonomous-driving perception, production systems and open-ended robotics. I care about both the critical engineering details and how teams build reliable delivery, quality gates and iteration loops',
+        zh: '你好，我是缪东旭，目前在北京。我曾从 0 到 1 组建感知系统团队，负责自动驾驶量产交付、质量准出和系统性能；转入机器人业务后，又把责任扩展到工站交付、数据评测、开放任务和 Agent 系统',
+        en: 'Hi, I am MiaoDX, based in Beijing. I built a perception-systems team from zero and led production delivery, quality gates and system performance, then expanded that responsibility into robotics delivery, evaluation, open-ended tasks and agent systems',
       },
       {
-        zh: '近年的重点，是把数据与评测、可验证 Harness 和 AI Agent 工作流带进复杂系统研发，让执行过程更可追踪、结果更可判断、工程经验更可复用',
-        en: 'More recently, I have been bringing data and evaluation, verifiable harnesses and AI-agent workflows into complex-system development, making execution traceable, outcomes testable and engineering knowledge reusable',
+        zh: '近年的重点，是复现和微调具身模型、完成训练工程与真机适配，并把数据评测、可验证 Harness 和 AI Agent 工作流带进机器人研发，让模型能力真正进入自有场景和持续迭代闭环',
+        en: 'More recently, I have been reproducing and fine-tuning embodied models, adapting them to real robots, and bringing data, evaluation, verifiable harnesses and agent workflows into robotics development',
       },
     ],
     pullquote: {
-      zh: 'AI-Native 不是另一层工具，而是让复杂研发更快形成「目标—执行—验证—迭代」闭环',
-      en: 'AI-Native engineering is not another layer of tooling; it is a tighter loop from intent to execution, verification and iteration',
+      zh: '技术负责人的价值，是让模型、系统和团队最终对同一个真实任务结果负责',
+      en: 'A technical lead connects models, systems and teams around the same real-world task outcome',
     },
     closing: {
       zh: ['案例、复盘与演讲持续发布在 ', 'Learn in Public', ''],
@@ -92,10 +92,10 @@ const SITE_CONTENT = {
     },
     {
       index: '03',
-      title: { zh: 'AI-Native 研发', en: 'AI-Native engineering' },
+      title: { zh: '具身模型与真机', en: 'Embodied models & real robots' },
       body: {
-        zh: '让清晰目标、可验证 Harness、Agent 执行与人工决策组成可追踪、可复用的研发闭环',
-        en: 'Connecting clear intent, verifiable harnesses, agent execution and human judgment into a traceable development loop',
+        zh: '从公开工作复现、模型微调和训练工程优化走到自有场景适配与真机验证',
+        en: 'Taking public implementations through model fine-tuning, training engineering, scenario adaptation and real-robot validation',
       },
     },
   ],
@@ -347,8 +347,8 @@ const SITE_CONTENT = {
 
   footer: {
     left: {
-      zh: '机器人与自动驾驶技术负责人\n算法工程化 · 数据与评测 · AI-Native 研发\n持续公开构建，持续复盘',
-      en: 'Engineering leader in robotics and autonomous driving\nAlgorithm engineering · Data & evaluation · AI-Native development\nBuilding and learning in public',
+      zh: '机器人系统技术负责人\n具身智能 · 复杂系统交付 · 团队建设\n持续公开构建，持续复盘',
+      en: 'Robotics systems technical lead\nEmbodied AI · Complex-system delivery · Team building\nBuilding and learning in public',
     },
     right: { zh: '北京 · MiaoDX', en: 'Beijing · MiaoDX' },
   },

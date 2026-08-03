@@ -161,6 +161,8 @@
         </div>
       </article>
     `).join('');
+    const coreExperience = data.experience.slice(0, 2);
+    const earlierExperience = data.experience.slice(2);
 
     document.getElementById('resume-root').innerHTML = `
       <header class="header">
@@ -186,10 +188,15 @@
 
       <section class="section">
         <h2>工作经历</h2>
-        ${experience(data.experience)}
+        ${experience(coreExperience)}
       </section>
 
       <section class="section page-break">
+        <h2>早期经历</h2>
+        ${experience(earlierExperience)}
+      </section>
+
+      <section class="section">
         <h2>项目与开源</h2>
         <div class="project-grid">
           ${data.projects.map((item) => `
@@ -212,7 +219,7 @@
       </section>
 
       <section class="section">
-        <h2>技术关键词</h2>
+        <h2>能力范围</h2>
         <div class="skill-list">${data.skills.map((item) => `<span class="skill">${esc(item)}</span>`).join('')}</div>
       </section>
 
