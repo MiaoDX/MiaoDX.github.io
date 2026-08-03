@@ -8,16 +8,16 @@ const SITE_CONTENT = {
     handle: 'MiaoDX',
     location: { zh: '北京', en: 'Beijing' },
     pageTitle: {
-      zh: 'MiaoDX — 机器人系统技术负责人',
-      en: 'MiaoDX — Robotics Systems Technical Lead',
+      zh: 'MiaoDX — 机器人系统与具身智能',
+      en: 'MiaoDX — Robotics Systems & Embodied AI',
     },
     description: {
-      zh: '缪东旭（MiaoDX）：机器人系统技术负责人，关注具身智能、复杂系统交付、算法工程化与团队建设',
-      en: 'Dongxu Miao (MiaoDX): a robotics systems technical lead focused on embodied intelligence, complex-system delivery, algorithm engineering and team building',
+      zh: '缪东旭（MiaoDX）：机器人系统与具身智能方向的 hands-on 技术负责人，关注复杂系统交付、模型与真机、数据评测和团队建设',
+      en: 'Dongxu Miao (MiaoDX): a hands-on robotics systems lead focused on embodied AI, real-world delivery, model-to-robot integration, evaluation and team building',
     },
     tagline: {
-      zh: '机器人系统 · 具身智能 · 复杂系统交付',
-      en: 'Robotics Systems · Embodied AI · Complex-System Delivery',
+      zh: '机器人系统 · 具身模型 · 复杂系统交付',
+      en: 'Robotics Systems · Embodied Models · Complex-System Delivery',
     },
     portrait: 'images/miaodx-profile.jpg',
   },
@@ -28,8 +28,8 @@ const SITE_CONTENT = {
       en: ['Intelligent systems', 'built for the real world'],
     },
     lede: {
-      zh: '我是缪东旭，小米汽车自动驾驶初创团队成员，也是首位从小米汽车自动驾驶转入机器人业务的工程师；现在专注于把模型、系统工程和团队协作组织成可持续交付的机器人系统',
-      en: 'I am Dongxu Miao, an early Xiaomi EV autonomous-driving team member and the first engineer to move from its autonomous-driving organization into robotics, now focused on building robotics systems that teams can deliver and improve continuously',
+      zh: '我是缪东旭，一名从自动驾驶量产系统走到机器人完整任务的 hands-on 技术负责人。曾从 0 到 1 组建感知系统团队；现在在机器人一线做系统交付、具身模型微调与真机适配，并用数据、评测和 Agent 提高研发迭代效率',
+      en: 'I am Dongxu Miao, a hands-on technical lead who moved from production autonomous-driving systems into complete robotics tasks. I built a perception-systems team from zero and now work across delivery, embodied-model fine-tuning, real-robot adaptation, evaluation and agent-assisted development',
     },
     ctas: [
       { label: { zh: '代表工作', en: 'Selected work' }, href: '#work', primary: true },
@@ -46,12 +46,12 @@ const SITE_CONTENT = {
     },
     paragraphs: [
       {
-        zh: '你好，我是缪东旭，目前在北京。我曾从 0 到 1 组建感知系统团队，负责自动驾驶量产交付、质量准出和系统性能；转入机器人业务后，又把责任扩展到工站交付、数据评测、开放任务和 Agent 系统',
-        en: 'Hi, I am MiaoDX, based in Beijing. I built a perception-systems team from zero and led production delivery, quality gates and system performance, then expanded that responsibility into robotics delivery, evaluation, open-ended tasks and agent systems',
+        zh: '2021 年加入小米汽车自动驾驶早期研发团队，后从 0 到 1 组建最多 9 人的感知系统团队，负责量产交付、质量准出和系统性能；2025 年主动转入机器人业务，2–3 周内开始承担整机集成与性能交付',
+        en: 'I joined Xiaomi EV autonomous driving in its early R&D stage, then built a perception-systems team of up to nine people and owned production delivery, quality gates and system performance. In 2025 I moved into robotics and began taking on system integration and performance delivery within two to three weeks',
       },
       {
-        zh: '近年的重点，是复现和微调具身模型、完成训练工程与真机适配，并把数据评测、可验证 Harness 和 AI Agent 工作流带进机器人研发，让模型能力真正进入自有场景和持续迭代闭环',
-        en: 'More recently, I have been reproducing and fine-tuning embodied models, adapting them to real robots, and bringing data, evaluation, verifiable harnesses and agent workflows into robotics development',
+        zh: '当前聚焦具身模型微调、训练工程与真机适配，并把数据评测、可验证 Harness 和受控 Agent 执行带进机器人研发，让模型能力真正进入自有场景和持续迭代闭环',
+        en: 'Today I focus on embodied-model fine-tuning, training engineering and real-robot adaptation, while bringing data, evaluation, verifiable harnesses and controlled agent execution into robotics development',
       },
     ],
     pullquote: {
@@ -65,10 +65,10 @@ const SITE_CONTENT = {
     closingHref: 'https://miaodx.com/LIP/',
     tags: [
       { zh: '机器人系统', en: 'Robotics Systems' },
-      { zh: '自动驾驶', en: 'Autonomous Driving' },
+      { zh: '具身模型与真机', en: 'Embodied Models & Robots' },
       { zh: '算法工程化', en: 'Algorithm Engineering' },
       { zh: '数据与评测', en: 'Data & Evaluation' },
-      { zh: 'AI-Native 研发', en: 'AI-Native Engineering' },
+      { zh: '团队建设', en: 'Team Building' },
       { zh: 'Learn in Public', en: 'Learn in Public' },
     ],
   },
@@ -94,8 +94,8 @@ const SITE_CONTENT = {
       index: '03',
       title: { zh: '具身模型与真机', en: 'Embodied models & real robots' },
       body: {
-        zh: '从公开工作复现、模型微调和训练工程优化走到自有场景适配与真机验证',
-        en: 'Taking public implementations through model fine-tuning, training engineering, scenario adaptation and real-robot validation',
+        zh: '从公开任务与模型能力出发，完成微调、训练工程、自有场景适配和真机端到端验证',
+        en: 'Taking public tasks and model capabilities through fine-tuning, training engineering, scenario adaptation and end-to-end real-robot validation',
       },
     },
   ],
@@ -119,24 +119,24 @@ const SITE_CONTENT = {
 
   projects: [
     {
-      name: 'RoboHarness',
-      slug: 'roboharness',
+      name: 'Embodied Model → Real Robot',
+      slug: 'embodied-model-real-robot',
       tagline: {
-        zh: '面向 AI Coding Agent 的机器人仿真测试与验收框架 — 让 Agent 看到机器人动作、判断结果并迭代',
-        en: 'Robot simulation testing and acceptance framework for AI Coding Agents — let Agents see robot actions, judge outcomes and iterate',
+        zh: '从公开任务与模型能力出发，完成 π0.5 微调、训练工程、自有场景适配和智元 G2 真机端到端验证',
+        en: 'Taking public tasks and model capabilities through π0.5 fine-tuning, training engineering, scenario adaptation and end-to-end validation on an AgiBot G2',
       },
       status: 'active',
       links: [
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/roboharness' },
-        { label: { zh: '在线报告', en: 'Report' }, href: 'https://miaodx.com/roboharness/' },
+        { label: { zh: '查看案例', en: 'Case study' }, href: 'https://miaodx.com/LIP/share/work-timeline.html#7' },
+        { label: { zh: '完整简历', en: 'Resume' }, href: 'resume/' },
       ],
     },
     {
       name: 'RoboClaws',
       slug: 'roboclaws',
       tagline: {
-        zh: '面向机器人开放任务的 AI Agent / 机器人大脑框架 — 用 MCP、Skill 与 Agent SDK 组织机器人能力',
-        en: 'AI Agent / robot brain framework for open-ended robot tasks — organizing robot capabilities with MCP, Skills and Agent SDK',
+        zh: '面向机器人开放任务的 AI Agent / 机器人大脑框架 — 用 MCP、Skill 与 Agent SDK 组织受控、可观察的机器人能力',
+        en: 'AI Agent / robot-brain framework for open-ended tasks — organizing controlled, observable robot capabilities with MCP, Skills and Agent SDK',
       },
       status: 'active',
       links: [
@@ -144,15 +144,16 @@ const SITE_CONTENT = {
       ],
     },
     {
-      name: 'Intuitive Flow',
-      slug: 'intuitive-flow',
+      name: 'RoboHarness',
+      slug: 'roboharness',
       tagline: {
-        zh: '面向 Agent 软件开发的可移植工作流工具包 — 组织目标澄清、计划、执行、验证以及长期维护与简化',
-        en: 'Portable workflows for agent-written software — organizing intent, planning, execution, verification and ongoing entropy reduction',
+        zh: '面向机器人研发 Agent 的仿真测试与验收框架 — 用指标、视觉证据和基线对比形成可复查的结果闭环',
+        en: 'Simulation testing and acceptance framework for robotics development agents — combining metrics, visual evidence and baseline comparisons into reviewable outcomes',
       },
       status: 'active',
       links: [
-        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/intuitive-flow' },
+        { label: { zh: 'GitHub', en: 'GitHub' }, href: 'https://github.com/MiaoDX/roboharness' },
+        { label: { zh: '在线报告', en: 'Report' }, href: 'https://miaodx.com/roboharness/' },
       ],
     },
   ],
@@ -347,8 +348,8 @@ const SITE_CONTENT = {
 
   footer: {
     left: {
-      zh: '机器人系统技术负责人\n具身智能 · 复杂系统交付 · 团队建设\n持续公开构建，持续复盘',
-      en: 'Robotics systems technical lead\nEmbodied AI · Complex-system delivery · Team building\nBuilding and learning in public',
+      zh: '机器人系统与具身智能\n模型到真机 · 复杂系统交付 · 团队建设\n持续公开构建，持续复盘',
+      en: 'Robotics systems & embodied AI\nModel to robot · Complex-system delivery · Team building\nBuilding and learning in public',
     },
     right: { zh: '北京 · MiaoDX', en: 'Beijing · MiaoDX' },
   },
