@@ -1,0 +1,56 @@
+name: Generate resume PDFs for career-materials PR
+
+on:
+  push:
+    branches:
+      - agent/align-robotics-leadership-evidence
+    paths:
+      - resume/resume-data.js
+      - resume/print.html
+      - resume/README.md
+      - .github/workflows/resume-pdf-pr.yml
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/align-robotics-leadership-evidence
+          fetch-depth: 0
+
+      - name: Install PDF inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Generate versioned and stable PDFs
+        run: |
+          python3 -m http.server 8000 >/tmp/resume-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          sleep 2
+          google-chrome \
+            --headless \
+            --disable-gpu \
+            --no-sandbox \
+            --no-pdf-header-footer \
+            --print-to-pdf="$PWD/resume/miao-dongxu-resume-zh-2026-08.pdf" \
+            http://127.0.0.1:8000/resume/print.html
+          cp resume/miao-dongxu-resume-zh-2026-08.pdf \
+            resume/miao-dongxu-resume-zh.pdf
+          test "$(pdfinfo resume/miao-dongxu-resume-zh-2026-08.pdf | awk '/^Pages:/ {print $2}')" = "2"
+          cmp resume/miao-dongxu-resume-zh-2026-08.pdf \
+            resume/miao-dongxu-resume-zh.pdf
+
+      - name: Commit generated PDFs and remove one-off workflow
+        run: |
+          rm .github/workflows/resume-pdf-pr.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "docs(resume): regenerate PDF artifacts"
+          git push origin HEAD:agent/align-robotics-leadership-evidence

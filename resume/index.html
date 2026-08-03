@@ -3,261 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>缪东旭 | 简历</title>
-  <meta name="description" content="缪东旭的中文简历：机器人系统技术负责人，具身智能、复杂系统交付与算法工程化。" />
+  <title>缪东旭 | 机器人系统与具身智能简历</title>
+  <meta name="description" content="缪东旭的中文简历：机器人系统与具身智能，复杂系统交付、模型到真机、数据评测与团队建设。" />
+  <link rel="canonical" href="https://miaodx.com/resume/" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="缪东旭 | 机器人系统与具身智能简历" />
+  <meta property="og:description" content="7 年多自动驾驶与机器人研发经验；机器人系统交付、具身模型微调与真机适配、数据评测和团队建设。" />
+  <meta property="og:url" content="https://miaodx.com/resume/" />
+  <meta name="twitter:card" content="summary" />
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png" />
   <style>
-    :root {
-      --paper: #f7f3ec;
-      --ink: #171411;
-      --soft: #5f564c;
-      --muted: #8b8174;
-      --rule: #d8cec0;
-      --panel: #fffaf2;
-      --accent: #8f3d2f;
-      --blue: #245c73;
-      --green: #35664c;
-    }
+    :root { --paper: #f7f3ec; --ink: #171411; --soft: #5f564c; --muted: #8b8174; --rule: #d8cec0; --panel: #fffaf2; --accent: #8f3d2f; --blue: #245c73; --green: #35664c; }
     * { box-sizing: border-box; }
     html { background: var(--paper); color: var(--ink); }
-    body {
-      margin: 0;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height: 1.62;
-    }
-    body, p, li, dd, .highlight, .project {
-      overflow-wrap: anywhere;
-    }
+    body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; line-height: 1.62; }
+    body, p, li, dd, .highlight, .project { overflow-wrap: anywhere; }
     a { color: inherit; }
-    .page {
-      width: min(100%, 1120px);
-      margin: 0 auto;
-      padding: 44px clamp(20px, 5vw, 64px) 72px;
-      overflow-x: hidden;
-    }
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--rule);
-      font-size: 13px;
-      color: var(--soft);
-    }
-    .back {
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
+    .page { width: min(100%, 1120px); margin: 0 auto; padding: 44px clamp(20px, 5vw, 64px) 72px; overflow-x: hidden; }
+    .topbar { display: flex; justify-content: space-between; gap: 18px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid var(--rule); font-size: 13px; color: var(--soft); }
+    .back { text-decoration: none; border-bottom: 1px solid transparent; }
     .back:hover { border-color: currentColor; }
     .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-    .btn {
-      min-height: 40px;
-      padding: 9px 14px;
-      border: 1px solid var(--ink);
-      color: var(--ink);
-      background: transparent;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .btn.primary {
-      background: var(--ink);
-      color: var(--paper);
-    }
-    .btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .btn.primary:hover {
-      color: var(--paper);
-      background: var(--accent);
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
-      gap: clamp(28px, 5vw, 64px);
-      padding: 52px 0 42px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .hero > *, .section, .section-head > *, .item > *, .highlight, .project {
-      min-width: 0;
-    }
-    .eyebrow {
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      font-weight: 700;
-    }
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(44px, 6vw, 72px);
-      line-height: 0.98;
-      letter-spacing: 0;
-      font-weight: 650;
-    }
-    .title {
-      color: var(--soft);
-      font-size: 18px;
-      margin: 0 0 22px;
-      display: flex;
-      gap: 4px 10px;
-      flex-wrap: wrap;
-    }
+    .btn { min-height: 40px; padding: 9px 14px; border: 1px solid var(--ink); color: var(--ink); background: transparent; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .btn.primary { background: var(--ink); color: var(--paper); }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn.primary:hover { color: var(--paper); background: var(--accent); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr); gap: clamp(28px, 5vw, 64px); padding: 52px 0 42px; border-bottom: 1px solid var(--rule); }
+    .hero > *, .section, .section-head > *, .item > *, .highlight, .project { min-width: 0; }
+    .eyebrow { color: var(--accent); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; font-weight: 700; }
+    h1 { margin: 0 0 16px; font-size: clamp(44px, 6vw, 72px); line-height: 0.98; letter-spacing: 0; font-weight: 650; }
+    .title { color: var(--soft); font-size: 18px; margin: 0 0 22px; display: flex; gap: 4px 10px; flex-wrap: wrap; }
     .title-focus { white-space: nowrap; }
-    .summary {
-      font-size: 17px;
-      max-width: 52em;
-      margin: 0;
-    }
-    .contact-panel {
-      align-self: end;
-      border-left: 1px solid var(--rule);
-      padding-left: 28px;
-      color: var(--soft);
-      font-size: 14px;
-    }
-    .contact-panel dl {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 8px 14px;
-      margin: 0;
-    }
+    .summary { font-size: 17px; max-width: 52em; margin: 0; }
+    .contact-panel { align-self: end; border-left: 1px solid var(--rule); padding-left: 28px; color: var(--soft); font-size: 14px; }
+    .contact-panel dl { display: grid; grid-template-columns: 72px 1fr; gap: 8px 14px; margin: 0; }
     .contact-panel dt { color: var(--muted); }
     .contact-panel dd { margin: 0; overflow-wrap: anywhere; color: var(--ink); }
     .contact-panel a { text-decoration: none; border-bottom: 1px solid var(--rule); }
-    .section {
-      padding: 42px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .section-head {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 28px;
-      align-items: baseline;
-      margin-bottom: 24px;
-    }
-    .section-kicker {
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    h2 {
-      margin: 0;
-      font-size: clamp(24px, 3vw, 34px);
-      line-height: 1.18;
-      letter-spacing: 0;
-    }
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .highlight {
-      min-height: 104px;
-      padding: 20px;
-      background: var(--panel);
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-    }
+    .section { padding: 42px 0; border-bottom: 1px solid var(--rule); }
+    .section-head { display: grid; grid-template-columns: 160px 1fr; gap: 28px; align-items: baseline; margin-bottom: 24px; }
+    .section-kicker { color: var(--accent); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+    h2 { margin: 0; font-size: clamp(24px, 3vw, 34px); line-height: 1.18; letter-spacing: 0; }
+    .highlight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .highlight { min-height: 104px; padding: 20px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; }
     .timeline { display: grid; gap: 30px; }
-    .item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 28px;
-    }
-    .period {
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 13px;
-    }
-    .item h3 {
-      margin: 0 0 4px;
-      font-size: 21px;
-      line-height: 1.28;
-    }
-    .role {
-      color: var(--soft);
-      margin-bottom: 12px;
-    }
-    ul {
-      margin: 0;
-      padding-left: 1.2em;
-    }
+    .item { display: grid; grid-template-columns: 160px 1fr; gap: 28px; }
+    .period { color: var(--blue); font-weight: 700; font-size: 13px; }
+    .item h3 { margin: 0 0 4px; font-size: 21px; line-height: 1.28; }
+    .role { color: var(--soft); margin-bottom: 12px; }
+    ul { margin: 0; padding-left: 1.2em; }
     li { margin: 5px 0; }
-    .awards {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .pill {
-      display: inline-flex;
-      min-height: 28px;
-      align-items: center;
-      padding: 4px 9px;
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      color: var(--green);
-      background: rgba(255,255,255,0.4);
-      font-size: 12px;
-    }
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
+    .awards { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { display: inline-flex; min-height: 28px; align-items: center; padding: 4px 9px; border: 1px solid var(--rule); border-radius: 999px; color: var(--green); background: rgba(255,255,255,0.4); font-size: 12px; }
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     .project-grid > .project:last-child:nth-child(odd) { grid-column: 1 / -1; }
-    .project {
-      padding: 20px;
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      background: var(--panel);
-    }
-    .project h3 {
-      margin: 0 0 8px;
-      font-size: 19px;
-    }
+    .project { padding: 20px; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
+    .project h3 { margin: 0 0 8px; font-size: 19px; }
     .project p { margin: 0; color: var(--soft); }
-    .project a {
-      text-decoration: none;
-      border-bottom: 1px solid var(--rule);
-    }
-    .compact-list {
-      columns: 2;
-      column-gap: 40px;
-    }
-    .footer {
-      padding-top: 26px;
-      color: var(--muted);
-      font-size: 13px;
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
+    .project a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+    .compact-list { columns: 2; column-gap: 40px; }
+    .stack-line { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-line code { padding: 5px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--panel); font-size: 12px; }
+    .footer { padding-top: 26px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .noscript { margin: 40px 0; padding: 20px; border: 1px solid var(--rule); background: var(--panel); }
     @media (max-width: 820px) {
       .page { padding-top: 28px; }
       .topbar { align-items: flex-start; flex-direction: column; }
       .actions { justify-content: flex-start; }
-      .hero, .section-head, .item {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 16px;
-      }
-      .contact-panel {
-        border-left: none;
-        border-top: 1px solid var(--rule);
-        padding: 20px 0 0;
-      }
+      .hero, .section-head, .item { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .contact-panel { border-left: none; border-top: 1px solid var(--rule); padding: 20px 0 0; }
       .highlight-grid, .project-grid { grid-template-columns: minmax(0, 1fr); }
       .compact-list { columns: 1; }
     }
@@ -269,116 +84,42 @@
       <a class="back" href="../">← miaodx.com</a>
       <div class="actions">
         <a id="work-timeline-link" class="btn" href="https://miaodx.com/LIP/share/work-timeline.html">工作 Timeline</a>
-        <a id="pdf-link" class="btn primary" href="./miao-dongxu-resume-zh-2026-08.pdf" download>下载 PDF</a>
+        <a id="pdf-link" class="btn primary" href="./miao-dongxu-resume-zh.pdf" download>下载 PDF</a>
       </div>
     </nav>
     <div id="resume-root"></div>
+    <noscript>
+      <section class="noscript">
+        <h1>缪东旭</h1>
+        <p>机器人系统与具身智能｜职业定位：机器人系统技术负责人</p>
+        <p>浏览器未启用 JavaScript。请直接下载 <a href="./miao-dongxu-resume-zh.pdf">PDF 简历</a>，或查看 <a href="https://miaodx.com/LIP/share/work-timeline.html">工作 Timeline</a>。</p>
+      </section>
+    </noscript>
   </main>
-
   <script src="./resume-data.js"></script>
   <script>
     const data = window.RESUME_DATA;
     document.getElementById('work-timeline-link').href = data.contacts.workTimeline;
     document.getElementById('pdf-link').href = './' + data.pdfFile;
-
-    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-    }[ch]));
-    const link = (href, label) => href
-      ? `<a href="${esc(href)}">${esc(label || href)}</a>`
-      : esc(label || '');
+    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    const link = (href, label) => href ? `<a href="${esc(href)}">${esc(label || href)}</a>` : esc(label || '');
     const bullets = (items) => items?.length ? `<ul>${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : '';
     const awards = (items) => items?.length ? `<div class="awards">${items.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div>` : '';
-
-    const renderExperience = (items) => items.map((item) => `
-      <article class="item">
-        <div class="period">${esc(item.period)}</div>
-        <div>
-          <h3>${esc(item.company)}</h3>
-          <div class="role">${esc(item.role)}</div>
-          ${bullets(item.bullets)}
-          ${awards(item.awards)}
-        </div>
-      </article>
-    `).join('');
-
-    const renderEducation = (items) => items.map((item) => `
-      <article class="item">
-        <div class="period">${esc(item.period)}</div>
-        <div>
-          <h3>${esc(item.school)}</h3>
-          <div class="role">${esc(item.degree)}</div>
-          ${bullets([...(item.bullets || []), ...(item.papers || [])])}
-          ${awards(item.awards)}
-        </div>
-      </article>
-    `).join('');
-
+    const renderExperience = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets)}${awards(item.awards)}</div></article>`).join('');
+    const renderEducation = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.school)}</h3><div class="role">${esc(item.degree)}</div>${bullets([...(item.bullets || []), ...(item.papers || [])])}${awards(item.awards)}</div></article>`).join('');
     document.getElementById('resume-root').innerHTML = `
       <section class="hero">
-        <div>
-          <div class="eyebrow">Resume · Updated ${esc(data.updated)}</div>
-          <h1>${esc(data.person.name)}</h1>
-          <p class="title">
-            <span>${esc(data.person.title)} · ${esc(data.person.location)}</span>
-            <span class="title-focus">${esc(data.person.focus)}</span>
-          </p>
-          <p class="summary">${esc(data.person.summary)}</p>
-        </div>
-        <aside class="contact-panel" aria-label="联系方式">
-          <dl>
-            <dt>Email</dt><dd>${link('mailto:' + data.contacts.email, data.contacts.email)}</dd>
-            <dt>GitHub</dt><dd>${link(data.contacts.github, 'MiaoDX')}</dd>
-            <dt>Website</dt><dd>${link(data.contacts.website, 'miaodx.com')}</dd>
-            <dt>公众号</dt><dd>${esc(data.contacts.publicAccount)}</dd>
-          </dl>
-        </aside>
+        <div><div class="eyebrow">Resume · Updated ${esc(data.updated)}</div><h1>${esc(data.person.name)}</h1><p class="title"><span>${esc(data.person.title)} · ${esc(data.person.location)}</span><span class="title-focus">${esc(data.person.focus)}</span></p><p class="summary">${esc(data.person.summary)}</p></div>
+        <aside class="contact-panel" aria-label="联系方式"><dl><dt>Email</dt><dd>${link('mailto:' + data.contacts.email, data.contacts.email)}</dd><dt>GitHub</dt><dd>${link(data.contacts.github, 'MiaoDX')}</dd><dt>Website</dt><dd>${link(data.contacts.website, 'miaodx.com')}</dd><dt>公众号</dt><dd>${esc(data.contacts.publicAccount)}</dd></dl></aside>
       </section>
-
-      <section class="section">
-        <div class="section-head"><div class="section-kicker">01 / Focus</div><h2>工作主线</h2></div>
-        <div class="highlight-grid">
-          ${data.highlights.map((item) => `<div class="highlight">${esc(item)}</div>`).join('')}
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><div class="section-kicker">02 / Experience</div><h2>工作经历</h2></div>
-        <div class="timeline">${renderExperience(data.experience)}</div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><div class="section-kicker">03 / Projects</div><h2>项目与开源</h2></div>
-        <div class="project-grid">
-          ${data.projects.map((item) => `
-            <article class="project">
-              <h3>${item.link ? link(item.link, item.name) : esc(item.name)}</h3>
-              <p>${esc(item.desc)}</p>
-            </article>
-          `).join('')}
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><div class="section-kicker">04 / Talks</div><h2>技术分享</h2></div>
-        <ul class="compact-list">${data.talks.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><div class="section-kicker">05 / Education</div><h2>教育经历</h2></div>
-        <div class="timeline">${renderEducation(data.education)}</div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><div class="section-kicker">06 / Scope</div><h2>能力范围</h2></div>
-        <div class="awards">${data.skills.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div>
-      </section>
-
-      <footer class="footer">
-        <span>${esc(data.person.pinyin)} · ${esc(data.person.title)}</span>
-        <span>Updated ${esc(data.updated)}</span>
-      </footer>
-    `;
+      <section class="section"><div class="section-head"><div class="section-kicker">01 / Focus</div><h2>工作主线</h2></div><div class="highlight-grid">${data.highlights.map((item) => `<div class="highlight">${esc(item)}</div>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">02 / Experience</div><h2>工作经历</h2></div><div class="timeline">${renderExperience(data.experience)}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">03 / Projects</div><h2>项目与开源</h2></div><div class="project-grid">${data.projects.map((item) => `<article class="project"><h3>${item.link ? link(item.link, item.name) : esc(item.name)}</h3><p>${esc(item.desc)}</p></article>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">04 / Talks</div><h2>技术分享</h2></div><ul class="compact-list">${data.talks.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">05 / Education</div><h2>教育经历</h2></div><div class="timeline">${renderEducation(data.education)}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">06 / Scope</div><h2>能力范围</h2></div><div class="awards">${data.skills.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">07 / Stack</div><h2>技术栈</h2></div><div class="stack-line">${data.stack.map((item) => `<code>${esc(item)}</code>`).join('')}</div></section>
+      <footer class="footer"><span>${esc(data.person.pinyin)} · ${esc(data.person.title)}</span><span>Updated ${esc(data.updated)}</span></footer>`;
   </script>
 </body>
 </html>
