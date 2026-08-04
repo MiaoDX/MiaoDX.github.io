@@ -34,7 +34,7 @@
     .eyebrow { color: var(--accent); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; font-weight: 700; }
     h1 { margin: 0 0 16px; font-size: clamp(44px, 6vw, 72px); line-height: 0.98; letter-spacing: 0; font-weight: 650; }
     .title { color: var(--soft); font-size: 18px; margin: 0 0 22px; display: flex; gap: 4px 10px; flex-wrap: wrap; }
-    .title-focus { white-space: nowrap; }
+    .title-focus { flex-basis: 100%; min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
     .summary { font-size: 17px; max-width: 52em; margin: 0; }
     .contact-panel { align-self: end; border-left: 1px solid var(--rule); padding-left: 28px; color: var(--soft); font-size: 14px; }
     .contact-panel dl { display: grid; grid-template-columns: 72px 1fr; gap: 8px 14px; margin: 0; }
@@ -72,6 +72,7 @@
       .topbar { align-items: flex-start; flex-direction: column; }
       .actions { justify-content: flex-start; }
       .hero, .section-head, .item { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .title-focus { white-space: pre-line; }
       .contact-panel { border-left: none; border-top: 1px solid var(--rule); padding: 20px 0 0; }
       .highlight-grid, .project-grid { grid-template-columns: minmax(0, 1fr); }
       .compact-list { columns: 1; }
