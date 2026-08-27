@@ -31,8 +31,8 @@ const RESUME_DATA = {
       'Open tasks and agents: delivered a constrained pick-and-place prototype in about 1.5 months, validated on two robot forms at over 90% success. Founded RoboClaws and RoboHarness for controlled execution and machine-verifiable acceptance; RoboHarness won first place in the 2026 department AI Hackathon.',
     ], awards: ['2025 H1 Auto Division Special Project Award', '2025 H1 Autonomous Driving Best Connector Award', '2026 Autonomous Driving & Robotics AI Hackathon, 1st Place'] },
     { period: '2021.08 - 2025.03', company: 'XiaomiEV · Autonomous Driving', role: 'Head of Perception Systems', bullets: [
-      'Joined the early autonomous driving R&D team and built a perception systems team of up to 9 engineers, covering team building, production delivery, quality release gates, and system performance.',
-      'Standardized shared code frameworks, cross-platform integration, automated releases, MIL / SIL / HIL, code quality, and performance tooling across teams.',
+      'Team scope: Joined the early autonomous driving R&D team and built a perception systems team of up to 9 engineers, covering team building, production delivery, quality release gates, and system performance.',
+      'Engineering foundation: Standardized shared code frameworks, cross-platform integration, automated releases, MIL / SIL / HIL, code quality, and performance tooling across teams.',
       'Shifted testing left, automated Crash routing, and managed whole-vehicle resources: average release Crash rate fell about 98%, while issue localization and routing dropped from about one day to under one hour.',
       'Turned one-off delivery work into reusable code, tools, and processes that continued operating after the move to robotics.',
     ], awards: ['2022 H2 Autonomous Driving Best Delivery Award', '2022 H2 Autonomous Driving Outstanding Contribution Award'] },

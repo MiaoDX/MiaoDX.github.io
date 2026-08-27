@@ -119,7 +119,7 @@
     ].join('');
     pdfLink.download = data.pdfFile.replace(/\.pdf$/i, `-${downloadDate}.pdf`);
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-    const emphasizeLead = (value) => { const text = esc(value); return text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>') === text ? text.replace(/^(.+?[。.!?](?:\s|$))/, '<strong>$1</strong>') : text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>'); };
+    const emphasizeLead = (value) => esc(value).replace(/^([^：:]+[：:])/, '<strong>$1</strong>');
     const link = (href, label) => href ? `<a href="${esc(href)}">${esc(label || href)}</a>` : esc(label || '');
     const bullets = (items, raw = false) => items?.length ? `<ul>${items.map((item) => `<li>${raw ? item : esc(item)}</li>`).join('')}</ul>` : '';
     const awards = (items) => items?.length ? `<div class="awards">${items.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div>` : '';
