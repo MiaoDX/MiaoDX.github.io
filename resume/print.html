@@ -53,7 +53,7 @@
     const emphasizeLead = (value) => { const text = esc(value); return text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>') === text ? text.replace(/^(.+?[。.!?](?:\s|$))/, '<strong>$1</strong>') : text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>'); };
     const bullets = (items, cls = '', emphasize = false) => items?.length ? `<ul class="${cls}">${items.map((item) => `<li>${emphasize ? emphasizeLead(item) : esc(item)}</li>`).join('')}</ul>` : '';
     const awards = (items) => items?.length ? `<div class="awards">${esc(items.join(' · '))}</div>` : '';
-    const experience = (items) => items.map((item, itemIndex) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets.map((bullet, bulletIndex) => (itemIndex < 2 && bulletIndex < 2) ? emphasizeLead(bullet) : esc(bullet)), '', true)}${awards(item.awards)}</div></article>`).join('');
+    const experience = (items) => items.map((item, itemIndex) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets, '', itemIndex < 2)}${awards(item.awards)}</div></article>`).join('');
     const education = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.school)}</h3><div class="role">${esc(item.degree)}</div>${bullets([...(item.bullets || []), ...(item.papers || [])])}${awards(item.awards)}</div></article>`).join('');
     const coreExperience = data.experience.slice(0, 2);
     const earlierExperience = data.experience.slice(2);
