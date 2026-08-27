@@ -14,7 +14,7 @@ toggle. Content lives in `content.js`; the layout lives in `editorial.jsx`.
 ├── content.js              # Copy + links (ZH/EN)
 ├── editorial.jsx           # Editorial layout
 │
-├── resume/                 # Chinese resume page + PDF
+├── resume/                 # Chinese/English resume pages + PDFs
 ├── images/                 # Portrait, events, misc
 ├── share/                  # Standalone pages + QR/meetup assets linked
 │                           #   from the homepage

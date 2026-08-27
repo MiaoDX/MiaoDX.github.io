@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>缪东旭 | 机器人系统与具身智能简历</title>
-  <meta name="description" content="缪东旭的中文简历：机器人系统与具身智能，复杂系统交付、模型到真机、数据评测与团队建设。" />
-  <link rel="canonical" href="https://miaodx.com/resume/" />
+  <title>Miao Dongxu | Robotics Systems & Embodied Intelligence</title>
+  <meta name="description" content="Miao Dongxu's resume: robotics systems, embodied intelligence, model deployment, evaluation, and team leadership." />
+  <link rel="canonical" href="https://miaodx.com/resume/en.html" />
   <link rel="alternate" hreflang="zh-CN" href="https://miaodx.com/resume/" />
   <link rel="alternate" hreflang="en" href="https://miaodx.com/resume/en.html" />
   <meta property="og:type" content="profile" />
-  <meta property="og:title" content="缪东旭 | 机器人系统与具身智能简历" />
-  <meta property="og:description" content="7 年多自动驾驶与机器人研发经验；机器人系统交付、具身模型微调与真机适配、数据评测和团队建设。" />
-  <meta property="og:url" content="https://miaodx.com/resume/" />
+  <meta property="og:title" content="Miao Dongxu | Robotics Systems & Embodied Intelligence" />
+  <meta property="og:description" content="Robotics systems engineering, embodied models, evaluation, and team leadership." />
+  <meta property="og:url" content="https://miaodx.com/resume/en.html" />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png" />
@@ -66,7 +66,7 @@
     .project a { text-decoration: none; border-bottom: 1px solid var(--rule); }
     .compact-list { columns: 2; column-gap: 40px; }
     .stack-line { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; }
-    .stack-group { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+    .stack-group { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 10px; align-items: baseline; }
     .stack-label { color: var(--muted); font-size: 12px; font-weight: 700; }
     .stack-items { display: flex; flex-wrap: wrap; gap: 6px; }
     .stack-items code { padding: 5px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--panel); font-size: 12px; }
@@ -80,7 +80,7 @@
       .title-focus { white-space: pre-line; }
       .contact-panel { border-left: none; border-top: 1px solid var(--rule); padding: 20px 0 0; }
       .highlight-grid, .project-grid, .stack-line { grid-template-columns: minmax(0, 1fr); }
-      .stack-group { grid-template-columns: 92px minmax(0, 1fr); }
+      .stack-group { grid-template-columns: 112px minmax(0, 1fr); }
       .compact-list { columns: 1; }
     }
   </style>
@@ -90,21 +90,21 @@
     <nav class="topbar">
       <a class="back" href="../">← miaodx.com</a>
       <div class="actions">
-        <a class="btn" href="./en.html">English Resume</a>
-        <a id="work-timeline-link" class="btn" href="https://miaodx.com/LIP/share/work-timeline.html">工作 Timeline</a>
-        <a id="pdf-link" class="btn primary" href="./miao-dongxu-resume-zh.pdf" download>下载 PDF</a>
+        <a class="btn" href="./">中文简历</a>
+        <a id="work-timeline-link" class="btn" href="https://miaodx.com/LIP/share/work-timeline.html">Work Timeline</a>
+        <a id="pdf-link" class="btn primary" href="./miao-dongxu-resume-en.pdf" download>Download PDF</a>
       </div>
     </nav>
     <div id="resume-root"></div>
     <noscript>
       <section class="noscript">
-        <h1>缪东旭</h1>
-        <p>机器人系统与具身智能｜职业定位：机器人系统技术负责人</p>
-        <p>浏览器未启用 JavaScript。请直接下载 <a href="./miao-dongxu-resume-zh.pdf">PDF 简历</a>，或查看 <a href="https://miaodx.com/LIP/share/work-timeline.html">工作 Timeline</a>。</p>
+        <h1>Miao Dongxu</h1>
+        <p>Robotics Systems & Embodied Intelligence</p>
+        <p>JavaScript is disabled. Download the <a href="./miao-dongxu-resume-en.pdf">English resume PDF</a>, or view the <a href="https://miaodx.com/LIP/share/work-timeline.html">Work Timeline</a>.</p>
       </section>
     </noscript>
   </main>
-  <script src="./resume-data.js?v=20260827"></script>
+  <script src="./resume-en-data.js?v=20260827"></script>
   <script>
     const data = window.RESUME_DATA;
     document.getElementById('work-timeline-link').href = data.contacts.workTimeline;
@@ -126,15 +126,15 @@
     document.getElementById('resume-root').innerHTML = `
       <section class="hero">
         <div><div class="eyebrow">Resume · Updated ${esc(data.updated)}</div><h1>${esc(data.person.name)}</h1><p class="title"><span>${esc(data.person.title)}</span><span class="title-focus">${esc(data.person.focus)}</span></p><p class="summary">${esc(data.person.summary)}</p></div>
-        <aside class="contact-panel" aria-label="联系方式"><dl><dt>Email</dt><dd>${link('mailto:' + data.contacts.email, data.contacts.email)}</dd><dt>GitHub</dt><dd>${link(data.contacts.github, 'MiaoDX')}</dd><dt>Website</dt><dd>${link(data.contacts.website, 'miaodx.com')}</dd><dt>公众号</dt><dd>${esc(data.contacts.publicAccount)}</dd></dl></aside>
+        <aside class="contact-panel" aria-label="Contact information"><dl><dt>Email</dt><dd>${link('mailto:' + data.contacts.email, data.contacts.email)}</dd><dt>GitHub</dt><dd>${link(data.contacts.github, 'MiaoDX')}</dd><dt>Website</dt><dd>${link(data.contacts.website, 'miaodx.com')}</dd><dt>WeChat</dt><dd>${esc(data.contacts.publicAccount)}</dd></dl></aside>
       </section>
-      <section class="section"><div class="section-head"><div class="section-kicker">01 / Focus</div><h2>工作主线</h2></div><div class="highlight-grid">${data.highlights.map((item) => `<div class="highlight">${esc(item)}</div>`).join('')}</div></section>
-      <section class="section"><div class="section-head"><div class="section-kicker">02 / Experience</div><h2>工作经历</h2></div><div class="timeline">${renderExperience(data.experience)}</div></section>
-      <section class="section"><div class="section-head"><div class="section-kicker">03 / Projects</div><h2>项目与开源</h2></div><div class="project-grid">${data.projects.map((item) => `<article class="project"><h3>${item.link ? link(item.link, item.name) : esc(item.name)}</h3><p>${esc(item.desc)}</p></article>`).join('')}</div></section>
-      <section class="section"><div class="section-head"><div class="section-kicker">04 / Talks</div><h2>技术分享</h2></div><ul class="compact-list">${data.talks.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></section>
-      <section class="section"><div class="section-head"><div class="section-kicker">05 / Education</div><h2>教育经历</h2></div><div class="timeline">${renderEducation(data.education)}</div></section>
-      <section class="section"><div class="section-head"><div class="section-kicker">06 / Scope</div><h2>能力范围</h2></div><div class="awards">${data.skills.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div></section>
-      <section class="section"><div class="section-head"><div class="section-kicker">07 / Stack</div><h2>技术栈</h2></div><div class="stack-line">${data.stack.map((group) => `<div class="stack-group"><div class="stack-label">${esc(group.label)}</div><div class="stack-items">${group.items.map((item) => `<code>${esc(item)}</code>`).join('')}</div></div>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">01 / Focus</div><h2>Focus</h2></div><div class="highlight-grid">${data.highlights.map((item) => `<div class="highlight">${esc(item)}</div>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">02 / Experience</div><h2>Experience</h2></div><div class="timeline">${renderExperience(data.experience)}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">03 / Projects</div><h2>Projects & Open Source</h2></div><div class="project-grid">${data.projects.map((item) => `<article class="project"><h3>${item.link ? link(item.link, item.name) : esc(item.name)}</h3><p>${esc(item.desc)}</p></article>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">04 / Talks</div><h2>Talks</h2></div><ul class="compact-list">${data.talks.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">05 / Education</div><h2>Education</h2></div><div class="timeline">${renderEducation(data.education)}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">06 / Scope</div><h2>Capabilities</h2></div><div class="awards">${data.skills.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">07 / Stack</div><h2>Tech Stack</h2></div><div class="stack-line">${data.stack.map((group) => `<div class="stack-group"><div class="stack-label">${esc(group.label)}</div><div class="stack-items">${group.items.map((item) => `<code>${esc(item)}</code>`).join('')}</div></div>`).join('')}</div></section>
       <footer class="footer"><span>${esc(data.person.pinyin)} · ${esc(data.person.title)}</span><span>Updated ${esc(data.updated)}</span></footer>`;
   </script>
 </body>

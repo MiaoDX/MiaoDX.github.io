@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://miaodx.com/resume/</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://miaodx.com/resume/en.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://miaodx.com/LIP/share/work-timeline.html</loc>
