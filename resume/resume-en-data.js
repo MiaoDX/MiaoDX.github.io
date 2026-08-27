@@ -32,11 +32,11 @@ const RESUME_DATA = {
     ], awards: ['2025 H1 Auto Division Special Project Award', '2025 H1 Autonomous Driving Best Connector Award', '2026 Autonomous Driving & Robotics AI Hackathon, 1st Place'] },
     { period: '2021.08 - 2025.03', company: 'XiaomiEV · Autonomous Driving', role: 'Head of Perception Systems', bullets: [
       'Joined the early autonomous driving R&D team and built a perception systems team of up to 9 engineers, covering team building, production delivery, quality release gates, and system performance.',
-      'Standardized shared code frameworks, cross-platform integration, automated releases, SIL/DIL, code quality, and performance tooling across teams.',
+      'Standardized shared code frameworks, cross-platform integration, automated releases, MIL / SIL / HIL, code quality, and performance tooling across teams.',
       'Shifted testing left, automated Crash routing, and managed whole-vehicle resources: average release Crash rate fell about 98%, while issue localization and routing dropped from about one day to under one hour.',
       'Turned one-off delivery work into reusable code, tools, and processes that continued operating after the move to robotics.',
     ], awards: ['2022 H2 Autonomous Driving Best Delivery Award', '2022 H2 Autonomous Driving Outstanding Contribution Award'] },
-    { period: '2019.03 - 2021.07', company: 'DeepMotion.ai', role: 'Algorithm Engineer', bullets: ['Worked on autonomous driving and parking algorithms. Led delivery for SAIC Marvel-R parking collaboration in 2020–2021, covering algorithm design, on-site tuning, testing, optimization, and delivery.'], awards: ['2020 Company Outstanding Employee'] },
+    { period: '2019.03 - 2021.07', company: 'DeepMotion.ai', role: 'Algorithm Engineer', bullets: ['Worked on autonomous driving and parking algorithms. Led delivery for SAIC Marvel-R parking collaboration in 2020–2021, covering algorithm design, on-site tuning, testing, optimization, and delivery.'], awards: ['Employee of the Year, 2020'] },
     { period: '2018.07 - 2018.09', company: 'Horizon Robotics', role: 'Algorithm Engineer Intern', bullets: ['Developed lane-line vanishing-point detection algorithms.', 'Designed and built an annotation tool to improve data processing efficiency.'], awards: [] },
   ],
   projects: [

@@ -49,6 +49,7 @@
     h2 { margin: 0; font-size: clamp(24px, 3vw, 34px); line-height: 1.18; letter-spacing: 0; }
     .highlight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .highlight { min-height: 104px; padding: 20px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; }
+    .highlight strong { font-weight: 750; }
     .timeline { display: grid; gap: 30px; }
     .item { display: grid; grid-template-columns: 160px 1fr; gap: 28px; }
     .period { color: var(--blue); font-weight: 700; font-size: 13px; }
@@ -118,17 +119,18 @@
     ].join('');
     pdfLink.download = data.pdfFile.replace(/\.pdf$/i, `-${downloadDate}.pdf`);
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    const emphasizeLead = (value) => { const text = esc(value); return text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>') === text ? text.replace(/^(.+?[。.!?](?:\s|$))/, '<strong>$1</strong>') : text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>'); };
     const link = (href, label) => href ? `<a href="${esc(href)}">${esc(label || href)}</a>` : esc(label || '');
-    const bullets = (items) => items?.length ? `<ul>${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : '';
+    const bullets = (items, raw = false) => items?.length ? `<ul>${items.map((item) => `<li>${raw ? item : esc(item)}</li>`).join('')}</ul>` : '';
     const awards = (items) => items?.length ? `<div class="awards">${items.map((item) => `<span class="pill">${esc(item)}</span>`).join('')}</div>` : '';
-    const renderExperience = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets)}${awards(item.awards)}</div></article>`).join('');
+    const renderExperience = (items) => items.map((item, itemIndex) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets.map((bullet, bulletIndex) => (itemIndex < 2 && bulletIndex < 2) ? emphasizeLead(bullet) : esc(bullet)), true)}${awards(item.awards)}</div></article>`).join('');
     const renderEducation = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.school)}</h3><div class="role">${esc(item.degree)}</div>${bullets([...(item.bullets || []), ...(item.papers || [])])}${awards(item.awards)}</div></article>`).join('');
     document.getElementById('resume-root').innerHTML = `
       <section class="hero">
         <div><div class="eyebrow">Resume · Updated ${esc(data.updated)}</div><h1>${esc(data.person.name)}</h1><p class="title"><span>${esc(data.person.title)}</span><span class="title-focus">${esc(data.person.focus)}</span></p><p class="summary">${esc(data.person.summary)}</p></div>
         <aside class="contact-panel" aria-label="Contact information"><dl><dt>Email</dt><dd>${link('mailto:' + data.contacts.email, data.contacts.email)}</dd><dt>GitHub</dt><dd>${link(data.contacts.github, 'MiaoDX')}</dd><dt>Website</dt><dd>${link(data.contacts.website, 'miaodx.com')}</dd><dt>WeChat</dt><dd>${esc(data.contacts.publicAccount)}</dd></dl></aside>
       </section>
-      <section class="section"><div class="section-head"><div class="section-kicker">01 / Focus</div><h2>Focus</h2></div><div class="highlight-grid">${data.highlights.map((item) => `<div class="highlight">${esc(item)}</div>`).join('')}</div></section>
+      <section class="section"><div class="section-head"><div class="section-kicker">01 / Focus</div><h2>Focus</h2></div><div class="highlight-grid">${data.highlights.map((item) => `<div class="highlight">${emphasizeLead(item)}</div>`).join('')}</div></section>
       <section class="section"><div class="section-head"><div class="section-kicker">02 / Experience</div><h2>Experience</h2></div><div class="timeline">${renderExperience(data.experience)}</div></section>
       <section class="section"><div class="section-head"><div class="section-kicker">03 / Projects</div><h2>Projects & Open Source</h2></div><div class="project-grid">${data.projects.map((item) => `<article class="project"><h3>${item.link ? link(item.link, item.name) : esc(item.name)}</h3><p>${esc(item.desc)}</p></article>`).join('')}</div></section>
       <section class="section"><div class="section-head"><div class="section-kicker">04 / Talks</div><h2>Talks</h2></div><ul class="compact-list">${data.talks.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></section>

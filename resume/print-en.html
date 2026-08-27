@@ -25,6 +25,7 @@
     .section { margin-top: 8px; }
     .page-break { break-before: page; margin-top: 0; }
     .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 14px; margin: 0; padding-left: 1.1em; }
+    .highlights strong { font-weight: 700; }
     .item { display: grid; grid-template-columns: 30mm 1fr; gap: 6mm; margin-top: 6px; break-inside: avoid; }
     .period { color: #245c73; font-weight: 700; font-size: 9.6px; }
     .role { color: #5e554c; margin-top: 1px; }
@@ -49,15 +50,16 @@
   <script>
     const data = window.RESUME_DATA;
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-    const bullets = (items, cls = '') => items?.length ? `<ul class="${cls}">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : '';
+    const emphasizeLead = (value) => { const text = esc(value); return text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>') === text ? text.replace(/^(.+?[。.!?](?:\s|$))/, '<strong>$1</strong>') : text.replace(/^([^：:]+[：:])/, '<strong>$1</strong>'); };
+    const bullets = (items, cls = '', emphasize = false) => items?.length ? `<ul class="${cls}">${items.map((item) => `<li>${emphasize ? emphasizeLead(item) : esc(item)}</li>`).join('')}</ul>` : '';
     const awards = (items) => items?.length ? `<div class="awards">${esc(items.join(' · '))}</div>` : '';
-    const experience = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets)}${awards(item.awards)}</div></article>`).join('');
+    const experience = (items) => items.map((item, itemIndex) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>${bullets(item.bullets.map((bullet, bulletIndex) => (itemIndex < 2 && bulletIndex < 2) ? emphasizeLead(bullet) : esc(bullet)), '', true)}${awards(item.awards)}</div></article>`).join('');
     const education = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.school)}</h3><div class="role">${esc(item.degree)}</div>${bullets([...(item.bullets || []), ...(item.papers || [])])}${awards(item.awards)}</div></article>`).join('');
     const coreExperience = data.experience.slice(0, 2);
     const earlierExperience = data.experience.slice(2);
     document.getElementById('resume-root').innerHTML = `
       <header class="header"><div><h1>${esc(data.person.name)}</h1><div class="title">${esc(data.person.title)} · ${esc(data.person.focus)}</div><div class="summary">${esc(data.person.summary)}</div></div><div class="contact"><div>Email: ${esc(data.contacts.email)}</div><div>Tel: ${esc(data.contacts.phone)}</div><div>GitHub: ${esc(data.contacts.github)}</div><div>Website: ${esc(data.contacts.website)}</div><div>WeChat: ${esc(data.contacts.publicAccount)}</div><div>Updated: ${esc(data.updated)}</div></div></header>
-      <section class="section"><h2>Focus</h2>${bullets(data.highlights, 'highlights')}</section>
+      <section class="section"><h2>Focus</h2>${bullets(data.highlights, 'highlights', true)}</section>
       <section class="section"><h2>Experience</h2>${experience(coreExperience)}</section>
       <section class="section page-break"><h2>Earlier Experience</h2>${experience(earlierExperience)}</section>
       <section class="section"><h2>Projects & Open Source</h2><div class="project-grid">${data.projects.map((item) => `<article class="project"><h3>${item.link ? `<a href="${esc(item.link)}">${esc(item.name)}</a>` : esc(item.name)}</h3><p>${esc(item.desc)}</p></article>`).join('')}</div></section>
