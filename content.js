@@ -160,6 +160,24 @@ const SITE_CONTENT = {
 
   events: [
     {
+      date: '2026-08-29',
+      short: '08.29',
+      featured: true,
+      title: {
+        zh: '深蓝学院 · 具身学术夜 · 开放麦 #1',
+        en: 'Shenlan Academy · Embodied AI Night · Open Mic #1',
+      },
+      desc: {
+        zh: '深蓝学院主办的具身智能学术夜第一场 Open Mic，与来自松灵、北理工、北航、众擎的 5 位嘉宾同台；我分享了"自驾人的机器人生存指南" — 从自动驾驶量产走到机器人完整任务期间观察到的可迁移经验',
+        en: 'First Open Mic of Shenlan Academy\'s Embodied AI Night series, sharing the stage with 5 speakers from Songling, BIT, Beihang and Zhongqing. My talk: "Autonomous-Driving Veteran\'s Robotics Survival Guide" — transferable lessons from AD mass-production to end-to-end embodied tasks',
+      },
+      links: [
+        { label: { zh: '活动介绍', en: 'Event intro' }, href: 'https://mp.weixin.qq.com/s/Brzib32JHCNs0EwlA7x6Dg' },
+      ],
+      image: 'images/events/2026-09/0901-shenlan-embodied-night.jpg',
+      tag: 'academic',
+    },
+    {
       date: '2026-06-02',
       short: '06.02',
       featured: true,
