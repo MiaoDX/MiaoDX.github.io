@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>缪东旭 | 简历打印版</title>
+  <title>缪东旭 | 机器人系统技术负责人简历</title>
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png" />
   <style>
@@ -23,7 +23,7 @@
     .contact { min-width: 58mm; font-size: 9.8px; color: #302b26; }
     .contact div { margin-bottom: 2px; }
     .section { margin-top: 8px; }
-    .page-break { break-before: page; margin-top: 0; }
+    .page-break { break-before: auto; margin-top: 8px; }
     .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 14px; margin: 0; padding-left: 1.1em; }
     .highlights strong { font-weight: 700; }
     .item { display: grid; grid-template-columns: 30mm 1fr; gap: 6mm; margin-top: 6px; break-inside: avoid; }
@@ -46,7 +46,7 @@
 </head>
 <body>
   <main id="resume-root" class="page"></main>
-  <script src="./resume-data.js?v=20260827"></script>
+  <script src="./resume-data.js?v=20260901"></script>
   <script>
     const data = window.RESUME_DATA;
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
