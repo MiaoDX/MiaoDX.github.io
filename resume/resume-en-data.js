@@ -7,7 +7,7 @@ const RESUME_DATA = {
     pinyin: 'Miao Dongxu',
     title: 'Robotics Systems Technical Lead',
     focus: 'Hands-on Technical Lead\nSystems Engineering · Data & Evaluation · Model Post-Training & Real-Robot Adaptation',
-    summary: 'Over 7 years of experience in autonomous driving and robotics systems, turning algorithmic capabilities into deliverable, measurable systems. As an early member of XiaomiEV\'s autonomous-driving team, I built a perception systems team of up to 9 engineers and established quality, performance, and delivery mechanisms that supported R&D collaboration as the organization grew from about 40 to 400+ engineers. Since moving into robotics in 2025, I have owned robot-system integration, task delivery, model deployment, data and evaluation, embodied-model post-training, and real-robot adaptation; I am seeking broader end-to-end responsibility as a hands-on robotics systems technical lead.',
+    summary: 'Over 7 years of experience in autonomous driving and robotics systems, turning algorithmic capabilities into deliverable, measurable systems. As an early member of XiaomiEV\'s autonomous-driving team, I built a perception systems team of up to 9 engineers and led the perception stack\'s evolution from industrial PCs to NVIDIA Orin-X, Orin-N, and Thor-U, covering architecture upgrades, cross-platform integration, algorithm optimization, and production bring-up. Since moving into robotics in 2025, I have owned robot-system integration, task delivery, model deployment, data and evaluation, embodied-model post-training, and real-robot adaptation; I am seeking broader end-to-end responsibility as a hands-on robotics platform engineering lead.',
   },
   contacts: {
     email: 'miaodx@hotmail.com',
@@ -19,6 +19,7 @@ const RESUME_DATA = {
   },
   highlights: [
     'Systems and team: built a perception systems team from 0 to 9 engineers and established shared code, tooling, and ownership mechanisms supporting R&D collaboration at an organization of 400+ engineers.',
+    'Platform evolution: led the perception stack from industrial PCs to NVIDIA Orin-X, Orin-N, and Thor-U across architecture upgrades, cross-platform integration, resource budgets, algorithm optimization, and production bring-up.',
     'Quality and performance: shifted testing left, automated crash routing, and governed system resources; average release crash rate per million kilometers fell about 98%, while issue localization and routing dropped from about one day to under one hour.',
     'Robotics delivery: integrated and optimized three workstation types while owning one task end to end; built 90+ focused tests and brought whole-system CPU P90 below 60%.',
     'Data, models, and robots: scaled simulation data generation and model evaluation to 100+ cloud instances, doubling per-instance throughput; completed data adaptation, fine-tuning, inference, scene adaptation, and AGIBOT G2 execution for two pi0.5 tasks.',
@@ -32,7 +33,8 @@ const RESUME_DATA = {
     ], awards: ['2025 H1 Auto Division Special Project Award', '2025 H1 Autonomous Driving Best Connector Award', '2026 Autonomous Driving & Robotics AI Hackathon, 1st Place'] },
     { period: '2021.08 - 2025.03', company: 'XiaomiEV · Autonomous Driving', role: 'Perception Systems Team Lead', bullets: [
       'Team scope: joined the early autonomous-driving R&D team and built a perception systems team of up to 9 engineers, covering team building, production delivery, quality release gates, and system performance.',
-      'Engineering foundation: standardized shared code frameworks, cross-platform integration, automated releases, MIL / SIL / HIL, code quality, and performance tooling across teams.',
+      'Platform evolution and architecture: led the perception stack from industrial PCs to NVIDIA Orin-X, Orin-N, and Thor-U, covering architecture upgrades, cross-platform integration, resource budgets, algorithm optimization, and production bring-up.',
+      'Engineering foundation: standardized shared code frameworks, automated releases, MIL / SIL / HIL, code quality, and performance tooling across teams.',
       'Quality and performance: shifted testing left, automated crash routing, and managed whole-vehicle resources; average release crash rate per million kilometers fell about 98%, while issue localization and routing dropped from about one day to under one hour.',
       'Sustainable mechanisms: turned one-off delivery work into reusable code, tools, and processes that continued operating after the move to robotics.',
     ], awards: ['2022 H2 Autonomous Driving Best Delivery Award', '2022 H2 Autonomous Driving Outstanding Contribution Award'] },
@@ -54,7 +56,7 @@ const RESUME_DATA = {
   skills: ['Robotics systems engineering & delivery', 'Data and evaluation loops', 'Embodied-model post-training, fine-tuning & real-robot adaptation', 'Team building & cross-functional collaboration', 'Controlled agent execution & acceptance'],
   stack: [
     { label: 'Languages', items: ['C++', 'Python', 'Rust'] },
-    { label: 'Systems', items: ['Linux', 'QNX'] },
+    { label: 'Systems', items: ['Linux', 'QNX', 'NVIDIA Orin-X / Orin-N / Thor-U'] },
     { label: 'Robotics', items: ['ROS 2'] },
     { label: 'Inference', items: ['CUDA', 'TensorRT', 'PyTorch'] },
     { label: 'Simulation', items: ['Isaac Sim', 'Genie Sim', 'MuJoCo'] },
