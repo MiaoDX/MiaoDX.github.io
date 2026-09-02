@@ -168,8 +168,8 @@ const SITE_CONTENT = {
         en: 'Shenlan Academy · Embodied AI Night · Open Mic #1',
       },
       desc: {
-        zh: '深蓝学院主办的具身智能学术夜第一场 Open Mic，与来自松灵、北理工、北航、众擎的 5 位嘉宾同台；我分享了"自驾人的机器人生存指南" — 从自动驾驶量产走到机器人完整任务期间观察到的可迁移经验',
-        en: 'First Open Mic of Shenlan Academy\'s Embodied AI Night series, sharing the stage with 5 speakers from Songling, BIT, Beihang and Zhongqing. My talk: "Autonomous-Driving Veteran\'s Robotics Survival Guide" — transferable lessons from AD mass-production to end-to-end embodied tasks',
+        zh: '深蓝学院主办的具身智能学术夜，先由高翔和史雪松老师带来分享，随后是我们几人的 Open Mic，与来自松灵、北理工、北航、众擎的嘉宾同台；我分享了"自驾人的机器人生存指南" — 从自动驾驶量产走到机器人完整任务期间观察到的可迁移经验',
+        en: 'Shenlan Academy\'s Embodied AI Night opened with talks by Gao Xiang and Shi Xuesong, followed by our Open Mic with speakers from Songling, BIT, Beihang and Zhongqing. My talk: "Autonomous-Driving Veteran\'s Robotics Survival Guide" — transferable lessons from AD mass-production to end-to-end embodied tasks',
       },
       links: [
         { label: { zh: '活动介绍', en: 'Event intro' }, href: 'https://mp.weixin.qq.com/s/Brzib32JHCNs0EwlA7x6Dg' },
