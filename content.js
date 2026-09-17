@@ -160,6 +160,24 @@ const SITE_CONTENT = {
 
   events: [
     {
+      date: '2026-09-13',
+      short: '09.13',
+      featured: true,
+      title: {
+        zh: '手工川 AI 沙龙 EP01 · 开放麦 · 自驾人在机器人生存指南',
+        en: 'Forge AI Salon EP01 · Open Mic · Self-Driving People\'s Robotics Survival Guide',
+      },
+      desc: {
+        zh: '手工川 AI 沙龙 EP01（南川主理）开放麦环节，主题「如何用 Agent 实现全自动化创作」，epark 海淀花园路社区 50 人场；与另外 4 位嘉宾（伟园长、雪亮律师、小红帽、张竹青）同台，复用上次在深蓝学院同台分享过的「自驾人在机器人生存指南」',
+        en: 'Open Mic at Forge AI Salon EP01 (hosted by NanChuan), themed on Agent-driven automated content creation, at Beijing\'s epark Haidian (50-seat venue). Shared alongside four fellow speakers (伟园长, 雪亮律师, 小红帽, 张竹青); my slot revisited the same talk — "Self-Driving People\'s Robotics Survival Guide" — that I\'d given at Shenlan Academy the month before',
+      },
+      links: [
+        { label: { zh: '活动介绍', en: 'Event intro' }, href: 'https://mp.weixin.qq.com/s/flbitqK1vKI33LoySlQ3Lg' },
+      ],
+      image: 'images/events/2026-09/0913-shougongchuan-salon.jpg',
+      tag: 'community',
+    },
+    {
       date: '2026-08-29',
       short: '08.29',
       featured: true,
