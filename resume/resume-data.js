@@ -1,7 +1,7 @@
 const RESUME_DATA = {
-  updated: '2026-09',
+  updated: '2026-10',
   pdfFile: 'miao-dongxu-resume-zh.pdf',
-  pdfArchiveFile: 'miao-dongxu-resume-zh-2026-09.pdf',
+  pdfArchiveFile: 'miao-dongxu-resume-zh-2026-10.pdf',
   person: {
     name: '缪东旭',
     pinyin: 'Miao Dongxu',
@@ -26,7 +26,13 @@ const RESUME_DATA = {
   ],
   experience: [
     {
-      period: '2025.03 - 至今',
+      period: '2026.10 - 至今',
+      company: '觅蜂科技有限公司',
+      role: '数据交付负责人',
+      bullets: [],
+    },
+    {
+      period: '2025.03 - 2026.10',
       company: '小米汽车 自动驾驶与机器人部',
       role: '机器人实验室，高级算法工程师',
       bullets: [

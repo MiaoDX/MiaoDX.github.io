@@ -11,11 +11,11 @@ downloadable PDFs.
   English sources.
 - `miao-dongxu-resume-zh.pdf` is the stable public download URL. The web page
   keeps this URL but suggests a downloaded filename with the access date, such
-  as `miao-dongxu-resume-zh-260901.pdf`.
-- `miao-dongxu-resume-zh-2026-09.pdf` is the current versioned archive. Older
+  as `miao-dongxu-resume-zh-261015.pdf`.
+- `miao-dongxu-resume-zh-2026-10.pdf` is the current versioned archive. Older
   versioned PDFs remain available so existing links do not break.
 - `miao-dongxu-resume-en.pdf` is the stable English download URL, and
-  `miao-dongxu-resume-en-2026-09.pdf` is its current versioned archive.
+  `miao-dongxu-resume-en-2026-10.pdf` is its current versioned archive.
 
 ## Regenerate PDF
 
@@ -32,20 +32,20 @@ google-chrome \
   --headless \
   --disable-gpu \
   --no-pdf-header-footer \
-  --print-to-pdf="$PWD/resume/miao-dongxu-resume-zh-2026-09.pdf" \
+  --print-to-pdf="$PWD/resume/miao-dongxu-resume-zh-2026-10.pdf" \
   http://127.0.0.1:8000/resume/print.html
 
-cp resume/miao-dongxu-resume-zh-2026-09.pdf \
+cp resume/miao-dongxu-resume-zh-2026-10.pdf \
   resume/miao-dongxu-resume-zh.pdf
 
 google-chrome \
   --headless \
   --disable-gpu \
   --no-pdf-header-footer \
-  --print-to-pdf="$PWD/resume/miao-dongxu-resume-en-2026-09.pdf" \
+  --print-to-pdf="$PWD/resume/miao-dongxu-resume-en-2026-10.pdf" \
   http://127.0.0.1:8000/resume/print-en.html
 
-cp resume/miao-dongxu-resume-en-2026-09.pdf \
+cp resume/miao-dongxu-resume-en-2026-10.pdf \
   resume/miao-dongxu-resume-en.pdf
 ```
 
