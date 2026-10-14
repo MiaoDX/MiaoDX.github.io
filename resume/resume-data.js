@@ -1,13 +1,13 @@
 const RESUME_DATA = {
-  updated: '2026-09',
+  updated: '2026-10',
   pdfFile: 'miao-dongxu-resume-zh.pdf',
-  pdfArchiveFile: 'miao-dongxu-resume-zh-2026-09.pdf',
+  pdfArchiveFile: 'miao-dongxu-resume-zh-2026-10.pdf',
   person: {
     name: '缪东旭',
     pinyin: 'Miao Dongxu',
     title: '机器人系统技术负责人',
     focus: 'Hands-on Technical Lead\n系统工程 · 数据与评测 · 模型后训练与真机适配',
-    summary: '7 年多自动驾驶与机器人系统研发经验，专注将算法能力转化为可交付、可验收的完整系统。作为小米汽车自动驾驶早期成员，从 0 到 1 组建最多 9 人的感知系统团队，并主导感知软件栈从工控机向 NVIDIA Orin-X、Orin-N 及 Thor-U 的平台演进、架构升级和算法优化；2025 年转入机器人业务，负责整机系统、任务交付、模型部署、数据评测，以及具身模型后训练与真机适配。希望以 hands-on 技术负责人方式承担机器人平台工程的端到端责任，持续从问题定义推进到真机验证和交付。',
+    summary: '7 年多自动驾驶与机器人系统研发经验，专注将算法能力转化为可交付、可验收的完整系统。作为小米汽车自动驾驶早期成员，从 0 到 1 组建最多 9 人的感知系统团队，并主导感知软件栈从工控机向 NVIDIA Orin-X、Orin-N 及 Thor-U 的平台演进、架构升级和算法优化；2025 年转入机器人业务，负责整机系统、任务交付、模型部署、数据评测，以及具身模型后训练与真机适配。',
   },
   contacts: {
     email: 'miaodx@hotmail.com',
@@ -26,7 +26,13 @@ const RESUME_DATA = {
   ],
   experience: [
     {
-      period: '2025.03 - 至今',
+      period: '2026.10 - 至今',
+      company: '觅蜂科技有限公司',
+      role: '数据交付负责人',
+      bullets: ['负责云端数据管线优化、数据交付及工程研发团队建设。'],
+    },
+    {
+      period: '2025.03 - 2026.10',
       company: '小米汽车 自动驾驶与机器人部',
       role: '机器人实验室，高级算法工程师',
       bullets: [
