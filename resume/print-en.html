@@ -54,9 +54,9 @@
     const emphasizeLead = (value) => esc(value).replace(/^([^：:]+[：:])/, '<strong>$1</strong>');
     const bullets = (items, cls = '', emphasize = false) => items?.length ? `<ul class="${cls}">${items.map((item) => `<li>${emphasize ? emphasizeLead(item) : esc(item)}</li>`).join('')}</ul>` : '';
     const awards = (items) => items?.length ? `<div class="awards">${esc(items.join(' · '))}</div>` : '';
-    const experience = (items) => { const emphasized = items.filter((entry) => entry.bullets?.length).slice(0, 2); return items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div>${item.bullets?.length ? `<h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>` : `<h3>${esc(item.company)} <span class="role-inline">· ${esc(item.role)}</span></h3>`}${bullets(item.bullets, '', emphasized.includes(item))}${awards(item.awards)}</div></article>`).join(''); };
+    const experience = (items) => { const emphasized = items.filter((entry) => entry.bullets?.length > 1).slice(0, 2); return items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div>${(item.bullets?.length > 1 || item.awards?.length) ? `<h3>${esc(item.company)}</h3><div class="role">${esc(item.role)}</div>` : `<h3>${esc(item.company)} <span class="role-inline">· ${esc(item.role)}</span></h3>`}${bullets(item.bullets, '', emphasized.includes(item))}${awards(item.awards)}</div></article>`).join(''); };
     const education = (items) => items.map((item) => `<article class="item"><div class="period">${esc(item.period)}</div><div><h3>${esc(item.school)}</h3><div class="role">${esc(item.degree)}</div>${bullets([...(item.bullets || []), ...(item.papers || [])])}${awards(item.awards)}</div></article>`).join('');
-    const coreSize = data.experience.findIndex((entry, index) => data.experience.slice(0, index + 1).filter((item) => item.bullets?.length).length === 2) + 1;
+    const coreSize = data.experience.findIndex((entry, index) => data.experience.slice(0, index + 1).filter((item) => item.bullets?.length > 1).length === 2) + 1;
     const coreExperience = data.experience.slice(0, coreSize);
     const earlierExperience = data.experience.slice(coreSize);
     document.getElementById('resume-root').innerHTML = `
