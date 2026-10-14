@@ -1,7 +1,7 @@
 const RESUME_DATA = {
-  updated: '2026-09',
+  updated: '2026-10',
   pdfFile: 'miao-dongxu-resume-en.pdf',
-  pdfArchiveFile: 'miao-dongxu-resume-en-2026-09.pdf',
+  pdfArchiveFile: 'miao-dongxu-resume-en-2026-10.pdf',
   person: {
     name: 'Miao Dongxu · 缪东旭',
     pinyin: 'Miao Dongxu',
@@ -25,7 +25,8 @@ const RESUME_DATA = {
     'Data, models, and robots: scaled simulation data and evaluation to 100+ cloud instances with ~2x per-instance throughput; fine-tuned pi0.5 and XR-1 across three tracks, including AGIBOT G2 execution.',
   ],
   experience: [
-    { period: '2025.03 - Present', company: 'XiaomiEV · Autonomous Driving & Robotics', role: 'Senior Algorithm Engineer, Robotics Lab', bullets: [
+    { period: '2026.10 - Present', company: 'Mifeng Technology', role: 'Data Delivery Lead', bullets: [], awards: [] },
+    { period: '2025.03 - 2026.10', company: 'XiaomiEV · Autonomous Driving & Robotics', role: 'Senior Algorithm Engineer, Robotics Lab', bullets: [
       'Robotics systems and delivery: moved into robotics in 2025 and took ownership of system integration, performance, and testing within 2–3 weeks. Integrated and optimized three workstation types while owning one task end to end; built 90+ focused tests, brought CPU P90 below 60%, and moved the integrated algorithm and software stack from laboratory readiness to small-batch delivery readiness.',
       'Model deployment, data, and evaluation: deployed VLN from sensors through cloud or on-device inference to robot control. Scaled simulation data generation and model evaluation to 100+ cloud instances, doubling per-instance throughput and combining metrics, trajectories, visual results, and failure cases for model comparison and root-cause analysis.',
       'Model post-training and real-robot adaptation: ran three fine-tuning tracks: pi0.5 on real-robot pick-and-place data from the AGIBOT World Challenge @ ICRA 2026, executed on AGIBOT G2; pi0.5 and XR-1 on Genie Sim 3.0 with closed-loop evaluation.',
